@@ -1,10 +1,11 @@
 ---
-title: "Messi, Mbappé Shine as Argentina and France Open World Cup Campaigns with Victories"
+title: Messi, Mbappé Shine as Argentina and France Open World Cup Campaigns with
+  Victories
 date: 2026-06-18
-categories: 
-  - "news"
+categories:
+  - news
+thumbnail: messi-1024x683.webp
 ---
-
 Lionel Messi and Kylian Mbappé delivered memorable performances as Argentina and France began their World Cup campaigns with impressive victories, underlining why they remain among the tournament’s biggest contenders.
 
 For Argentina, Messi once again took center stage, scoring a hat trick in a commanding 3-0 win over Algeria. The reigning world champions controlled much of the contest, with the 39-year-old captain producing a performance that delighted supporters and added another chapter to his remarkable international career.
@@ -27,6 +28,6 @@ France, runners-up in 2022, showed both patience and quality in overcoming a det
 
 With Messi and Mbappé both producing headline performances, two of the tournament’s biggest stars have already provided an early reminder of their ability to influence the sport’s grandest stage.
 
-![](images/messi-1024x683.webp)
+![](messi-1024x683.webp)
 
 **African Updates**
