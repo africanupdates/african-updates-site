@@ -1,0 +1,108 @@
+backend:
+  name: github
+  repo: africanupdates/african-updates-site
+  branch: main
+  base_url: https://african-updates-site.pages.dev
+
+media_folder: static/images
+public_folder: /images
+
+# ─────────────────────────────────────────
+# ENGLISH POSTS
+# ─────────────────────────────────────────
+collections:
+  - name: posts_en
+    label: "Posts (English)"
+    folder: content/en/posts
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}/index" 
+    fields:
+      - { label: "Title", name: title, widget: string }
+      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Description", name: description, widget: string, required: false, hint: "Short summary shown in previews and SEO" }
+      - { label: "Meta Description", name: meta_description, widget: string, required: false, hint: "SEO meta description (overrides description if set)" }
+      - label: "Categories"
+        name: categories
+        widget: select
+        multiple: true
+        required: false
+        options: ["news", "featured", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
+      - label: "Tags"
+        name: tags
+        widget: list
+        required: false
+        hint: "Type a tag and press Enter"
+      - { label: "Author", name: author, widget: string, required: false }
+      - { label: "Slug", name: slug, widget: string, required: false, hint: "Leave blank to auto-generate from title" }
+      - label: "Thumbnail"
+        name: thumbnail
+        widget: image
+        required: false
+      - { label: "Body", name: body, widget: markdown }
+
+# ─────────────────────────────────────────
+# FRENCH POSTS
+# ─────────────────────────────────────────
+  - name: posts_fr
+    label: "Posts (Français)"
+    folder: content/fr/posts
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}/index"
+    fields:
+      - { label: "Titre", name: title, widget: string }
+      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Description", name: description, widget: string, required: false, hint: "Résumé court affiché dans les aperçus" }
+      - { label: "Méta description", name: meta_description, widget: string, required: false, hint: "Meta description SEO" }
+      - label: "Catégories"
+        name: categories
+        widget: select
+        multiple: true
+        required: false
+        options: ["news", "featured", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
+      - label: "Tags"
+        name: tags
+        widget: list
+        required: false
+        hint: "Écrivez un tag et appuyez sur Entrée"
+      - { label: "Auteur", name: author, widget: string, required: false }
+      - { label: "Slug", name: slug, widget: string, required: false, hint: "Laisser vide pour générer depuis le titre" }
+      - label: "Miniature"
+        name: thumbnail
+        widget: image
+        required: false
+      - { label: "Contenu", name: body, widget: markdown }
+
+# ─────────────────────────────────────────
+# KINYARWANDA POSTS
+# ─────────────────────────────────────────
+  - name: posts_rw
+    label: "Inyandiko (Kinyarwanda)"
+    folder: content/rw/posts
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}/index" 
+    fields:
+      - { label: "Umutwe", name: title, widget: string }
+      - { label: "Itariki", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Incamake", name: description, widget: string, required: false, hint: "Incamake igaragara mu bisobanuro" }
+      - { label: "Meta Description", name: meta_description, widget: string, required: false, hint: "Meta description ya SEO" }
+      - label: "Ibyiciro"
+        name: categories
+        widget: select
+        multiple: true
+        required: false
+        options: ["news", "featured", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
+      - label: "Tags"
+        name: tags
+        widget: list
+        required: false
+        hint: "Andika tag hanyuma ukande Enter"
+      - { label: "Umwanditsi", name: author, widget: string, required: false }
+      - { label: "Slug", name: slug, widget: string, required: false, hint: "Siga ubusa kugirango igenerwe bivuye ku mutwe" }
+      - label: "Ifoto"
+        name: thumbnail
+        widget: image
+        required: false
+      - { label: "Ubutumwa", name: body, widget: markdown }
