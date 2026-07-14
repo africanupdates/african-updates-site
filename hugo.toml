@@ -1,0 +1,30 @@
+baseURL = "https://africanupdates.com/"
+title = "African Updates"
+theme = "mainroad"
+
+defaultContentLanguage = "rw"
+
+[languages]
+  [languages.rw]
+    languageName = "Kinyarwanda"
+    weight = 1
+    contentDir = "content/rw"
+
+  [languages.en]
+    languageName = "English"
+    weight = 2
+    contentDir = "content/en"
+
+  [languages.fr]
+    languageName = "French"
+    weight = 3
+    contentDir = "content/fr"
+
+    [Params.sidebar]
+  home = "right"
+  widgets = ["search", "recent", "categories", "taglist", "social", "languages"]
+  list = "left"
+  single = "right"
+
+[Params.widgets]
+  # ...
