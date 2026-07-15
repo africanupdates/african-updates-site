@@ -1,14 +1,15 @@
 ---
 title: "Kenya: Impanuka y'indege yishe abantu Umunani"
 date: 2023-09-20
-categories: 
-  - "news"
-  - "featured"
-  - "east"
-  - "politic"
-  - "health"
-  - "security"
-thumbnail: "KENYA.webp"
+categories:
+  - news
+  - featured
+  - east
+  - politic
+  - health
+  - security
+author: Denyse Mbabazi
+thumbnail: KENYA.webp
 ---
 
 Impanuka yindege ya kajugujugu muri kenya yahitanye abagera ku 8.
