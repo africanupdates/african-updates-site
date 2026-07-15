@@ -27,12 +27,7 @@
 
         {{ $thumb := "" }}
         {{ with $p.Params.thumbnail }}
-          {{ $res := $p.Resources.GetMatch . }}
-          {{ if $res }}
-            {{ $thumb = $res.RelPermalink }}
-          {{ else }}
-            {{ $thumb = . | relURL }}
-          {{ end }}
+          {{ $thumb = . | relURL }}
         {{ else }}
           {{ with $p.Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
             {{ $thumb = .RelPermalink }}
@@ -68,7 +63,7 @@
         </article>
         {{ if gt (len $group) 1 }}<div class="au-slider__tiles">{{ end }}
         {{ else }}
-        {{- /* Tiles 2–5 */}}
+        {{- /* Tiles 2–5: thumbnail on the left, title beside it */}}
         <article class="au-slider__tile">
           <a href="{{ $p.RelPermalink }}" class="au-slider__tile-img-link" tabindex="{{ if $gi }}0{{ else }}-1{{ end }}">
             {{ if $thumb }}
@@ -77,15 +72,14 @@
               <div class="au-slider__tile-img au-slider__tile-img--placeholder"></div>
             {{ end }}
           </a>
-          <div class="au-slider__overlay"></div>
-          <div class="au-slider__tile-caption">
+          <div class="au-slider__tile-body">
             {{- with $p.Params.categories }}
               <a href="{{ (index . 0) | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--sm">
                 {{ index . 0 }}
               </a>
             {{ end }}
             <h3 class="au-slider__tile-title">
-              <a href="{{ $p.RelPermalink }}">{{ $p.Title | truncate 80 }}</a>
+              <a href="{{ $p.RelPermalink }}">{{ $p.Title | truncate 90 }}</a>
             </h3>
             <time datetime="{{ $p.Date.Format "2006-01-02" }}" class="au-slider__tile-date">
               {{ $p.Date.Format "Jan 2, 2006" }}

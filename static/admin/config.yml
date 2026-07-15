@@ -4,9 +4,6 @@ backend:
   branch: main
   base_url: https://african-updates-site.pages.dev
 
-# Editorial workflow — enables Draft / In Review / Ready / Published stages
-publish_mode: editorial_workflow
-
 # Global media fallback (used if collection doesn't override)
 media_folder: static/images
 public_folder: /images

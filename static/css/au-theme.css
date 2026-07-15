@@ -426,7 +426,7 @@ input, button, select, textarea { font-family: inherit; }
 
 /* Slider-specific badge override — always navy */
 .au-slider__caption .au-badge,
-.au-slider__tile-caption .au-badge {
+.au-slider__tile-body .au-badge {
   background: #1b3a5c !important;
   color: var(--au-white) !important;
 }
@@ -462,8 +462,7 @@ input, button, select, textarea { font-family: inherit; }
   position: relative;
   overflow: hidden;
 }
-.au-slider__img,
-.au-slider__tile-img {
+.au-slider__img {
   position: absolute;
   inset: 0;
   background-size: cover;
@@ -528,38 +527,58 @@ input, button, select, textarea { font-family: inherit; }
   grid-template-rows: repeat(4, 1fr);
   gap: 3px;
 }
+/* Horizontal tile: thumbnail on the left, text on the right */
 .au-slider__tile {
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  background: var(--au-white);
 }
 .au-slider__tile-img-link {
+  position: relative;
+  flex: 0 0 40%;
+  max-width: 40%;
+  display: block;
+  overflow: hidden;
+}
+.au-slider__tile-img {
   position: absolute;
   inset: 0;
-  display: block;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--dur-slow) var(--ease);
 }
-.au-slider__tile-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: var(--space-3) var(--space-4) var(--space-4);
-  z-index: 2;
+.au-slider__tile:hover .au-slider__tile-img { transform: scale(1.06); }
+.au-slider__tile-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
 }
 .au-slider__tile-title {
   font-family: var(--font-display);
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   font-weight: 700;
-  color: var(--au-white);
+  color: var(--au-ink);
   line-height: 1.25;
-  margin-block: var(--space-1);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  margin-block: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .au-slider__tile-title a { color: inherit; }
+.au-slider__tile-title a:hover { color: var(--au-red); }
 .au-slider__tile-date {
   font-family: var(--font-label);
   font-size: var(--text-xs);
-  color: rgba(255,255,255,0.65);
+  color: var(--au-muted);
 }
+.au-slider__tile-body .au-badge { align-self: flex-start; }
 /* Dots */
 .au-slider__dots {
   position: absolute;
@@ -745,21 +764,34 @@ input, button, select, textarea { font-family: inherit; }
 .au-sidebar {
   position: sticky;
   top: calc(var(--nav-h) + var(--space-4));
-  max-height: calc(100vh - var(--nav-h) - var(--space-8));
+  align-self: start;
+  /* Cap height to the visible viewport so it never runs past the screen.
+     If the widgets are shorter than this, the sidebar is simply its
+     natural height. If they're taller, it scrolls internally. */
+  max-height: calc(100vh - var(--nav-h) - var(--space-6));
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  /* Hide scrollbar visually but keep it functional */
+  /* Room so the scrollbar doesn't overlap widget borders */
+  padding-right: 6px;
   scrollbar-width: thin;
   scrollbar-color: var(--au-border) transparent;
-  padding-right: var(--space-1);
 }
-.au-sidebar::-webkit-scrollbar { width: 4px; }
+.au-sidebar::-webkit-scrollbar { width: 6px; }
 .au-sidebar::-webkit-scrollbar-track { background: transparent; }
-.au-sidebar::-webkit-scrollbar-thumb { background: var(--au-border); border-radius: 2px; }
+.au-sidebar::-webkit-scrollbar-thumb { background: var(--au-border); border-radius: 3px; }
 .au-sidebar::-webkit-scrollbar-thumb:hover { background: var(--au-muted); }
+/* On mobile the sidebar is not sticky and should never be height-capped */
+@media (max-width: 768px) {
+  .au-sidebar {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+}
 .au-widget {
   background: var(--au-white);
   border: 1px solid var(--au-border);
