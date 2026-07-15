@@ -29,15 +29,24 @@
 </head>
 <body class="{{ if .IsHome }}page-home{{ else if .IsPage }}page-single{{ else }}page-list{{ end }}">
 
+  {{- /* Skip to content — keyboard / screen-reader navigation */}}
+  <a href="#main-content" class="au-skip-link">{{ i18n "skip_to_content" | default "Skip to content" }}</a>
+
   {{- partial "topbar.html" . }}
   {{- partial "header.html" . }}
   {{- partial "nav.html" . }}
+  {{- partial "breaking-ticker.html" . }}
 
-  <div class="au-site-body">
+  <div class="au-site-body" id="au-site-body">
     {{ block "main" . }}{{ end }}
   </div>
 
   {{- partial "footer.html" . }}
+
+  {{- /* Back to top button */}}
+  <button class="au-back-top" id="au-back-top" aria-label="{{ i18n "back_to_top" | default "Back to top" }}" hidden>
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+  </button>
 
   <script src="{{ "js/au-theme.js" | relURL }}"></script>
   {{ block "scripts_extra" . }}{{ end }}

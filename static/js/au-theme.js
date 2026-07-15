@@ -233,3 +233,62 @@ document.addEventListener('DOMContentLoaded', () => {
   initLazyBg();
   initDropdownClose();
 });
+
+/* ── BREAKING TICKER ─────────────────────────────────────── */
+function initTicker() {
+  const ticker  = document.querySelector('.au-ticker');
+  const track   = document.getElementById('au-ticker-track');
+  const pauseBtn = document.getElementById('au-ticker-pause');
+  if (!ticker || !track || !pauseBtn) return;
+
+  // Skip animation if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Calibrate speed to content width so it always feels the same pace
+  const trackWidth = track.scrollWidth / 2; // halved because list is doubled
+  const pxPerSec   = 80; // pixels per second
+  const duration   = Math.max(20, trackWidth / pxPerSec);
+  track.style.animationDuration = duration + 's';
+
+  let paused = false;
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    track.classList.toggle('is-paused', paused);
+    pauseBtn.setAttribute('aria-pressed', String(paused));
+    const icon = pauseBtn.querySelector('i');
+    if (icon) icon.className = paused ? 'fa fa-play' : 'fa fa-pause';
+    pauseBtn.setAttribute('aria-label', paused ? 'Resume ticker' : 'Pause ticker');
+  });
+
+  // Pause on hover / focus for accessibility
+  ticker.addEventListener('mouseenter', () => { if (!paused) track.classList.add('is-paused'); });
+  ticker.addEventListener('mouseleave', () => { if (!paused) track.classList.remove('is-paused'); });
+  ticker.addEventListener('focusin',    () => { if (!paused) track.classList.add('is-paused'); });
+  ticker.addEventListener('focusout',   () => { if (!paused) track.classList.remove('is-paused'); });
+}
+
+/* ── BACK TO TOP ─────────────────────────────────────────── */
+function initBackTop() {
+  const btn = document.getElementById('au-back-top');
+  if (!btn) return;
+
+  const SHOW_AT = 600; // px scrolled before button appears
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > SHOW_AT) {
+      btn.removeAttribute('hidden');
+    } else {
+      btn.setAttribute('hidden', '');
+    }
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// Add to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  initTicker();
+  initBackTop();
+});
