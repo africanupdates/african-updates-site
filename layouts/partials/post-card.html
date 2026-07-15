@@ -8,8 +8,16 @@
 
 {{ $thumb := "" }}
 {{ with $p.Params.thumbnail }}
-  {{ $thumb = . | relURL }}
+  {{- /* First try to find it as a page bundle resource (image lives next to index.md) */}}
+  {{ $res := $p.Resources.GetMatch . }}
+  {{ if $res }}
+    {{ $thumb = $res.RelPermalink }}
+  {{ else }}
+    {{- /* Fall back: treat as a path under /static/ */}}
+    {{ $thumb = . | relURL }}
+  {{ end }}
 {{ else }}
+  {{- /* No thumbnail param — grab first image in the bundle */}}
   {{ with $p.Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
     {{ $thumb = .RelPermalink }}
   {{ end }}

@@ -4,8 +4,16 @@ backend:
   branch: main
   base_url: https://african-updates-site.pages.dev
 
+# Editorial workflow — enables Draft / In Review / Ready / Published stages
+publish_mode: editorial_workflow
+
+# Global media fallback (used if collection doesn't override)
 media_folder: static/images
 public_folder: /images
+
+# ─────────────────────────────────────────
+# SHARED FIELD DEFINITIONS (referenced below as anchors)
+# ─────────────────────────────────────────
 
 # ─────────────────────────────────────────
 # ENGLISH POSTS
@@ -17,44 +25,93 @@ collections:
     create: true
     slug: "{{slug}}"
     path: "{{slug}}/index"
+    # Images saved next to index.md inside the post bundle
+    media_folder: ""
+    public_folder: ""
+    preview_path: "en/posts/{{slug}}"
     fields:
-      - { label: "Title", name: title, widget: string }
-      - { label: "Slug", name: slug, widget: string, required: false, hint: "Auto-generated from title if left blank" }
-      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Description", name: description, widget: string, required: false, hint: "Short summary shown in previews and SEO" }
-      - { label: "Meta Description", name: meta_description, widget: string, required: false, hint: "SEO meta description (overrides description if set)" }
+      - label: "Title"
+        name: title
+        widget: string
+
+      - label: "Slug"
+        name: slug
+        widget: string
+        required: false
+        hint: "URL path for this post — auto-generated from the title above. Edit only if you need a custom URL."
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Lowercase letters, numbers and hyphens only"]
+
+      - label: "Save as Draft"
+        name: draft
+        widget: boolean
+        default: false
+        required: false
+        hint: "Turn ON to keep this post as an unpublished draft. Turn OFF to publish."
+
+      - label: "Date"
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+
+      - label: "Description"
+        name: description
+        widget: string
+        required: false
+        hint: "Short summary shown in previews and SEO"
+
       - label: "Categories"
         name: categories
         widget: select
         multiple: true
         required: false
-        options: ["news", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
-      - label: "Featured"
-        name: featured
+        options:
+          - { label: "Featured (slider)", value: "featured" }
+          - { label: "News", value: "news" }
+          - { label: "Politics", value: "politics-news" }
+          - { label: "Business", value: "business" }
+          - { label: "Security", value: "security" }
+          - { label: "Culture", value: "culture" }
+          - { label: "Sport", value: "sport" }
+          - { label: "Science & Tech", value: "tech" }
+          - { label: "International", value: "international" }
+          - { label: "Africa", value: "africa" }
+          - { label: "Rwanda", value: "rwanda" }
+          - { label: "East Africa", value: "east" }
+          - { label: "World", value: "world" }
+          - { label: "Health", value: "health" }
+          - { label: "Entertainment", value: "entertainment" }
+
+      - label: "Breaking News"
+        name: breaking
         widget: boolean
         default: false
         required: false
-        hint: "Show this post in the featured section (English only)"
+        hint: "Show in the breaking news ticker at the top of the site"
+
       - label: "Tags"
         name: tags
         widget: list
         required: false
         hint: "Type a tag and press Enter"
-      - { label: "Author", name: author, widget: string, required: false }
+
+      - label: "Author"
+        name: author
+        widget: string
+        required: false
+
       - label: "Thumbnail"
         name: thumbnail
         widget: image
         required: false
-      - label: "Photo Gallery"
-        name: gallery
-        widget: list
-        required: false
-        hint: "Add multiple images for a slideshow"
-        field:
-          label: "Image"
-          name: image
-          widget: image
-      - { label: "Body", name: body, widget: markdown }
+        hint: "Main image for this post. Saved inside the post folder."
+        media_folder: ""
+        public_folder: ""
+
+      - label: "Body"
+        name: body
+        widget: markdown
 
 # ─────────────────────────────────────────
 # FRENCH POSTS
@@ -65,44 +122,92 @@ collections:
     create: true
     slug: "{{slug}}"
     path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
+    preview_path: "fr/posts/{{slug}}"
     fields:
-      - { label: "Titre", name: title, widget: string }
-      - { label: "Slug", name: slug, widget: string, required: false, hint: "Généré automatiquement depuis le titre si vide" }
-      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Description", name: description, widget: string, required: false, hint: "Résumé court affiché dans les aperçus" }
-      - { label: "Méta description", name: meta_description, widget: string, required: false, hint: "Meta description SEO" }
+      - label: "Titre"
+        name: title
+        widget: string
+
+      - label: "Slug"
+        name: slug
+        widget: string
+        required: false
+        hint: "Chemin URL — généré automatiquement depuis le titre. Ne modifier que si vous voulez une URL personnalisée."
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Minuscules, chiffres et tirets uniquement"]
+
+      - label: "Enregistrer comme brouillon"
+        name: draft
+        widget: boolean
+        default: false
+        required: false
+        hint: "Activez pour garder l'article comme brouillon non publié. Désactivez pour publier."
+
+      - label: "Date"
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+
+      - label: "Description"
+        name: description
+        widget: string
+        required: false
+        hint: "Résumé court affiché dans les aperçus"
+
       - label: "Catégories"
         name: categories
         widget: select
         multiple: true
         required: false
-        options: ["news", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
-      - label: "À la une"
-        name: featured
+        options:
+          - { label: "À la une (slider)", value: "featured" }
+          - { label: "Actualités", value: "news" }
+          - { label: "Politique", value: "politics-news" }
+          - { label: "Business", value: "business" }
+          - { label: "Sécurité", value: "security" }
+          - { label: "Culture", value: "culture" }
+          - { label: "Sport", value: "sport" }
+          - { label: "Sciences & Tech", value: "tech" }
+          - { label: "International", value: "international" }
+          - { label: "Afrique", value: "africa" }
+          - { label: "Rwanda", value: "rwanda" }
+          - { label: "Afrique de l'Est", value: "east" }
+          - { label: "Monde", value: "world" }
+          - { label: "Santé", value: "health" }
+          - { label: "Divertissement", value: "entertainment" }
+
+      - label: "Flash info"
+        name: breaking
         widget: boolean
         default: false
         required: false
-        hint: "Afficher cet article en vedette (Français uniquement)"
+        hint: "Afficher dans le bandeau d'actualités en haut du site"
+
       - label: "Tags"
         name: tags
         widget: list
         required: false
         hint: "Écrivez un tag et appuyez sur Entrée"
-      - { label: "Auteur", name: author, widget: string, required: false }
+
+      - label: "Auteur"
+        name: author
+        widget: string
+        required: false
+
       - label: "Miniature"
         name: thumbnail
         widget: image
         required: false
-      - label: "Galerie Photos"
-        name: gallery
-        widget: list
-        required: false
-        hint: "Ajoutez plusieurs images pour un diaporama"
-        field:
-          label: "Image"
-          name: image
-          widget: image
-      - { label: "Contenu", name: body, widget: markdown }
+        hint: "Image principale. Enregistrée dans le dossier de l'article."
+        media_folder: ""
+        public_folder: ""
+
+      - label: "Contenu"
+        name: body
+        widget: markdown
 
 # ─────────────────────────────────────────
 # KINYARWANDA POSTS
@@ -113,41 +218,89 @@ collections:
     create: true
     slug: "{{slug}}"
     path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
+    preview_path: "posts/{{slug}}"
     fields:
-      - { label: "Umutwe", name: title, widget: string }
-      - { label: "Slug", name: slug, widget: string, required: false, hint: "Igenerwa bivuye ku mutwe niba bisigaye ubusa" }
-      - { label: "Itariki", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Incamake", name: description, widget: string, required: false, hint: "Incamake igaragara mu bisobanuro" }
-      - { label: "Meta Description", name: meta_description, widget: string, required: false, hint: "Meta description ya SEO" }
+      - label: "Umutwe"
+        name: title
+        widget: string
+
+      - label: "Slug"
+        name: slug
+        widget: string
+        required: false
+        hint: "Aderesi y'inyandiko — igenerwa bivuye ku mutwe. Hindura gusa niba ushaka aderesi yihariye."
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Inyuguti nto, imibare na '-' gusa"]
+
+      - label: "Bika nk'Igihishwe (Draft)"
+        name: draft
+        widget: boolean
+        default: false
+        required: false
+        hint: "Funga niba ushaka kubika inyandiko itarasohoka. Fungura kugira ngo uyisohore."
+
+      - label: "Itariki"
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+
+      - label: "Incamake"
+        name: description
+        widget: string
+        required: false
+        hint: "Incamake igaragara mu bisobanuro"
+
       - label: "Ibyiciro"
         name: categories
         widget: select
         multiple: true
         required: false
-        options: ["news", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
-      - label: "Ibyiburure"
-        name: featured
+        options:
+          - { label: "Ibyiburure (slider)", value: "featured" }
+          - { label: "Amakuru", value: "news" }
+          - { label: "Politiki", value: "politics-news" }
+          - { label: "Ubucuruzi", value: "business" }
+          - { label: "Umutekano", value: "security" }
+          - { label: "Umuco", value: "culture" }
+          - { label: "Siporo", value: "sport" }
+          - { label: "Siyansi & Ikoranabuhanga", value: "tech" }
+          - { label: "Mpuzamahanga", value: "international" }
+          - { label: "Afurika", value: "africa" }
+          - { label: "Rwanda", value: "rwanda" }
+          - { label: "Afurika y'Uburasirazuba", value: "east" }
+          - { label: "Isi Yose", value: "world" }
+          - { label: "Ubuzima", value: "health" }
+          - { label: "Amakino", value: "entertainment" }
+
+      - label: "Amakuru Ashya Cyane"
+        name: breaking
         widget: boolean
         default: false
         required: false
-        hint: "Erekana inyandiko mu byiburure (Ikinyarwanda gusa)"
+        hint: "Erekana muri ticker yo hejuru ya site"
+
       - label: "Tags"
         name: tags
         widget: list
         required: false
         hint: "Andika tag hanyuma ukande Enter"
-      - { label: "Umwanditsi", name: author, widget: string, required: false }
+
+      - label: "Umwanditsi"
+        name: author
+        widget: string
+        required: false
+
       - label: "Ifoto"
         name: thumbnail
         widget: image
         required: false
-      - label: "Inzego z'Amafoto"
-        name: gallery
-        widget: list
-        required: false
-        hint: "Ongeraho amafoto menshi ku ishusho"
-        field:
-          label: "Ifoto"
-          name: image
-          widget: image
-      - { label: "Ubutumwa", name: body, widget: markdown }
+        hint: "Ifoto nkuru y'inyandiko. Ibikwa mu bubiko bw'inyandiko."
+        media_folder: ""
+        public_folder: ""
+
+      - label: "Ubutumwa"
+        name: body
+        widget: markdown

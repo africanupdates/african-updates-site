@@ -745,10 +745,21 @@ input, button, select, textarea { font-family: inherit; }
 .au-sidebar {
   position: sticky;
   top: calc(var(--nav-h) + var(--space-4));
+  max-height: calc(100vh - var(--nav-h) - var(--space-8));
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+  /* Hide scrollbar visually but keep it functional */
+  scrollbar-width: thin;
+  scrollbar-color: var(--au-border) transparent;
+  padding-right: var(--space-1);
 }
+.au-sidebar::-webkit-scrollbar { width: 4px; }
+.au-sidebar::-webkit-scrollbar-track { background: transparent; }
+.au-sidebar::-webkit-scrollbar-thumb { background: var(--au-border); border-radius: 2px; }
+.au-sidebar::-webkit-scrollbar-thumb:hover { background: var(--au-muted); }
 .au-widget {
   background: var(--au-white);
   border: 1px solid var(--au-border);
