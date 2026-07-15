@@ -15,8 +15,8 @@ collections:
     label: "Posts (English)"
     folder: content/en/posts
     create: true
-    slug: "{{fields.slug}}"
-    path: "{{fields.slug}}/index"
+    slug: "{{slug}}"
+    path: "{{slug}}/index" 
     fields:
       - { label: "Title", name: title, widget: string }
       - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
@@ -27,33 +27,18 @@ collections:
         widget: select
         multiple: true
         required: false
-        options: ["news", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
-      - label: "Featured"
-        name: featured
-        widget: boolean
-        default: false
-        required: false
-        hint: "Show this post in the featured section (English only)"
+        options: ["news", "featured", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
       - label: "Tags"
         name: tags
         widget: list
         required: false
         hint: "Type a tag and press Enter"
       - { label: "Author", name: author, widget: string, required: false }
-      - { label: "Custom Slug", name: slug, widget: string, required: false, hint: "Leave blank to auto-generate from title" }
+      - { label: "Slug", name: slug, widget: string, required: false, hint: "Leave blank to auto-generate from title" }
       - label: "Thumbnail"
         name: thumbnail
         widget: image
         required: false
-      - label: "Photo Gallery"
-        name: gallery
-        widget: list
-        required: false
-        hint: "Add multiple images for a slideshow"
-        field:
-          label: "Image"
-          name: image
-          widget: image
       - { label: "Body", name: body, widget: markdown }
 
 # ─────────────────────────────────────────
@@ -63,8 +48,8 @@ collections:
     label: "Posts (Français)"
     folder: content/fr/posts
     create: true
-    slug: "{{fields.slug}}"
-    path: "{{fields.slug}}/index"
+    slug: "{{slug}}"
+    path: "{{slug}}/index"
     fields:
       - { label: "Titre", name: title, widget: string }
       - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
@@ -75,33 +60,18 @@ collections:
         widget: select
         multiple: true
         required: false
-        options: ["news", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
-      - label: "À la une"
-        name: featured
-        widget: boolean
-        default: false
-        required: false
-        hint: "Afficher cet article en vedette (Français uniquement)"
+        options: ["news", "featured", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
       - label: "Tags"
         name: tags
         widget: list
         required: false
         hint: "Écrivez un tag et appuyez sur Entrée"
       - { label: "Auteur", name: author, widget: string, required: false }
-      - { label: "Slug personnalisé", name: slug, widget: string, required: false, hint: "Laisser vide pour générer depuis le titre" }
+      - { label: "Slug", name: slug, widget: string, required: false, hint: "Laisser vide pour générer depuis le titre" }
       - label: "Miniature"
         name: thumbnail
         widget: image
         required: false
-      - label: "Galerie Photos"
-        name: gallery
-        widget: list
-        required: false
-        hint: "Ajoutez plusieurs images pour un diaporama"
-        field:
-          label: "Image"
-          name: image
-          widget: image
       - { label: "Contenu", name: body, widget: markdown }
 
 # ─────────────────────────────────────────
@@ -111,8 +81,8 @@ collections:
     label: "Inyandiko (Kinyarwanda)"
     folder: content/rw/posts
     create: true
-    slug: "{{fields.slug}}"
-    path: "{{fields.slug}}/index"
+    slug: "{{slug}}"
+    path: "{{slug}}/index" 
     fields:
       - { label: "Umutwe", name: title, widget: string }
       - { label: "Itariki", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
@@ -123,31 +93,16 @@ collections:
         widget: select
         multiple: true
         required: false
-        options: ["news", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
-      - label: "Ibyiburure"
-        name: featured
-        widget: boolean
-        default: false
-        required: false
-        hint: "Erekana inyandiko mu byiburure (Ikinyarwanda gusa)"
+        options: ["news", "featured", "international", "africa", "rwanda", "sports", "politics", "business", "health", "technology", "entertainment"]
       - label: "Tags"
         name: tags
         widget: list
         required: false
         hint: "Andika tag hanyuma ukande Enter"
       - { label: "Umwanditsi", name: author, widget: string, required: false }
-      - { label: "Custom Slug", name: slug, widget: string, required: false, hint: "Siga ubusa kugirango igenerwe bivuye ku mutwe" }
+      - { label: "Slug", name: slug, widget: string, required: false, hint: "Siga ubusa kugirango igenerwe bivuye ku mutwe" }
       - label: "Ifoto"
         name: thumbnail
         widget: image
         required: false
-      - label: "Inzego z'Amafoto"
-        name: gallery
-        widget: list
-        required: false
-        hint: "Ongeraho amafoto menshi ku ishusho"
-        field:
-          label: "Ifoto"
-          name: image
-          widget: image
       - { label: "Ubutumwa", name: body, widget: markdown }
