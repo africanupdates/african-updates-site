@@ -1,0 +1,130 @@
+{{ define "main" }}
+
+<div class="au-container">
+
+  {{- /* ── BREADCRUMB ── */}}
+  {{ partial "breadcrumb.html" . }}
+
+  {{- /* ── ARCHIVE HEADER ── */}}
+  <header class="au-archive-header">
+    <div class="au-archive-header__inner">
+      {{- /* Icon badge based on taxonomy or section */}}
+      <div class="au-archive-header__icon">
+        {{ if .IsHome }}
+          <i class="fa fa-newspaper"></i>
+        {{ else if eq .Kind "taxonomy" }}
+          <i class="fa fa-tag"></i>
+        {{ else if eq .Kind "term" }}
+          <i class="fa fa-folder-open"></i>
+        {{ else }}
+          <i class="fa fa-layer-group"></i>
+        {{ end }}
+      </div>
+      <div class="au-archive-header__text">
+        <h1 class="au-archive-header__title">{{ .Title }}</h1>
+        {{ with .Description }}
+        <p class="au-archive-header__desc">{{ . }}</p>
+        {{ end }}
+        <p class="au-archive-header__count">
+          {{ len .Pages }} {{ i18n "stories" | default "stories" }}
+        </p>
+      </div>
+    </div>
+    {{- /* Decorative underline rule */}}
+    <div class="au-archive-header__rule"></div>
+  </header>
+
+  {{- /* ── TWO-COLUMN LAYOUT ── */}}
+  <div class="au-list-layout">
+
+    {{- /* ════════ MAIN COLUMN ════════ */}}
+    <main class="au-main" id="main-content">
+
+      {{ $pages := .Paginator.Pages }}
+
+      {{ if $pages }}
+
+        {{- /* First post: large hero card */}}
+        {{ $first := index $pages 0 }}
+        <div class="au-list-hero">
+          {{ partial "post-card.html" (dict "page" $first "size" "large") }}
+        </div>
+
+        {{- /* Posts 2–4: three-column row */}}
+        {{ $row1 := after 1 $pages | first 3 }}
+        {{ if $row1 }}
+        <div class="au-grid au-grid--3 au-list-row">
+          {{ range $row1 }}
+            {{ partial "post-card.html" (dict "page" . "size" "normal") }}
+          {{ end }}
+        </div>
+        {{ end }}
+
+        {{- /* Posts 5+: mixed horizontal list */}}
+        {{ $rest := after 4 $pages }}
+        {{ if $rest }}
+        <div class="au-list-stack">
+          {{ range $rest }}
+          {{ partial "post-card.html" (dict "page" . "size" "mini") }}
+          {{ end }}
+        </div>
+        {{ end }}
+
+        {{- /* ── PAGINATION ── */}}
+        {{ template "pagination" . }}
+
+      {{ else }}
+        <div class="au-empty">
+          <i class="fa fa-newspaper au-empty__icon"></i>
+          <p>{{ i18n "no_posts" | default "No stories found." }}</p>
+          <a href="{{ .Site.BaseURL }}" class="au-btn au-btn--outline">
+            {{ i18n "go_home" | default "Go to Homepage" }}
+          </a>
+        </div>
+      {{ end }}
+
+    </main>
+
+    {{- /* ════════ SIDEBAR ════════ */}}
+    {{ partial "sidebar.html" . }}
+
+  </div>{{- /* .au-list-layout */}}
+
+</div>{{- /* .au-container */}}
+
+{{ end }}
+
+{{- /* ── PAGINATION TEMPLATE ── */}}
+{{ define "pagination" }}
+{{ $p := .Paginator }}
+{{ if gt $p.TotalPages 1 }}
+<nav class="au-pagination" aria-label="Page navigation">
+  {{ if $p.HasPrev }}
+  <a href="{{ $p.Prev.URL }}" class="au-pagination__btn au-pagination__prev" rel="prev">
+    <i class="fa fa-arrow-left"></i> {{ i18n "previous" | default "Previous" }}
+  </a>
+  {{ end }}
+
+  <div class="au-pagination__pages">
+    {{ range $p.Pagers }}
+      {{ if eq . $p }}
+        <span class="au-pagination__page is-current" aria-current="page">{{ .PageNumber }}</span>
+      {{ else if le (math.Abs (sub .PageNumber $p.PageNumber)) 2 }}
+        <a href="{{ .URL }}" class="au-pagination__page">{{ .PageNumber }}</a>
+      {{ else if or (eq .PageNumber 1) (eq .PageNumber $p.TotalPages) }}
+        {{ if and (ne . $p) }}
+          <span class="au-pagination__ellipsis">…</span>
+          <a href="{{ .URL }}" class="au-pagination__page">{{ .PageNumber }}</a>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </div>
+
+  {{ if $p.HasNext }}
+  <a href="{{ $p.Next.URL }}" class="au-pagination__btn au-pagination__next" rel="next">
+    {{ i18n "next" | default "Next" }} <i class="fa fa-arrow-right"></i>
+  </a>
+  {{ end }}
+</nav>
+{{ end }}
+{{ end }}

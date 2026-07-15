@@ -1,0 +1,125 @@
+{{- /*
+  Hero slider partial.
+  Pulls posts tagged `featured` (or the first N recent posts as fallback).
+  Slides are grouped: each slide = 1 large hero + 4 smaller tiles (5 posts/slide).
+  Pure CSS transitions driven by a tiny JS class-toggler in au-theme.js.
+*/}}
+
+{{ $featured := where .Site.RegularPages "Params.categories" "intersect" (slice "featured") }}
+{{ if lt (len $featured) 5 }}
+  {{ $featured = first 10 .Site.RegularPages }}
+{{ end }}
+{{ $slides := $featured | first 10 }}
+
+{{- /* Group into chunks of 5 */}}
+{{ $groups := slice }}
+{{ $chunk := slice }}
+{{ range $i, $p := $slides }}
+  {{ $chunk = $chunk | append $p }}
+  {{ if eq (mod (add $i 1) 5) 0 }}
+    {{ $groups = $groups | append (slice $chunk) }}
+    {{ $chunk = slice }}
+  {{ end }}
+{{ end }}
+{{ if gt (len $chunk) 0 }}{{ $groups = $groups | append (slice $chunk) }}{{ end }}
+
+<section class="au-slider" aria-label="Featured stories" data-slider>
+  <div class="au-slider__track" data-slider-track>
+    {{ range $gi, $group := $groups }}
+    <div class="au-slider__slide{{ if eq $gi 0 }} is-active{{ end }}" data-slide="{{ $gi }}" aria-hidden="{{ if eq $gi 0 }}false{{ else }}true{{ end }}">
+
+      {{ range $pi, $p := index $group 0 }}
+
+        {{ $thumb := "" }}
+        {{ with $p.Params.thumbnail }}
+          {{ $thumb = . | relURL }}
+        {{ else }}
+          {{ with $p.Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
+            {{ $thumb = .RelPermalink }}
+          {{ end }}
+        {{ end }}
+
+        {{ if eq $pi 0 }}
+        {{- /* Large hero card */}}
+        <article class="au-slider__hero" aria-label="{{ $p.Title }}">
+          <a href="{{ $p.RelPermalink }}" class="au-slider__img-link" tabindex="-1" aria-hidden="true">
+            {{ if $thumb }}
+              <div class="au-slider__img" style="background-image:url('{{ $thumb }}')"></div>
+            {{ else }}
+              <div class="au-slider__img au-slider__img--placeholder"></div>
+            {{ end }}
+          </a>
+          <div class="au-slider__overlay"></div>
+          <div class="au-slider__caption">
+            {{- with $p.Params.categories }}
+              <a href="{{ (index . 0) | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--featured">
+                {{ index . 0 }}
+              </a>
+            {{ end }}
+            <h2 class="au-slider__title">
+              <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+            </h2>
+            <div class="au-slider__meta">
+              <time datetime="{{ $p.Date.Format "2006-01-02" }}">
+                <i class="fa fa-clock"></i> {{ $p.Date.Format "January 2, 2006" }}
+              </time>
+            </div>
+          </div>
+        </article>
+
+        {{- /* Grid of 4 smaller tiles */}}
+        <div class="au-slider__tiles">
+        {{ else }}
+        {{- /* Tiles 2–5 */}}
+        <article class="au-slider__tile">
+          <a href="{{ $p.RelPermalink }}" class="au-slider__tile-img-link" tabindex="{{ if $gi }}0{{ else }}-1{{ end }}">
+            {{ if $thumb }}
+              <div class="au-slider__tile-img" style="background-image:url('{{ $thumb }}')"></div>
+            {{ else }}
+              <div class="au-slider__tile-img au-slider__tile-img--placeholder"></div>
+            {{ end }}
+          </a>
+          <div class="au-slider__overlay"></div>
+          <div class="au-slider__tile-caption">
+            {{- with $p.Params.categories }}
+              <a href="{{ (index . 0) | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--sm">
+                {{ index . 0 }}
+              </a>
+            {{ end }}
+            <h3 class="au-slider__tile-title">
+              <a href="{{ $p.RelPermalink }}">{{ $p.Title | truncate 80 }}</a>
+            </h3>
+            <time datetime="{{ $p.Date.Format "2006-01-02" }}" class="au-slider__tile-date">
+              {{ $p.Date.Format "Jan 2, 2006" }}
+            </time>
+          </div>
+        </article>
+        {{ if eq $pi 4 }}</div>{{ end }}{{- /* close .au-slider__tiles */}}
+        {{ end }}
+
+      {{ end }}{{- /* end range group */}}
+    </div>
+    {{ end }}{{- /* end range groups */}}
+  </div>
+
+  {{- /* Dots navigation */}}
+  {{ if gt (len $groups) 1 }}
+  <div class="au-slider__dots" aria-label="Slide navigation">
+    {{ range $gi, $g := $groups }}
+    <button class="au-slider__dot{{ if eq $gi 0 }} is-active{{ end }}"
+            data-slide-target="{{ $gi }}"
+            aria-label="Go to slide {{ add $gi 1 }}"
+            aria-current="{{ if eq $gi 0 }}true{{ else }}false{{ end }}">
+    </button>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{- /* Prev / Next arrows */}}
+  <button class="au-slider__prev" aria-label="Previous slide" data-slider-prev>
+    <i class="fa fa-chevron-left"></i>
+  </button>
+  <button class="au-slider__next" aria-label="Next slide" data-slider-next>
+    <i class="fa fa-chevron-right"></i>
+  </button>
+</section>

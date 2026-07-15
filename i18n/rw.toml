@@ -1,0 +1,107 @@
+# i18n/rw.toml — African Updates Kinyarwanda strings
+
+[home]
+other = "Ahabanza"
+
+[breaking]
+other = "Amakuru Mashya"
+
+[latest_news]
+other = "Amakuru Mashya"
+
+[view_all]
+other = "Reba Byose"
+
+[more]
+other = "Ibindi"
+
+[load_more]
+other = "Shyira Imbere Inyandiko Nzimwe"
+
+[search]
+other = "Shakisha"
+
+[search_placeholder]
+other = "Shakisha kuri African Updates…"
+
+[recent_posts]
+other = "Inyandiko Zashyizweho Vuba"
+
+[categories]
+other = "Ibyiciro"
+
+[tags]
+other = "Intera"
+
+[follow_us]
+other = "Dukurikire"
+
+[quick_links]
+other = "Itumanaho Ryihuse"
+
+[languages]
+other = "Indimi"
+
+[all_rights]
+other = "Uburenganzira bwose bwabitswe."
+
+[privacy]
+other = "Politiki y'Ibanga"
+
+[about]
+other = "Abo Turi Bo"
+
+[contact]
+other = "Twandikire"
+
+[advertise]
+other = "Itangazo"
+
+[share]
+other = "Sangira"
+
+[updated]
+other = "Ivugururwa"
+
+[previous]
+other = "Ibanze"
+
+[next]
+other = "Ikurikira"
+
+[related_posts]
+other = "Inyandiko Zisa"
+
+[stories]
+other = "inyandiko"
+
+[no_posts]
+other = "Nta nyandiko yabonetse."
+
+[go_home]
+other = "Subira Ahabanza"
+
+[recent_stories]
+other = "Amakuru Mashya"
+
+[all_categories]
+other = "Ibyiciro Byose"
+
+[all_tags]
+other = "Intera Zose"
+
+[404_title]
+other = "Urupapuro Rurabonetse"
+
+[404_desc]
+other = "Inyandiko ushaka yimurirwa ahandi, yabitswe, cyangwa ntiyigeze ibaho. Gerageza gushakisha cyangwa usubire ahabanza."
+
+[read_more]
+other = "Soma Byose"
+
+[by]
+other = "Na"
+
+[minutes_read]
+one   = "{{ . }} min yo gusoma"
+other = "{{ . }} min yo gusoma"

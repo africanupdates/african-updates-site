@@ -1,0 +1,78 @@
+<footer class="au-footer">
+  <div class="au-footer__top">
+    <div class="au-container au-footer__top-inner">
+
+      <div class="au-footer__col">
+        <div class="au-footer__logo">
+          {{ with .Site.Params.logo }}
+            <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" width="200" height="59" loading="lazy">
+          {{ else }}
+            <span class="au-footer__logo-text">{{ .Site.Title }}</span>
+          {{ end }}
+        </div>
+        <p class="au-footer__about">{{ .Site.Params.footerAbout | default "African Updates delivers independent journalism across Kinyarwanda, English, and French — keeping the continent informed." }}</p>
+        <div class="au-footer__social">
+          {{ with .Site.Params.social.twitter }}
+            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          {{ end }}
+          {{ with .Site.Params.social.facebook }}
+            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          {{ end }}
+          {{ with .Site.Params.social.youtube }}
+            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          {{ end }}
+          {{ with .Site.Params.social.instagram }}
+            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="au-footer__col">
+        <h4 class="au-footer__col-title">{{ i18n "quick_links" | default "Quick Links" }}</h4>
+        {{ with .Site.Menus.footer }}
+        <ul class="au-footer__links">
+          {{ range . }}
+          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      </div>
+
+      <div class="au-footer__col">
+        <h4 class="au-footer__col-title">{{ i18n "categories" | default "Categories" }}</h4>
+        <ul class="au-footer__links">
+          {{ range first 8 (.Site.Taxonomies.categories.ByCount) }}
+          <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+
+      <div class="au-footer__col">
+        <h4 class="au-footer__col-title">{{ i18n "languages" | default "Languages" }}</h4>
+        <ul class="au-footer__links">
+          {{ range .Site.Languages }}
+          <li>
+            <a href="{{ $.Site.BaseURL }}{{ if ne .Lang $.Site.Language.Lang }}{{ .Lang }}/{{ end }}">
+              {{ .LanguageName }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="au-footer__bottom">
+    <div class="au-container au-footer__bottom-inner">
+      <p class="au-footer__copy">
+        &copy; {{ now.Format "2006" }} {{ .Site.Title }}. {{ i18n "all_rights" | default "All rights reserved." }}
+      </p>
+      <nav class="au-footer__policy" aria-label="Policy links">
+        <a href="{{ "privacy" | relURL }}">{{ i18n "privacy" | default "Privacy Policy" }}</a>
+        <a href="{{ "about" | relURL }}">{{ i18n "about" | default "About" }}</a>
+        <a href="{{ "contact" | relURL }}">{{ i18n "contact" | default "Contact" }}</a>
+      </nav>
+    </div>
+  </div>
+</footer>

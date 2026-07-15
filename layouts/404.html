@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="au-container au-404-wrap">
+
+  <div class="au-404">
+    <div class="au-404__graphic" aria-hidden="true">
+      <span class="au-404__number">4</span>
+      <span class="au-404__globe"><i class="fa fa-earth-africa"></i></span>
+      <span class="au-404__number">4</span>
+    </div>
+
+    <h1 class="au-404__title">{{ i18n "404_title" | default "Page Not Found" }}</h1>
+    <p class="au-404__desc">
+      {{ i18n "404_desc" | default "The story you're looking for has moved, been archived, or never existed. Try searching, or head back to the homepage." }}
+    </p>
+
+    <div class="au-404__actions">
+      <a href="{{ .Site.BaseURL }}" class="au-btn au-btn--red">
+        <i class="fa fa-house"></i> {{ i18n "go_home" | default "Back to Homepage" }}
+      </a>
+      <form class="au-search-form au-404__search" action="{{ .Site.BaseURL }}search/" method="get" role="search">
+        <input type="search" name="q" class="au-search-form__input"
+               placeholder="{{ i18n "search_placeholder" | default "Search stories…" }}"
+               aria-label="Search">
+        <button type="submit" class="au-search-form__btn" aria-label="Search">
+          <i class="fa fa-magnifying-glass"></i>
+        </button>
+      </form>
+    </div>
+
+    {{- /* Show recent posts so readers don't leave empty-handed */}}
+    {{ $recent := first 4 .Site.RegularPages }}
+    {{ if $recent }}
+    <div class="au-404__recent">
+      <h2 class="au-404__recent-title">
+        {{ i18n "recent_stories" | default "Recent Stories" }}
+      </h2>
+      <div class="au-grid au-grid--4">
+        {{ range $recent }}
+          {{ partial "post-card.html" (dict "page" . "size" "normal") }}
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+  </div>
+</div>
+{{ end }}

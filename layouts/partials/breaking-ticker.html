@@ -1,0 +1,59 @@
+{{- /*
+  breaking-ticker.html
+  Shows the 6 most recent posts as a scrolling headline ticker.
+  Place {{ partial "breaking-ticker.html" . }} in baseof.html
+  directly after the nav partial, or conditionally on .IsHome.
+
+  To highlight specific posts as "breaking", add `breaking: true`
+  to their frontmatter — this partial will prefer those first.
+*/}}
+
+{{ $breaking := where .Site.RegularPages "Params.breaking" true }}
+{{ if lt (len $breaking) 3 }}
+  {{ $breaking = first 6 .Site.RegularPages }}
+{{ else }}
+  {{ $breaking = first 6 $breaking }}
+{{ end }}
+
+{{ if $breaking }}
+<div class="au-ticker" role="marquee" aria-label="Breaking news" aria-live="polite">
+  <div class="au-ticker__label">
+    <span class="au-ticker__pulse"></span>
+    {{ i18n "breaking" | default "Breaking" }}
+  </div>
+  <div class="au-ticker__track-wrap" aria-hidden="true">
+    <ul class="au-ticker__track" id="au-ticker-track">
+      {{ range $breaking }}
+      <li class="au-ticker__item">
+        <a href="{{ .RelPermalink }}" class="au-ticker__link" tabindex="-1">
+          {{- with .Params.categories -}}
+            <span class="au-ticker__cat">{{ index . 0 }}</span>
+          {{- end -}}
+          {{ .Title }}
+        </a>
+      </li>
+      {{ end }}
+      {{- /* Duplicate for seamless loop */}}
+      {{ range $breaking }}
+      <li class="au-ticker__item" aria-hidden="true">
+        <a href="{{ .RelPermalink }}" class="au-ticker__link" tabindex="-1">
+          {{- with .Params.categories -}}
+            <span class="au-ticker__cat">{{ index . 0 }}</span>
+          {{- end -}}
+          {{ .Title }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{- /* Accessible non-scrolling list for screen readers */}}
+  <nav class="au-ticker__sr-list" aria-label="Breaking news links">
+    {{ range $breaking }}
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end }}
+  </nav>
+  <button class="au-ticker__pause" id="au-ticker-pause" aria-label="Pause ticker" aria-pressed="false">
+    <i class="fa fa-pause" aria-hidden="true"></i>
+  </button>
+</div>
+{{ end }}

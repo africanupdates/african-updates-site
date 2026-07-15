@@ -1,0 +1,45 @@
+{{ define "main" }}
+
+<div class="au-container">
+
+  {{ partial "breadcrumb.html" . }}
+
+  <header class="au-archive-header">
+    <div class="au-archive-header__inner">
+      <div class="au-archive-header__icon">
+        {{ if eq .Data.Singular "category" }}
+          <i class="fa fa-folder-tree"></i>
+        {{ else }}
+          <i class="fa fa-tags"></i>
+        {{ end }}
+      </div>
+      <div class="au-archive-header__text">
+        <h1 class="au-archive-header__title">
+          {{ if eq .Data.Singular "category" }}
+            {{ i18n "all_categories" | default "All Categories" }}
+          {{ else }}
+            {{ i18n "all_tags" | default "All Tags" }}
+          {{ end }}
+        </h1>
+        <p class="au-archive-header__count">
+          {{ len .Data.Terms }} {{ .Data.Singular }}{{ if gt (len .Data.Terms) 1 }}s{{ end }}
+        </p>
+      </div>
+    </div>
+    <div class="au-archive-header__rule"></div>
+  </header>
+
+  <div class="au-taxonomy-grid">
+    {{ range .Data.Terms.ByCount }}
+    <a href="{{ .Page.RelPermalink }}" class="au-taxonomy-card">
+      <div class="au-taxonomy-card__inner">
+        <span class="au-taxonomy-card__name">{{ .Page.Title }}</span>
+        <span class="au-taxonomy-card__count">{{ .Count }}</span>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+
+</div>
+
+{{ end }}

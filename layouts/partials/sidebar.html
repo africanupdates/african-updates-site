@@ -1,0 +1,93 @@
+<aside class="au-sidebar" aria-label="Sidebar">
+
+  {{- /* Search widget */}}
+  <div class="au-widget">
+    <form class="au-search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
+      <input type="search" name="q" class="au-search-form__input" placeholder="{{ i18n "search_placeholder" | default "Search…" }}">
+      <button type="submit" class="au-search-form__btn" aria-label="Search">
+        <i class="fa fa-magnifying-glass"></i>
+      </button>
+    </form>
+  </div>
+
+  {{- /* Recent posts */}}
+  {{ $recent := first 6 .Site.RegularPages }}
+  {{ if $recent }}
+  <div class="au-widget">
+    <h3 class="au-widget__title">{{ i18n "recent_posts" | default "Recent Posts" }}</h3>
+    <ul class="au-widget__list au-recent-list">
+      {{ range $recent }}
+      {{ $thumb := "" }}
+      {{ with .Params.thumbnail }}{{ $thumb = . | relURL }}{{ end }}
+      <li class="au-recent-item">
+        {{ if $thumb }}
+        <a href="{{ .RelPermalink }}" class="au-recent-item__img-link" tabindex="-1" aria-hidden="true">
+          <div class="au-recent-item__img" style="background-image:url('{{ $thumb }}')"></div>
+        </a>
+        {{ end }}
+        <div class="au-recent-item__body">
+          <h4 class="au-recent-item__title"><a href="{{ .RelPermalink }}">{{ .Title | truncate 60 }}</a></h4>
+          <time class="au-recent-item__date" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "Jan 2, 2006" }}
+          </time>
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
+  {{- /* Categories */}}
+  {{ $cats := .Site.Taxonomies.categories.ByCount }}
+  {{ if $cats }}
+  <div class="au-widget">
+    <h3 class="au-widget__title">{{ i18n "categories" | default "Categories" }}</h3>
+    <ul class="au-widget__list au-cat-list">
+      {{ range $cats }}
+      <li class="au-cat-item">
+        <a href="{{ .Page.RelPermalink }}" class="au-cat-item__link">
+          <span class="au-cat-item__name">{{ .Page.Title }}</span>
+          <span class="au-cat-item__count">{{ .Count }}</span>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
+  {{- /* Tags cloud */}}
+  {{ $tags := .Site.Taxonomies.tags.ByCount }}
+  {{ if $tags }}
+  <div class="au-widget">
+    <h3 class="au-widget__title">{{ i18n "tags" | default "Tags" }}</h3>
+    <div class="au-tag-cloud">
+      {{ range first 30 $tags }}
+      <a href="{{ .Page.RelPermalink }}" class="au-tag">{{ .Page.Title }}</a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{- /* Social follow */}}
+  <div class="au-widget au-widget--social">
+    <h3 class="au-widget__title">{{ i18n "follow_us" | default "Follow Us" }}</h3>
+    <div class="au-social-follow">
+      {{ with .Site.Params.social.facebook }}
+      <a href="{{ . }}" class="au-social-btn au-social-btn--facebook" target="_blank" rel="noopener">
+        <i class="fa-brands fa-facebook-f"></i> Facebook
+      </a>
+      {{ end }}
+      {{ with .Site.Params.social.twitter }}
+      <a href="{{ . }}" class="au-social-btn au-social-btn--twitter" target="_blank" rel="noopener">
+        <i class="fa-brands fa-x-twitter"></i> Twitter
+      </a>
+      {{ end }}
+      {{ with .Site.Params.social.youtube }}
+      <a href="{{ . }}" class="au-social-btn au-social-btn--youtube" target="_blank" rel="noopener">
+        <i class="fa-brands fa-youtube"></i> YouTube
+      </a>
+      {{ end }}
+    </div>
+  </div>
+
+</aside>

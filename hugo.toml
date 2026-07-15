@@ -1,30 +1,236 @@
+## ============================================================
+## African Updates — hugo.toml
+## Hugo v0.159.2 extended + Custom theme (no Mainroad dependency)
+## ============================================================
+
 baseURL = "https://africanupdates.com/"
-title = "African Updates"
-theme = "mainroad"
+title   = "African Updates"
 
-defaultContentLanguage = "rw"
+## Remove Mainroad — using our custom layouts now
+## theme = "mainroad"   ← delete or comment out this line
 
+defaultContentLanguage     = "rw"
+defaultContentLanguageInSubdir = false   # rw at /, en at /en/, fr at /fr/
+
+## Pagination
+paginate     = 12          # posts per archive page
+paginatePath = "page"      # /category/politics/page/2/
+
+## Summaries
+summaryLength = 40         # words used by .Summary
+
+## Syntax highlighting (for code blocks in posts)
+[markup.highlight]
+  style          = "monokai"
+  lineNos        = false
+  guessSyntax    = true
+  noClasses      = true
+
+## Table of contents
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel   = 3
+
+## ── LANGUAGES ───────────────────────────────────────────────
 [languages]
+
   [languages.rw]
     languageName = "Kinyarwanda"
-    weight = 1
-    contentDir = "content/rw"
+    weight       = 1
+    contentDir   = "content/rw"
+    [languages.rw.params]
+      description = "Amakuru y'Afurika mu Ntoki Zawe"
 
   [languages.en]
     languageName = "English"
-    weight = 2
-    contentDir = "content/en"
+    weight       = 2
+    contentDir   = "content/en"
+    [languages.en.params]
+      description = "African news across politics, business, culture, and sport"
 
   [languages.fr]
     languageName = "French"
-    weight = 3
-    contentDir = "content/fr"
+    weight       = 3
+    contentDir   = "content/fr"
+    [languages.fr.params]
+      description = "L'actualité africaine en politique, économie, culture et sport"
 
-    [Params.sidebar]
-  home = "right"
-  widgets = ["search", "recent", "categories", "taglist", "social", "languages"]
-  list = "left"
-  single = "right"
+## ── SITE PARAMS ─────────────────────────────────────────────
+[params]
+  description = "African Updates — News in Your Hand"
+  logo        = "images/logo.png"          # put your logo at /static/images/logo.png
+  tagline     = "News in Your Hand"
+  footerAbout = "African Updates delivers independent journalism across Kinyarwanda, English, and French — keeping the continent informed."
 
-[Params.widgets]
-  # ...
+  ## Social links
+  [params.social]
+    twitter   = "https://twitter.com/africanupdates1"
+    youtube   = "https://www.youtube.com/@denysembabazi"
+    facebook  = ""     # add when ready
+    instagram = ""     # add when ready
+
+  ## Homepage category blocks — controls which sections appear and in what order.
+  ## name  = exact category string as used in post frontmatter
+  ## slug  = URL slug (defaults to urlized name if omitted)
+  ## icon  = Font Awesome class
+  ## limit = posts shown in the block
+
+  [[params.homeCategories]]
+    name  = "Politics"
+    slug  = "politics-news"
+    icon  = "fa-landmark"
+    limit = 5
+
+  [[params.homeCategories]]
+    name  = "Business"
+    slug  = "business"
+    icon  = "fa-chart-line"
+    limit = 5
+
+  [[params.homeCategories]]
+    name  = "Security"
+    slug  = "security"
+    icon  = "fa-shield-halved"
+    limit = 5
+
+  [[params.homeCategories]]
+    name  = "Culture"
+    slug  = "culture"
+    icon  = "fa-masks-theater"
+    limit = 5
+
+  [[params.homeCategories]]
+    name  = "Sport"
+    slug  = "sport"
+    icon  = "fa-futbol"
+    limit = 5
+
+  [[params.homeCategories]]
+    name  = "Science & Tech"
+    slug  = "tech"
+    icon  = "fa-microchip"
+    limit = 5
+
+## ── RELATED CONTENT ─────────────────────────────────────────
+[related]
+  includeNewer = true
+  threshold    = 80
+  toLower      = false
+
+  [[related.indices]]
+    name   = "categories"
+    weight = 100
+
+  [[related.indices]]
+    name   = "tags"
+    weight = 80
+
+  [[related.indices]]
+    name   = "date"
+    weight = 10
+
+## ── OUTPUT FORMATS ──────────────────────────────────────────
+[outputs]
+  home    = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  term    = ["HTML", "RSS"]
+
+## ── TAXONOMIES ──────────────────────────────────────────────
+[taxonomies]
+  category = "categories"
+  tag      = "tags"
+
+## ── MENUS ───────────────────────────────────────────────────
+## Main nav — displayed in layouts/partials/nav.html
+## Adjust URLs to match your actual category slugs.
+
+[[menus.main]]
+  name       = "Politics"
+  url        = "/categories/politics-news/"
+  weight     = 10
+
+[[menus.main]]
+  name       = "World"
+  url        = "/categories/world/"
+  weight     = 20
+
+[[menus.main]]
+  name       = "Security"
+  url        = "/categories/security/"
+  weight     = 30
+
+[[menus.main]]
+  name       = "African Union"
+  url        = "/categories/african-union/"
+  weight     = 40
+
+[[menus.main]]
+  name       = "Tourism"
+  url        = "/categories/tourism/"
+  weight     = 50
+
+[[menus.main]]
+  name       = "Regional"
+  url        = "/categories/regional/"
+  weight     = 60
+  [[menus.main]]
+    parent   = "Regional"
+    name     = "East Africa"
+    url      = "/categories/east/"
+    weight   = 1
+  [[menus.main]]
+    parent   = "Regional"
+    name     = "Northern Africa"
+    url      = "/categories/north/"
+    weight   = 2
+  [[menus.main]]
+    parent   = "Regional"
+    name     = "Central Africa"
+    url      = "/categories/central/"
+    weight   = 3
+
+[[menus.main]]
+  name       = "Business"
+  url        = "/categories/business/"
+  weight     = 70
+
+[[menus.main]]
+  name       = "Culture"
+  url        = "/categories/culture/"
+  weight     = 80
+
+[[menus.main]]
+  name       = "Science & Tech"
+  url        = "/categories/tech/"
+  weight     = 90
+
+[[menus.main]]
+  name       = "Sport"
+  url        = "/categories/sport/"
+  weight     = 100
+
+## Footer utility links
+[[menus.footer]]
+  name   = "About Us"
+  url    = "/about/"
+  weight = 10
+
+[[menus.footer]]
+  name   = "Contact"
+  url    = "/contact/"
+  weight = 20
+
+[[menus.footer]]
+  name   = "Advertise"
+  url    = "/advertise/"
+  weight = 30
+
+[[menus.footer]]
+  name   = "Privacy Policy"
+  url    = "/privacy/"
+  weight = 40
+
+[[menus.footer]]
+  name   = "RSS Feed"
+  url    = "/index.xml"
+  weight = 50

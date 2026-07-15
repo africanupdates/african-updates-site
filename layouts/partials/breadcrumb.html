@@ -1,0 +1,50 @@
+{{- /* breadcrumb.html — schema.org BreadcrumbList */}}
+<nav class="au-breadcrumb" aria-label="Breadcrumb">
+  <ol class="au-breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+    <li class="au-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="{{ .Site.BaseURL }}" itemprop="item" class="au-breadcrumb__link">
+        <i class="fa fa-house"></i>
+        <span itemprop="name">{{ i18n "home" | default "Home" }}</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+
+    {{ $pos := 2 }}
+
+    {{- /* Category or section */}}
+    {{ if .Params.categories }}
+      {{ $cat := index .Params.categories 0 }}
+      <li class="au-breadcrumb__sep" aria-hidden="true"><i class="fa fa-chevron-right"></i></li>
+      <li class="au-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ printf "/categories/%s/" ($cat | urlize) | relURL }}" itemprop="item" class="au-breadcrumb__link">
+          <span itemprop="name">{{ $cat }}</span>
+        </a>
+        <meta itemprop="position" content="{{ $pos }}">
+      </li>
+      {{ $pos = add $pos 1 }}
+    {{ else if .Section }}
+      <li class="au-breadcrumb__sep" aria-hidden="true"><i class="fa fa-chevron-right"></i></li>
+      <li class="au-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ .Section | relURL }}" itemprop="item" class="au-breadcrumb__link">
+          <span itemprop="name">{{ .Section | title }}</span>
+        </a>
+        <meta itemprop="position" content="{{ $pos }}">
+      </li>
+      {{ $pos = add $pos 1 }}
+    {{ end }}
+
+    {{- /* Current page */}}
+    {{ if .IsPage }}
+    <li class="au-breadcrumb__sep" aria-hidden="true"><i class="fa fa-chevron-right"></i></li>
+    <li class="au-breadcrumb__item au-breadcrumb__item--current"
+        itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"
+        aria-current="page">
+      <span itemprop="name">{{ .Title | truncate 50 }}</span>
+      <meta itemprop="item" content="{{ .Permalink }}">
+      <meta itemprop="position" content="{{ $pos }}">
+    </li>
+    {{ end }}
+
+  </ol>
+</nav>

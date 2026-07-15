@@ -1,0 +1,54 @@
+<div class="au-topbar">
+  <div class="au-container au-topbar__inner">
+    <div class="au-topbar__left">
+      <span class="au-topbar__date">
+        <i class="fa fa-calendar-days"></i>
+        {{- now.Format "January 2, 2006" }}
+      </span>
+      <ul class="au-topbar__links">
+        <li><a href="{{ "about" | relURL }}">{{ i18n "about" | default "About Us" }}</a></li>
+        <li><a href="{{ "contact" | relURL }}">{{ i18n "contact" | default "Contact" }}</a></li>
+        <li><a href="{{ "advertise" | relURL }}">{{ i18n "advertise" | default "Advertise" }}</a></li>
+      </ul>
+    </div>
+    <div class="au-topbar__right">
+      {{- /* Language switcher */}}
+      <div class="au-lang-switcher">
+        {{ range .Site.Languages }}
+          {{ if ne . $.Site.Language }}
+            <a href="{{ $.RelPermalink | replaceRE (printf "^/%s" $.Site.Language.Lang) (printf "/%s" .Lang) }}" class="au-lang-switcher__item" lang="{{ .Lang }}">
+              {{ .LanguageName }}
+            </a>
+          {{ end }}
+        {{ end }}
+        <span class="au-lang-switcher__current">{{ .Site.Language.LanguageName }}</span>
+      </div>
+      {{- /* Social */}}
+      <div class="au-topbar__social">
+        {{ with .Site.Params.social.twitter }}
+          <a href="{{ . }}" target="_blank" rel="noopener" title="Twitter/X" aria-label="Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+        {{ end }}
+        {{ with .Site.Params.social.facebook }}
+          <a href="{{ . }}" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        {{ end }}
+        {{ with .Site.Params.social.youtube }}
+          <a href="{{ . }}" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        {{ end }}
+        {{ with .Site.Params.social.instagram }}
+          <a href="{{ . }}" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        {{ end }}
+        <a href="{{ "index.xml" | relURL }}" title="RSS Feed" aria-label="RSS">
+          <i class="fa fa-rss"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

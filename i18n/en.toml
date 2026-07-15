@@ -1,0 +1,107 @@
+# i18n/en.toml — African Updates English strings
+
+[home]
+other = "Home"
+
+[breaking]
+other = "Breaking"
+
+[latest_news]
+other = "Latest News"
+
+[view_all]
+other = "View All"
+
+[more]
+other = "More"
+
+[load_more]
+other = "Load More Posts"
+
+[search]
+other = "Search"
+
+[search_placeholder]
+other = "Search African Updates…"
+
+[recent_posts]
+other = "Recent Posts"
+
+[categories]
+other = "Categories"
+
+[tags]
+other = "Tags"
+
+[follow_us]
+other = "Follow Us"
+
+[quick_links]
+other = "Quick Links"
+
+[languages]
+other = "Languages"
+
+[all_rights]
+other = "All rights reserved."
+
+[privacy]
+other = "Privacy Policy"
+
+[about]
+other = "About Us"
+
+[contact]
+other = "Contact"
+
+[advertise]
+other = "Advertise"
+
+[share]
+other = "Share"
+
+[updated]
+other = "Updated"
+
+[previous]
+other = "Previous"
+
+[next]
+other = "Next"
+
+[related_posts]
+other = "Related Stories"
+
+[stories]
+other = "stories"
+
+[no_posts]
+other = "No stories found."
+
+[go_home]
+other = "Back to Homepage"
+
+[recent_stories]
+other = "Recent Stories"
+
+[all_categories]
+other = "All Categories"
+
+[all_tags]
+other = "All Tags"
+
+[404_title]
+other = "Page Not Found"
+
+[404_desc]
+other = "The story you're looking for has moved, been archived, or never existed. Try searching, or head back to the homepage."
+
+[read_more]
+other = "Read More"
+
+[by]
+other = "By"
+
+[minutes_read]
+one   = "{{ . }} min read"
+other = "{{ . }} min read"

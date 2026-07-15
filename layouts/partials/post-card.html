@@ -1,0 +1,60 @@
+{{- /*
+  Reusable post card.
+  Usage: {{ partial "post-card.html" (dict "page" $p "size" "normal") }}
+  size: "normal" (default) | "large" | "mini"
+*/}}
+{{ $p    := .page }}
+{{ $size := .size | default "normal" }}
+
+{{ $thumb := "" }}
+{{ with $p.Params.thumbnail }}
+  {{ $thumb = . | relURL }}
+{{ else }}
+  {{ with $p.Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
+    {{ $thumb = .RelPermalink }}
+  {{ end }}
+{{ end }}
+
+{{ $primaryCat := "" }}
+{{ $primaryCatSlug := "" }}
+{{ with $p.Params.categories }}
+  {{ $primaryCat = index . 0 }}
+  {{ $primaryCatSlug = $primaryCat | urlize }}
+{{ end }}
+
+<article class="au-card au-card--{{ $size }}">
+  {{ if $thumb }}
+  <a href="{{ $p.RelPermalink }}" class="au-card__img-wrap" tabindex="-1" aria-hidden="true">
+    <div class="au-card__img" style="background-image:url('{{ $thumb }}')">
+      <span class="au-card__img-overlay"></span>
+    </div>
+  </a>
+  {{ end }}
+
+  <div class="au-card__body">
+    {{ if $primaryCat }}
+    <a href="{{ printf "/categories/%s/" $primaryCatSlug | relURL }}" class="au-badge au-badge--{{ $primaryCatSlug | lower }}">
+      {{ $primaryCat }}
+    </a>
+    {{ end }}
+
+    <h3 class="au-card__title">
+      <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+    </h3>
+
+    {{ if eq $size "large" }}
+    <p class="au-card__excerpt">{{ $p.Summary | truncate 140 | plainify }}</p>
+    {{ end }}
+
+    <div class="au-card__meta">
+      <time class="au-card__date" datetime="{{ $p.Date.Format "2006-01-02" }}">
+        <i class="fa fa-clock"></i> {{ $p.Date.Format "January 2, 2006" }}
+      </time>
+      {{ with $p.Params.author }}
+      <span class="au-card__author">
+        <i class="fa fa-user"></i> {{ . }}
+      </span>
+      {{ end }}
+    </div>
+  </div>
+</article>

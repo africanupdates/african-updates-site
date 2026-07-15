@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}{{ .Site.Title }} — News in Your Hand{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  {{- /* Open Graph */}}
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  {{ with .Params.thumbnail }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+
+  {{- /* Fonts */}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;500;600&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+
+  {{- /* Icons */}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  {{- /* Site CSS */}}
+  <link rel="stylesheet" href="{{ "css/au-theme.css" | relURL }}">
+
+  {{ block "head_extra" . }}{{ end }}
+</head>
+<body class="{{ if .IsHome }}page-home{{ else if .IsPage }}page-single{{ else }}page-list{{ end }}">
+
+  {{- partial "topbar.html" . }}
+  {{- partial "header.html" . }}
+  {{- partial "nav.html" . }}
+
+  <div class="au-site-body">
+    {{ block "main" . }}{{ end }}
+  </div>
+
+  {{- partial "footer.html" . }}
+
+  <script src="{{ "js/au-theme.js" | relURL }}"></script>
+  {{ block "scripts_extra" . }}{{ end }}
+</body>
+</html>

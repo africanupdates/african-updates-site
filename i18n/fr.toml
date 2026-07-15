@@ -1,0 +1,107 @@
+# i18n/fr.toml — African Updates French strings
+
+[home]
+other = "Accueil"
+
+[breaking]
+other = "Flash"
+
+[latest_news]
+other = "Dernières Nouvelles"
+
+[view_all]
+other = "Voir tout"
+
+[more]
+other = "Plus"
+
+[load_more]
+other = "Charger plus d'articles"
+
+[search]
+other = "Rechercher"
+
+[search_placeholder]
+other = "Rechercher sur African Updates…"
+
+[recent_posts]
+other = "Articles récents"
+
+[categories]
+other = "Catégories"
+
+[tags]
+other = "Étiquettes"
+
+[follow_us]
+other = "Suivez-nous"
+
+[quick_links]
+other = "Liens rapides"
+
+[languages]
+other = "Langues"
+
+[all_rights]
+other = "Tous droits réservés."
+
+[privacy]
+other = "Politique de confidentialité"
+
+[about]
+other = "À propos"
+
+[contact]
+other = "Contact"
+
+[advertise]
+other = "Publicité"
+
+[share]
+other = "Partager"
+
+[updated]
+other = "Mis à jour"
+
+[previous]
+other = "Précédent"
+
+[next]
+other = "Suivant"
+
+[related_posts]
+other = "Articles similaires"
+
+[stories]
+other = "articles"
+
+[no_posts]
+other = "Aucun article trouvé."
+
+[go_home]
+other = "Retour à l'accueil"
+
+[recent_stories]
+other = "Articles récents"
+
+[all_categories]
+other = "Toutes les catégories"
+
+[all_tags]
+other = "Toutes les étiquettes"
+
+[404_title]
+other = "Page introuvable"
+
+[404_desc]
+other = "L'article que vous cherchez a été déplacé, archivé ou n'a jamais existé. Essayez la recherche ou retournez à l'accueil."
+
+[read_more]
+other = "Lire la suite"
+
+[by]
+other = "Par"
+
+[minutes_read]
+one   = "{{ . }} min de lecture"
+other = "{{ . }} min de lecture"

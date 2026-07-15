@@ -1,0 +1,200 @@
+{{ define "head_extra" }}
+{{- /* Article-specific structured data */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": {{ .Title | jsonify }},
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  {{ with .Params.author }}"author": { "@type": "Person", "name": {{ . | jsonify }} },{{ end }}
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ .Site.Title | jsonify }},
+    "logo": { "@type": "ImageObject", "url": "{{ .Site.Params.logo | absURL }}" }
+  }
+  {{ with .Params.thumbnail }}, "image": "{{ . | absURL }}"{{ end }}
+}
+</script>
+{{ end }}
+
+{{ define "main" }}
+
+{{- /* ── READING PROGRESS BAR ── */}}
+<div class="au-progress" id="au-progress" aria-hidden="true">
+  <div class="au-progress__bar" id="au-progress-bar"></div>
+</div>
+
+<div class="au-container au-single-wrap">
+
+  {{- /* ── BREADCRUMB ── */}}
+  {{ partial "breadcrumb.html" . }}
+
+  <div class="au-single-layout">
+
+    {{- /* ════════════════ ARTICLE ════════════════ */}}
+    <article class="au-article" itemscope itemtype="https://schema.org/NewsArticle">
+
+      {{- /* ── ARTICLE HEADER ── */}}
+      <header class="au-article__header">
+
+        {{- /* Categories */}}
+        {{ with .Params.categories }}
+        <div class="au-article__cats">
+          {{ range . }}
+          <a href="{{ printf "/categories/%s/" (. | urlize) | relURL }}"
+             class="au-badge au-badge--{{ . | urlize | lower }}">{{ . }}</a>
+          {{ end }}
+        </div>
+        {{ end }}
+
+        <h1 class="au-article__title" itemprop="headline">{{ .Title }}</h1>
+
+        {{- /* Meta row */}}
+        <div class="au-article__meta">
+          {{ with .Params.author }}
+          <span class="au-article__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <i class="fa fa-user"></i>
+            <span itemprop="name">{{ . }}</span>
+          </span>
+          {{ end }}
+          <time class="au-article__date" datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">
+            <i class="fa fa-clock"></i> {{ .Date.Format "January 2, 2006" }}
+          </time>
+          {{ if ne .Lastmod .Date }}
+          <time class="au-article__updated" datetime="{{ .Lastmod.Format "2006-01-02" }}">
+            <i class="fa fa-rotate"></i> {{ i18n "updated" | default "Updated" }} {{ .Lastmod.Format "Jan 2, 2006" }}
+          </time>
+          {{ end }}
+          <span class="au-article__read-time" id="au-read-time" aria-live="polite"></span>
+        </div>
+
+        {{- /* Social share — top */}}
+        {{ partial "share.html" . }}
+
+      </header>
+
+      {{- /* ── HERO IMAGE ── */}}
+      {{ $thumb := "" }}
+      {{ with .Params.thumbnail }}{{ $thumb = . | relURL }}{{ end }}
+      {{ if not $thumb }}
+        {{ with .Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}{{ $thumb = .RelPermalink }}{{ end }}
+      {{ end }}
+      {{ if $thumb }}
+      <figure class="au-article__hero" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+        <img src="{{ $thumb }}" alt="{{ .Title }}" loading="eager" decoding="async"
+             class="au-article__hero-img" itemprop="url">
+        {{ with .Params.thumbnailCaption }}
+        <figcaption class="au-article__hero-caption">{{ . }}</figcaption>
+        {{ end }}
+      </figure>
+      {{ end }}
+
+      {{- /* ── ARTICLE BODY ── */}}
+      <div class="au-article__body au-prose" id="au-article-body" itemprop="articleBody">
+        {{ .Content }}
+      </div>
+
+      {{- /* ── TAGS ── */}}
+      {{ with .Params.tags }}
+      <div class="au-article__tags">
+        <span class="au-article__tags-label">
+          <i class="fa fa-tags"></i> {{ i18n "tags" | default "Tags" }}:
+        </span>
+        {{ range . }}
+        <a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}" class="au-tag">{{ . }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      {{- /* ── SOCIAL SHARE — bottom ── */}}
+      {{ partial "share.html" . }}
+
+      {{- /* ── AUTHOR BOX ── */}}
+      {{ with .Params.author }}
+      <div class="au-author-box">
+        <div class="au-author-box__avatar">
+          <i class="fa fa-user-circle"></i>
+        </div>
+        <div class="au-author-box__info">
+          <h3 class="au-author-box__name">{{ . }}</h3>
+          {{ with $.Params.authorBio }}
+          <p class="au-author-box__bio">{{ . }}</p>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{- /* ── PREV / NEXT ── */}}
+      <nav class="au-post-nav" aria-label="Post navigation">
+        {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" class="au-post-nav__item au-post-nav__prev">
+          <span class="au-post-nav__label"><i class="fa fa-arrow-left"></i> {{ i18n "previous" | default "Previous" }}</span>
+          <span class="au-post-nav__title">{{ .Title | truncate 60 }}</span>
+        </a>
+        {{ end }}
+        {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}" class="au-post-nav__item au-post-nav__next">
+          <span class="au-post-nav__label">{{ i18n "next" | default "Next" }} <i class="fa fa-arrow-right"></i></span>
+          <span class="au-post-nav__title">{{ .Title | truncate 60 }}</span>
+        </a>
+        {{ end }}
+      </nav>
+
+    </article>
+
+    {{- /* ════════════════ SIDEBAR ════════════════ */}}
+    {{ partial "sidebar.html" . }}
+
+  </div>{{- /* .au-single-layout */}}
+
+  {{- /* ── RELATED POSTS ── */}}
+  {{ $related := .Site.RegularPages.Related . | first 4 }}
+  {{ if $related }}
+  <section class="au-related">
+    <div class="au-section__head">
+      <h2 class="au-section__title">
+        <i class="fa fa-layer-group"></i> {{ i18n "related_posts" | default "Related Stories" }}
+      </h2>
+    </div>
+    <div class="au-grid au-grid--4">
+      {{ range $related }}
+        {{ partial "post-card.html" (dict "page" . "size" "normal") }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+</div>{{- /* .au-container */}}
+
+{{ end }}
+
+{{ define "scripts_extra" }}
+<script>
+/* Reading progress bar */
+(function() {
+  const bar  = document.getElementById('au-progress-bar');
+  const body = document.getElementById('au-article-body');
+  if (!bar || !body) return;
+  function update() {
+    const rect   = body.getBoundingClientRect();
+    const total  = body.offsetHeight;
+    const done   = Math.max(0, -rect.top);
+    const pct    = Math.min(100, (done / total) * 100);
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* Estimated read time */
+(function() {
+  const el   = document.getElementById('au-read-time');
+  const body = document.getElementById('au-article-body');
+  if (!el || !body) return;
+  const words = body.innerText.trim().split(/\s+/).length;
+  const mins  = Math.max(1, Math.round(words / 220));
+  el.textContent = mins + ' min read';
+})();
+</script>
+{{ end }}

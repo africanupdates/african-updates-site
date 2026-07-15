@@ -1,0 +1,81 @@
+{{ define "main" }}
+<div class="au-container">
+
+  {{- /* ── HERO SLIDER ── */}}
+  {{ partial "hero-slider.html" . }}
+
+  {{- /* ── MAIN CONTENT + SIDEBAR ── */}}
+  <div class="au-home-body">
+
+    {{- /* ──── LEFT / MAIN COLUMN ──── */}}
+    <main class="au-main" id="main-content">
+
+      {{- /* Block: Latest News (all recent posts, 8 in a 4-col grid) */}}
+      {{ $latest := first 8 .Site.RegularPages }}
+      {{ if $latest }}
+      <section class="au-section">
+        <div class="au-section__head">
+          <h2 class="au-section__title">
+            <i class="fa fa-newspaper"></i>
+            {{ i18n "latest_news" | default "Latest News" }}
+          </h2>
+          <a href="{{ "posts" | relURL }}" class="au-section__more">
+            {{ i18n "view_all" | default "View All" }} <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="au-grid au-grid--4">
+          {{ range $latest }}
+            {{ partial "post-card.html" (dict "page" . "size" "normal") }}
+          {{ end }}
+        </div>
+      </section>
+      {{ end }}
+
+      {{- /* Blocks: one per category defined in params.homeCategories */}}
+      {{ range .Site.Params.homeCategories }}
+        {{ $cat      := .name }}
+        {{ $catSlug  := .slug | default ($cat | urlize) }}
+        {{ $icon     := .icon | default "fa-folder" }}
+        {{ $limit    := .limit | default 5 }}
+        {{ $catPages := where $.Site.RegularPages "Params.categories" "intersect" (slice $cat) }}
+        {{ $catPages  = first $limit $catPages }}
+
+        {{ if $catPages }}
+        <section class="au-section">
+          <div class="au-section__head">
+            <h2 class="au-section__title">
+              <i class="fa {{ $icon }}"></i> {{ $cat }}
+            </h2>
+            <a href="{{ printf "/categories/%s/" $catSlug | relURL }}" class="au-section__more">
+              {{ i18n "more" | default "More" }} <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="au-list-with-hero">
+            {{ $hero := index $catPages 0 }}
+            {{ partial "post-card.html" (dict "page" $hero "size" "large") }}
+            <div class="au-list-with-hero__aside">
+              {{ range after 1 $catPages }}
+                {{ partial "post-card.html" (dict "page" . "size" "mini") }}
+              {{ end }}
+            </div>
+          </div>
+        </section>
+        {{ end }}
+      {{ end }}
+
+      {{- /* Load more button (JS-driven; falls back to paginated link) */}}
+      <div class="au-loadmore">
+        <a href="{{ "posts/page/2/" | relURL }}" class="au-btn au-btn--outline" id="au-loadmore-btn">
+          {{ i18n "load_more" | default "Load More Posts" }}
+        </a>
+      </div>
+
+    </main>
+
+    {{- /* ──── SIDEBAR ──── */}}
+    {{ partial "sidebar.html" . }}
+
+  </div>{{- /* .au-home-body */}}
+
+</div>{{- /* .au-container */}}
+{{ end }}

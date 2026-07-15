@@ -1,0 +1,68 @@
+<nav class="au-nav" id="au-nav" role="navigation" aria-label="Main navigation">
+  <div class="au-container au-nav__inner">
+
+    {{- /* Mobile hamburger */}}
+    <button class="au-nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="au-nav-menu">
+      <span class="au-hamburger__bar"></span>
+      <span class="au-hamburger__bar"></span>
+      <span class="au-hamburger__bar"></span>
+    </button>
+
+    {{- /* Primary menu */}}
+    {{ $currentPage := . }}
+    {{ with .Site.Menus.main }}
+    <ul class="au-nav__menu" id="au-nav-menu" role="list">
+      {{ range . }}
+        {{ $hasChildren := .HasChildren }}
+        <li class="au-nav__item{{ if $hasChildren }} has-dropdown{{ end }}{{ if $currentPage.HasMenuCurrent "main" . }} is-active{{ end }}">
+          <a href="{{ .URL }}" class="au-nav__link"
+             {{ if $hasChildren }}aria-haspopup="true" aria-expanded="false"{{ end }}>
+            {{ .Name }}
+            {{ if $hasChildren }}<i class="fa fa-chevron-down au-nav__arrow"></i>{{ end }}
+          </a>
+          {{ if $hasChildren }}
+          <ul class="au-nav__dropdown" role="list">
+            {{ range .Children }}
+            <li class="au-nav__dropdown-item">
+              <a href="{{ .URL }}" class="au-nav__dropdown-link">{{ .Name }}</a>
+            </li>
+            {{ end }}
+          </ul>
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+    {{ else }}
+    {{- /* Fallback: auto-generate from top-level categories if no menu configured */}}
+    <ul class="au-nav__menu" id="au-nav-menu" role="list">
+      {{ range first 10 .Site.Taxonomies.categories.ByCount }}
+      <li class="au-nav__item">
+        <a href="{{ .Page.RelPermalink }}" class="au-nav__link">{{ .Page.Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+
+    {{- /* Right side: search icon (mobile) + breaking news ticker */}}
+    <div class="au-nav__right">
+      <button class="au-nav__search-btn" aria-label="Search" aria-expanded="false">
+        <i class="fa fa-magnifying-glass"></i>
+      </button>
+    </div>
+
+  </div>
+
+  {{- /* Mobile search panel */}}
+  <div class="au-nav__mobile-search" hidden>
+    <div class="au-container">
+      <form class="au-search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
+        <input type="search" name="q" class="au-search-form__input"
+               placeholder="{{ i18n "search_placeholder" | default "Search African Updates…" }}"
+               autofocus>
+        <button type="submit" class="au-search-form__btn" aria-label="Submit search">
+          <i class="fa fa-magnifying-glass"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>

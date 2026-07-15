@@ -1,0 +1,41 @@
+<header class="au-header" id="au-header">
+  <div class="au-container au-header__inner">
+    {{- /* Logo */}}
+    <div class="au-header__branding">
+      <a href="{{ .Site.BaseURL }}" class="au-logo" rel="home">
+        {{ with .Site.Params.logo }}
+          <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" class="au-logo__img" width="280" height="82">
+        {{ else }}
+          <span class="au-logo__text">{{ .Site.Title }}</span>
+        {{ end }}
+      </a>
+      <p class="au-logo__tagline">{{ .Site.Params.tagline | default "News in Your Hand" }}</p>
+    </div>
+
+    {{- /* Ad / Banner slot (optional) */}}
+    {{ with .Site.Params.headerBanner }}
+      <div class="au-header__banner">
+        <a href="{{ .link }}" target="_blank" rel="noopener sponsored">
+          <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy">
+        </a>
+      </div>
+    {{ end }}
+
+    {{- /* Search */}}
+    <div class="au-header__search">
+      <button class="au-search-toggle" aria-label="{{ i18n "search" | default "Search" }}" aria-expanded="false">
+        <i class="fa fa-magnifying-glass"></i>
+      </button>
+      <div class="au-search-panel" hidden>
+        <form class="au-search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
+          <input type="search" name="q" class="au-search-form__input"
+                 placeholder="{{ i18n "search_placeholder" | default "Search African Updates…" }}"
+                 aria-label="{{ i18n "search" | default "Search" }}">
+          <button type="submit" class="au-search-form__btn" aria-label="Submit search">
+            <i class="fa fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
