@@ -1,12 +1,13 @@
 ---
-title: "Imvururu zikomeye zaranze umukino waraye uhuje Al-hilal na MC Alger muri stade Amahoro."
+title: Imvururu zikomeye zaranze umukino waraye uhuje Al-hilal na MC Alger muri
+  stade Amahoro.
 date: 2025-11-22
-categories: 
-  - "news"
-  - "featured"
-  - "rwanda"
-  - "sports"
-thumbnail: "IMG_6194.jpeg"
+categories:
+  - news
+  - featured
+  - rwanda
+  - sports
+thumbnail: img_6194.jpeg
 ---
 
 Al Hilal SC kuri ubu ibarizwa ku butaka bw’u Rwanda, aho izajya ikinira imikino yayo ya shampiyona nk’ikipe y’abashyitsi nyuma yo guhabwa uburenganzira na CAF. Kuri uyu wa gatanu tariki ya 21/11/2025 yakiriye mu Rwanda ikipe ya MC Alger mu mukino wabereye kuri Stade Amahoro, I Remera mu mujyi wa kigali.
