@@ -81,6 +81,9 @@ summaryLength = 40         # words used by .Summary
     icon  = "fa-landmark"
     limit = 5
 
+  [Params]
+  custom_css = ["css/gallery.css"]
+
   [[params.homeCategories]]
     name  = "Business"
     slug  = "business"

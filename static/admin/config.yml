@@ -15,7 +15,7 @@ collections:
     label: "Posts (English)"
     folder: content/en/posts
     create: true
-    slug: "{{fields.custom_slug | slug}}"
+    slug: "{{slug}}"
     path: "{{slug}}/index"
     fields:
       - { label: "Title", name: title, widget: string }
@@ -40,7 +40,7 @@ collections:
         required: false
         hint: "Type a tag and press Enter"
       - { label: "Author", name: author, widget: string, required: false }
-      - { label: "Custom Slug", name: custom_slug, widget: string, required: false, hint: "Leave blank to auto-generate from title" }
+      - { label: "Custom Slug", name: slug, widget: string, required: false, hint: "Leave blank to auto-generate from title" }
       - label: "Thumbnail"
         name: thumbnail
         widget: image
@@ -63,7 +63,7 @@ collections:
     label: "Posts (Français)"
     folder: content/fr/posts
     create: true
-    slug: "{{fields.custom_slug | slug}}"
+    slug: "{{slug}}"
     path: "{{slug}}/index"
     fields:
       - { label: "Titre", name: title, widget: string }
@@ -88,7 +88,7 @@ collections:
         required: false
         hint: "Écrivez un tag et appuyez sur Entrée"
       - { label: "Auteur", name: author, widget: string, required: false }
-      - { label: "Slug personnalisé", name: custom_slug, widget: string, required: false, hint: "Laisser vide pour générer depuis le titre" }
+      - { label: "Slug personnalisé", name: slug, widget: string, required: false, hint: "Laisser vide pour générer depuis le titre" }
       - label: "Miniature"
         name: thumbnail
         widget: image
@@ -111,7 +111,7 @@ collections:
     label: "Inyandiko (Kinyarwanda)"
     folder: content/rw/posts
     create: true
-    slug: "{{fields.custom_slug | slug}}"
+    slug: "{{slug}}"
     path: "{{slug}}/index"
     fields:
       - { label: "Umutwe", name: title, widget: string }
@@ -136,7 +136,7 @@ collections:
         required: false
         hint: "Andika tag hanyuma ukande Enter"
       - { label: "Umwanditsi", name: author, widget: string, required: false }
-      - { label: "Custom Slug", name: custom_slug, widget: string, required: false, hint: "Siga ubusa kugirango igenerwe bivuye ku mutwe" }
+      - { label: "Custom Slug", name: slug, widget: string, required: false, hint: "Siga ubusa kugirango igenerwe bivuye ku mutwe" }
       - label: "Ifoto"
         name: thumbnail
         widget: image
