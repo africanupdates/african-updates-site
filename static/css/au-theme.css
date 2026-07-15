@@ -185,20 +185,16 @@ input, button, select, textarea { font-family: inherit; }
 .au-topbar__social a:hover { color: rgba(255,255,255,0.7); }
 
 /* ── HEADER ─────────────────────────────────────────────────── */
-/* Force-zero any gap between the topbar and header, regardless of
-   source order or specificity from other stylesheets that may load
-   alongside this one. */
-.au-topbar,
-.au-header {
-  margin: 0 !important;
-}
-.au-topbar + .au-header {
-  margin-top: 0 !important;
+.au-topbar {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 .au-header {
   background: var(--au-white);
   border-bottom: 1px solid var(--au-border);
-  padding-block: var(--space-3);
+  padding-block: var(--space-4);
+  margin-top: 0 !important;
+  padding-top: var(--space-4) !important;
 }
 .au-header__inner {
   display: flex;
@@ -611,7 +607,7 @@ input, button, select, textarea { font-family: inherit; }
   display: grid;
   grid-template-columns: 1fr var(--sidebar-w);
   gap: var(--space-8);
-  align-items: stretch; /* sidebar column matches the main column's height */
+  align-items: start;
   padding-bottom: var(--space-16);
 }
 
@@ -752,19 +748,7 @@ input, button, select, textarea { font-family: inherit; }
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  height: 100%;      /* match the main column's height (grid row height) */
-  min-height: 0;     /* let it shrink below its content's natural size */
-  overflow-y: auto;  /* scroll internally once widgets exceed that height */
-  overscroll-behavior: contain;
 }
-/* Thin, unobtrusive scrollbar for the sidebar's internal scroll */
-.au-sidebar::-webkit-scrollbar { width: 6px; }
-.au-sidebar::-webkit-scrollbar-track { background: transparent; }
-.au-sidebar::-webkit-scrollbar-thumb {
-  background: var(--au-border);
-  border-radius: 99px;
-}
-.au-sidebar { scrollbar-width: thin; scrollbar-color: var(--au-border) transparent; }
 .au-widget {
   background: var(--au-white);
   border: 1px solid var(--au-border);
@@ -1097,7 +1081,7 @@ input, button, select, textarea { font-family: inherit; }
 
   /* Home body: single column */
   .au-home-body { grid-template-columns: 1fr; }
-  .au-sidebar { position: static; height: auto; min-height: 0; max-height: none; overflow: visible; }
+  .au-sidebar { position: static; }
 
   /* Grids */
   .au-grid--4,
@@ -1736,7 +1720,7 @@ input, button, select, textarea { font-family: inherit; }
   .au-list-layout {
     grid-template-columns: 1fr;
   }
-  .au-sidebar { position: static; height: auto; min-height: 0; max-height: none; overflow: visible; }
+  .au-sidebar { position: static; }
   .au-post-nav { grid-template-columns: 1fr; }
   .au-article__title { font-size: var(--text-2xl); }
   .au-prose { font-size: var(--text-base); }
