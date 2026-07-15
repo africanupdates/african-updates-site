@@ -1,0 +1,34 @@
+{{ if .Params.gallery }}
+<div class="gallery-slideshow" id="gallery-{{ .File.UniqueID }}">
+  <div class="gallery-track">
+    {{ range $i, $img := .Params.gallery }}
+    <div class="gallery-slide {{ if eq $i 0 }}active{{ end }}">
+      <img src="{{ $img }}" alt="Gallery image {{ add $i 1 }}" loading="lazy" />
+    </div>
+    {{ end }}
+  </div>
+
+  {{ if gt (len .Params.gallery) 1 }}
+  <button class="gallery-btn gallery-prev" onclick="galleryMove(this, -1)" aria-label="Previous">&#8592;</button>
+  <button class="gallery-btn gallery-next" onclick="galleryMove(this, 1)" aria-label="Next">&#8594;</button>
+  <div class="gallery-counter">
+    <span class="gallery-current">1</span> / {{ len .Params.gallery }}
+  </div>
+  {{ end }}
+</div>
+
+<script>
+  function galleryMove(btn, direction) {
+    const gallery = btn.closest('.gallery-slideshow');
+    const slides = gallery.querySelectorAll('.gallery-slide');
+    const counter = gallery.querySelector('.gallery-current');
+    let current = Array.from(slides).findIndex(s => s.classList.contains('active'));
+
+    slides[current].classList.remove('active');
+    current = (current + direction + slides.length) % slides.length;
+    slides[current].classList.add('active');
+
+    if (counter) counter.textContent = current + 1;
+  }
+</script>
+{{ end }}

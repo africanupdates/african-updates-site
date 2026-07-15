@@ -12,21 +12,9 @@
       <p class="au-logo__tagline">{{ .Site.Params.tagline | default "News in Your Hand" }}</p>
     </div>
 
-    {{- /* Ad / Banner slot (optional) */}}
-    {{ with .Site.Params.headerBanner }}
-      <div class="au-header__banner">
-        <a href="{{ .link }}" target="_blank" rel="noopener sponsored">
-          <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy">
-        </a>
-      </div>
-    {{ end }}
-
-    {{- /* Search */}}
+    {{- /* Search — always visible inline */}}
     <div class="au-header__search">
-      <button class="au-search-toggle" aria-label="{{ i18n "search" | default "Search" }}" aria-expanded="false">
-        <i class="fa fa-magnifying-glass"></i>
-      </button>
-      <div class="au-search-panel" hidden>
+      <div class="au-search-panel">
         <form class="au-search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
           <input type="search" name="q" class="au-search-form__input"
                  placeholder="{{ i18n "search_placeholder" | default "Search African Updates…" }}"

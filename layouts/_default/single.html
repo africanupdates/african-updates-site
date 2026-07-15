@@ -90,6 +90,9 @@
       </figure>
       {{ end }}
 
+      {{- /* ── PHOTO GALLERY ── */}}
+      {{ partial "gallery.html" . }}
+
       {{- /* ── ARTICLE BODY ── */}}
       <div class="au-article__body au-prose" id="au-article-body" itemprop="articleBody">
         {{ .Content }}
