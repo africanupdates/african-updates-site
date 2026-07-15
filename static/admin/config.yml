@@ -15,8 +15,8 @@ collections:
     label: "Posts (English)"
     folder: content/en/posts
     create: true
-    slug: "{{slug}}"
-    path: "{{slug}}/index"
+    slug: "{{fields.slug}}"
+    path: "{{fields.slug}}/index"
     fields:
       - { label: "Title", name: title, widget: string }
       - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
@@ -63,8 +63,8 @@ collections:
     label: "Posts (Français)"
     folder: content/fr/posts
     create: true
-    slug: "{{slug}}"
-    path: "{{slug}}/index"
+    slug: "{{fields.slug}}"
+    path: "{{fields.slug}}/index"
     fields:
       - { label: "Titre", name: title, widget: string }
       - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
@@ -111,8 +111,8 @@ collections:
     label: "Inyandiko (Kinyarwanda)"
     folder: content/rw/posts
     create: true
-    slug: "{{slug}}"
-    path: "{{slug}}/index"
+    slug: "{{fields.slug}}"
+    path: "{{fields.slug}}/index"
     fields:
       - { label: "Umutwe", name: title, widget: string }
       - { label: "Itariki", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }

@@ -7,5 +7,21 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  CMS.registerEventListener({
+  name: 'preSave',
+  handler: ({ entry }) => {
+    const data = entry.get('data');
+    if (!data.get('slug')) {
+      const title = data.get('title') || '';
+      const autoSlug = title
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+      return data.set('slug', autoSlug);
+    }
+    return data;
+  },
+});
 </body>
 </html>
