@@ -7,6 +7,11 @@ categories:
   - featured
   - rwanda
   - sports
+featured: true
+tags:
+  - Sports
+author: Mutoni Divine
+slug: imvururu-zaranze-umukino-waraye-uhuje-al-hilal-na-mc-alger-muri-stade-amahoro
 thumbnail: img_6194.jpeg
 ---
 
