@@ -3,11 +3,7 @@
 
     {{- /* Logo */}}
     <a href="{{ .Site.BaseURL }}" class="au-nav__logo" rel="home">
-      {{ with .Site.Params.logo }}
-        <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" class="au-nav__logo-img">
-      {{ else }}
-        <span class="au-nav__logo-text">{{ .Site.Title }}</span>
-      {{ end }}
+      <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="au-nav__logo-img">
     </a>
 
     {{- /* Mobile hamburger */}}
