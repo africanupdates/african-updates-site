@@ -13,16 +13,26 @@
     </div>
     <div class="au-topbar__right">
       {{- /* Language switcher */}}
-      <div class="au-lang-switcher">
-        {{ range .Site.Languages }}
-          {{ if ne . $.Site.Language }}
-            <a href="{{ $.RelPermalink | replaceRE (printf "^/%s" $.Site.Language.Lang) (printf "/%s" .Lang) }}" class="au-lang-switcher__item" lang="{{ .Lang }}">
-              {{ .LanguageName }}
-            </a>
-          {{ end }}
-        {{ end }}
-        <span class="au-lang-switcher__current">{{ .Site.Language.LanguageName }}</span>
-      </div>
+<div class="au-lang-switcher">
+  {{ $current := .Site.Language.Lang }}
+  {{ range .Translations }}
+  <a href="{{ .Permalink }}" class="au-lang-switcher__item" lang="{{ .Site.Language.Lang }}">
+    {{ .Site.Language.LanguageName }}
+  </a>
+  {{ end }}
+
+  {{- /* Languages with no translation for this exact page — send to that language's homepage instead */}}
+  {{ $translatedLangs := slice $current }}
+  {{ range .Translations }}{{ $translatedLangs = $translatedLangs | append .Site.Language.Lang }}{{ end }}
+  {{ range .Sites }}
+    {{ if not (in $translatedLangs .Language.Lang) }}
+    <a href="{{ .Home.Permalink }}" class="au-lang-switcher__item au-lang-switcher__item--untranslated" lang="{{ .Language.Lang }}">
+      {{ .Language.LanguageName }}
+    </a>
+    {{ end }}
+  {{ end }}
+  <span class="au-lang-switcher__current">{{ .Site.Language.LanguageName }}</span>
+</div>
       {{- /* Social */}}
       <div class="au-topbar__social">
         {{ with .Site.Params.social.twitter }}
