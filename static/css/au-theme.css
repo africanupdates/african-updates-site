@@ -187,12 +187,20 @@ input, button, select, textarea { font-family: inherit; }
   background: var(--au-white);
   border-bottom: 1px solid var(--au-border);
   padding-block: var(--space-4);
+  margin-top: 0;
+}
+
+/* Remove any gap between topbar and header */
+.au-topbar + .au-header,
+.au-topbar {
+  margin-bottom: 0;
 }
 .au-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-6);
+  min-height: var(--header-h);
 }
 .au-header__branding { flex-shrink: 0; }
 .au-logo { display: inline-block; }
@@ -213,29 +221,28 @@ input, button, select, textarea { font-family: inherit; }
   text-transform: uppercase;
   margin-top: var(--space-1);
 }
-.au-header__banner { flex: 1; text-align: center; }
-.au-header__search { flex-shrink: 0; position: relative; }
-.au-search-toggle {
-  width: 38px; height: 38px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--au-ink);
-  border-radius: var(--radius);
-  transition: background var(--dur-fast), color var(--dur-fast);
+.au-header__search {
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
-.au-search-toggle:hover { background: var(--au-surface); color: var(--au-red); }
+
+/* Hide the toggle button — search is always visible */
+.au-search-toggle { display: none; }
+
+/* Always-visible inline search panel */
 .au-search-panel {
-  position: absolute;
-  top: calc(100% + var(--space-2));
-  right: 0;
-  width: 320px;
-  background: var(--au-white);
-  border: 1px solid var(--au-border);
-  border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  padding: var(--space-3);
-  z-index: 200;
+  position: static;
+  width: 280px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  display: block !important; /* override [hidden] */
 }
-.au-search-panel[hidden] { display: none; }
+.au-search-panel[hidden] { display: block !important; }
 .au-search-form {
   display: flex;
   gap: var(--space-2);
@@ -415,6 +422,13 @@ input, button, select, textarea { font-family: inherit; }
 .au-badge:hover { background: var(--au-red-dark); color: var(--au-white); }
 .au-badge--sm { font-size: 10px; padding: 1px 6px; }
 .au-badge--featured  { background: var(--cat-featured); }
+
+/* Slider-specific badge override — always navy */
+.au-slider__caption .au-badge,
+.au-slider__tile-caption .au-badge {
+  background: #1b3a5c !important;
+  color: var(--au-white) !important;
+}
 .au-badge--politics, .au-badge--politics-news { background: var(--cat-politics); }
 .au-badge--business  { background: var(--cat-business); }
 .au-badge--sport     { background: var(--cat-sport); }
@@ -801,6 +815,33 @@ input, button, select, textarea { font-family: inherit; }
   font-size: var(--text-xs);
   font-weight: 700;
   color: var(--au-mid);
+}
+
+/* ── COLLAPSIBLE WIDGET ──────────────────────────────────────── */
+.au-widget--collapsible .au-widget__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+.au-widget--collapsible .au-widget__title::after {
+  content: '\f078'; /* fa-chevron-down */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 0.75em;
+  transition: transform var(--dur-base) var(--ease);
+}
+.au-widget--collapsible.is-open .au-widget__title::after {
+  transform: rotate(180deg);
+}
+.au-widget__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--dur-slow) var(--ease);
+}
+.au-widget--collapsible.is-open .au-widget__body {
+  max-height: 1000px; /* large enough to show all categories */
 }
 /* Tag cloud */
 .au-tag-cloud {
