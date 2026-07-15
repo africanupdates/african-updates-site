@@ -1,7 +1,7 @@
 {{- /*
   Hero slider partial.
-  Pulls posts tagged `featured` (or the first N recent posts as fallback).
-  Slides are grouped: each slide = 1 large hero + 4 smaller tiles (5 posts/slide).
+  Pulls posts tagged `featured` category (or the first N recent posts as fallback).
+  Slides are grouped: each slide = 1 large hero + up to 4 smaller tiles (5 posts/slide).
   Pure CSS transitions driven by a tiny JS class-toggler in au-theme.js.
 */}}
 
@@ -10,25 +10,20 @@
   {{ $featured = first 10 .Site.RegularPages }}
 {{ end }}
 {{ $slides := $featured | first 10 }}
+{{ $total := len $slides }}
 
-{{- /* Group into chunks of 5 */}}
-{{ $groups := slice }}
-{{ $chunk := slice }}
-{{ range $i, $p := $slides }}
-  {{ $chunk = $chunk | append $p }}
-  {{ if eq (mod (add $i 1) 5) 0 }}
-    {{ $groups = $groups | append (slice $chunk) }}
-    {{ $chunk = slice }}
-  {{ end }}
-{{ end }}
-{{ if gt (len $chunk) 0 }}{{ $groups = $groups | append (slice $chunk) }}{{ end }}
+{{ if gt $total 0 }}
+{{ $groupSize := 5 }}
+{{ $numGroups := div (add $total (sub $groupSize 1)) $groupSize }}
 
 <section class="au-slider" aria-label="Featured stories" data-slider>
   <div class="au-slider__track" data-slider-track>
-    {{ range $gi, $group := $groups }}
+    {{ range $gi := seq 0 (sub $numGroups 1) }}
+    {{ $offset := mul $gi $groupSize }}
+    {{ $group := first $groupSize (after $offset $slides) }}
     <div class="au-slider__slide{{ if eq $gi 0 }} is-active{{ end }}" data-slide="{{ $gi }}" aria-hidden="{{ if eq $gi 0 }}false{{ else }}true{{ end }}">
 
-      {{ range $pi, $p := index $group 0 }}
+      {{ range $pi, $p := $group }}
 
         {{ $thumb := "" }}
         {{ with $p.Params.thumbnail }}
@@ -66,9 +61,7 @@
             </div>
           </div>
         </article>
-
-        {{- /* Grid of 4 smaller tiles */}}
-        <div class="au-slider__tiles">
+        {{ if gt (len $group) 1 }}<div class="au-slider__tiles">{{ end }}
         {{ else }}
         {{- /* Tiles 2–5 */}}
         <article class="au-slider__tile">
@@ -94,18 +87,18 @@
             </time>
           </div>
         </article>
-        {{ if eq $pi 4 }}</div>{{ end }}{{- /* close .au-slider__tiles */}}
         {{ end }}
 
       {{ end }}{{- /* end range group */}}
+      {{ if gt (len $group) 1 }}</div>{{ end }}{{- /* close .au-slider__tiles, only if it was opened */}}
     </div>
     {{ end }}{{- /* end range groups */}}
   </div>
 
   {{- /* Dots navigation */}}
-  {{ if gt (len $groups) 1 }}
+  {{ if gt $numGroups 1 }}
   <div class="au-slider__dots" aria-label="Slide navigation">
-    {{ range $gi, $g := $groups }}
+    {{ range $gi := seq 0 (sub $numGroups 1) }}
     <button class="au-slider__dot{{ if eq $gi 0 }} is-active{{ end }}"
             data-slide-target="{{ $gi }}"
             aria-label="Go to slide {{ add $gi 1 }}"
@@ -123,3 +116,4 @@
     <i class="fa fa-chevron-right"></i>
   </button>
 </section>
+{{ end }}{{- /* end if gt $total 0 */}}

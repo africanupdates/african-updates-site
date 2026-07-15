@@ -4,10 +4,13 @@
 
   {{ partial "breadcrumb.html" . }}
 
+  {{ $isCategory := eq .Type "categories" }}
+  {{ $termCount := len .Pages }}
+
   <header class="au-archive-header">
     <div class="au-archive-header__inner">
       <div class="au-archive-header__icon">
-        {{ if eq .Data.Singular "category" }}
+        {{ if $isCategory }}
           <i class="fa fa-folder-tree"></i>
         {{ else }}
           <i class="fa fa-tags"></i>
@@ -15,26 +18,38 @@
       </div>
       <div class="au-archive-header__text">
         <h1 class="au-archive-header__title">
-          {{ if eq .Data.Singular "category" }}
+          {{ if $isCategory }}
             {{ i18n "all_categories" | default "All Categories" }}
           {{ else }}
             {{ i18n "all_tags" | default "All Tags" }}
           {{ end }}
         </h1>
         <p class="au-archive-header__count">
-          {{ len .Data.Terms }} {{ .Data.Singular }}{{ if gt (len .Data.Terms) 1 }}s{{ end }}
+          {{ $termCount }}
+          {{ if $isCategory }}
+            categor{{ if eq $termCount 1 }}y{{ else }}ies{{ end }}
+          {{ else }}
+            tag{{ if ne $termCount 1 }}s{{ end }}
+          {{ end }}
         </p>
       </div>
     </div>
     <div class="au-archive-header__rule"></div>
   </header>
 
+  {{/* Build a sortable {page, count} list ourselves — .Data.Terms.ByCount no longer exists */}}
+  {{ $terms := slice }}
+  {{ range .Pages }}
+    {{ $terms = $terms | append (dict "page" . "count" (len .Pages)) }}
+  {{ end }}
+  {{ $terms = sort $terms "count" "desc" }}
+
   <div class="au-taxonomy-grid">
-    {{ range .Data.Terms.ByCount }}
-    <a href="{{ .Page.RelPermalink }}" class="au-taxonomy-card">
+    {{ range $terms }}
+    <a href="{{ .page.RelPermalink }}" class="au-taxonomy-card">
       <div class="au-taxonomy-card__inner">
-        <span class="au-taxonomy-card__name">{{ .Page.Title }}</span>
-        <span class="au-taxonomy-card__count">{{ .Count }}</span>
+        <span class="au-taxonomy-card__name">{{ .page.Title }}</span>
+        <span class="au-taxonomy-card__count">{{ .count }}</span>
       </div>
     </a>
     {{ end }}
