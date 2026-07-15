@@ -1,0 +1,29 @@
+{{ $currentLang := .Site.Language.Lang }}
+<div class="au-lang-switcher">
+  <button class="au-lang-switcher__toggle" aria-label="Change language" aria-expanded="false">
+    <i class="fa fa-globe"></i>
+    <span>{{ .Site.Language.LanguageName }}</span>
+    <i class="fa fa-chevron-down"></i>
+  </button>
+  <ul class="au-lang-switcher__list">
+    <li class="is-active">
+      <a href="{{ .Permalink }}">{{ .Site.Language.LanguageName }}</a>
+    </li>
+    {{ range .Translations }}
+    <li>
+      <a href="{{ .Permalink }}">{{ .Site.Language.LanguageName }}</a>
+    </li>
+    {{ end }}
+
+    {{/* Languages this page has no translation for yet — link to that language's homepage */}}
+    {{ $translatedLangs := slice $currentLang }}
+    {{ range .Translations }}{{ $translatedLangs = $translatedLangs | append .Site.Language.Lang }}{{ end }}
+    {{ range .Sites }}
+      {{ if not (in $translatedLangs .Language.Lang) }}
+      <li class="is-untranslated">
+        <a href="{{ .Home.Permalink }}">{{ .Language.LanguageName }}</a>
+      </li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</div>
