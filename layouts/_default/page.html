@@ -1,0 +1,31 @@
+{{ define "main" }}
+<div class="au-container au-page-wrap">
+
+  {{- /* Breadcrumb */}}
+  {{ partial "breadcrumb.html" . }}
+
+  <div class="au-page-layout">
+    <article class="au-page">
+      <header class="au-page__header">
+        <h1 class="au-page__title">{{ .Title }}</h1>
+        {{ with .Params.subtitle }}
+        <p class="au-page__subtitle">{{ . }}</p>
+        {{ end }}
+        {{ if .Params.showDate }}
+        <p class="au-page__meta">
+          {{ i18n "last_updated" | default "Last updated" }}: {{ .Lastmod.Format "January 2, 2006" }}
+        </p>
+        {{ end }}
+      </header>
+
+      <div class="au-page__body au-prose">
+        {{ .Content }}
+      </div>
+    </article>
+
+    {{- /* Sidebar kept for consistency with the rest of the site */}}
+    {{ partial "sidebar.html" . }}
+  </div>
+
+</div>
+{{ end }}

@@ -1,0 +1,39 @@
+{{- /*
+  analytics.html — GA4 with Google Consent Mode v2.
+  Loads gtag.js always (needed for Consent Mode), but sets consent to
+  "denied" by default. Analytics storage only activates after the visitor
+  accepts via the cookie banner. The banner JS (in cookie-consent.html)
+  flips consent to "granted" and persists the choice.
+
+  Requires: googleAnalytics = "G-XXXXXXXXXX" in hugo.toml
+  Only renders in production builds (not during `hugo server`).
+*/}}
+{{ if hugo.IsProduction }}
+{{ with site.Config.Services.GoogleAnalytics.ID }}
+<!-- Google tag (gtag.js) with Consent Mode v2 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Default: deny all storage until the visitor consents
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+
+  gtag('js', new Date());
+  gtag('config', '{{ . }}', { 'anonymize_ip': true });
+
+  // If the visitor previously accepted, restore consent immediately
+  try {
+    if (localStorage.getItem('au-consent') === 'granted') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+  } catch (e) {}
+</script>
+{{ end }}
+{{ end }}

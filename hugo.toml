@@ -12,6 +12,12 @@ title   = "African Updates"
 defaultContentLanguage     = "rw"
 defaultContentLanguageInSubdir = false   # rw at /, en at /en/, fr at /fr/
 
+## ── GOOGLE ANALYTICS (GA4) ──────────────────────────────────
+## Paste your Measurement ID (looks like G-XXXXXXXXXX) below.
+## Leave the quotes empty ("") to disable analytics entirely.
+[services.googleAnalytics]
+  ID = "G-5ETFKGB3PY"
+
 ## Pagination
 paginate     = 12          # posts per archive page
 paginatePath = "page"      # /category/politics/page/2/
@@ -214,22 +220,17 @@ summaryLength = 40         # words used by .Summary
 ## Footer utility links
 [[menus.footer]]
   name   = "About Us"
-  url    = "/about/"
+  url    = "/en/about/"
   weight = 10
 
 [[menus.footer]]
   name   = "Contact"
-  url    = "/contact/"
+  url    = "/en/contact/"
   weight = 20
 
 [[menus.footer]]
-  name   = "Advertise"
-  url    = "/advertise/"
-  weight = 30
-
-[[menus.footer]]
   name   = "Privacy Policy"
-  url    = "/privacy/"
+  url    = "/en/privacy/"
   weight = 40
 
 [[menus.footer]]

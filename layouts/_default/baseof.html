@@ -63,6 +63,9 @@
   <link rel="stylesheet" href="{{ "css/au-theme.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/gallery.css" | relURL }}">
 
+  {{- /* Analytics (consent-gated, production only) */}}
+  {{- partial "analytics.html" . }}
+
   {{ block "head_extra" . }}{{ end }}
 </head>
 <body class="{{ if .IsHome }}page-home{{ else if .IsPage }}page-single{{ else }}page-list{{ end }}">
@@ -86,6 +89,9 @@
   </button>
 
   <script src="{{ "js/au-theme.js" | relURL }}"></script>
+  {{- /* Cookie consent banner */}}
+  {{- partial "cookie-consent.html" . }}
+
   {{ block "scripts_extra" . }}{{ end }}
 </body>
 </html>
