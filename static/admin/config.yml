@@ -99,10 +99,16 @@ collections:
         required: false
         hint: "Type a tag and press Enter"
 
-      - label: "Author"
-        name: author
-        widget: string
+      - label: "Authors"
+        name: authors
+        widget: relation
+        collection: authors
+        value_field: title
+        search_fields: ["title"]
+        display_fields: ["title"]
+        multiple: true
         required: false
+        hint: "Select one or more authors. Manage author profiles in the Authors section."
 
       - label: "Thumbnail"
         name: thumbnail
@@ -195,10 +201,16 @@ collections:
         required: false
         hint: "Écrivez un tag et appuyez sur Entrée"
 
-      - label: "Auteur"
-        name: author
-        widget: string
+      - label: "Authors"
+        name: authors
+        widget: relation
+        collection: authors
+        value_field: title
+        search_fields: ["title"]
+        display_fields: ["title"]
+        multiple: true
         required: false
+        hint: "Select one or more authors. Manage author profiles in the Authors section."
 
       - label: "Miniature"
         name: thumbnail
@@ -291,10 +303,16 @@ collections:
         required: false
         hint: "Andika tag hanyuma ukande Enter"
 
-      - label: "Umwanditsi"
-        name: author
-        widget: string
+      - label: "Authors"
+        name: authors
+        widget: relation
+        collection: authors
+        value_field: title
+        search_fields: ["title"]
+        display_fields: ["title"]
+        multiple: true
         required: false
+        hint: "Select one or more authors. Manage author profiles in the Authors section."
 
       - label: "Ifoto"
         name: thumbnail
@@ -307,3 +325,61 @@ collections:
       - label: "Ubutumwa"
         name: body
         widget: markdown
+
+  # ─────────────────────────────────────────
+  # AUTHORS — profiles for bylines & author pages
+  # Each author becomes a page at /authors/<name>/
+  # ─────────────────────────────────────────
+  - name: authors
+    label: "Authors"
+    label_singular: "Author"
+    folder: content/authors
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}/_index"
+    identifier_field: title
+    media_folder: ""
+    public_folder: ""
+    summary: "{{title}} — {{role}}"
+    fields:
+      - label: "Name"
+        name: title
+        widget: string
+        hint: "The author's full name, exactly as it should appear on bylines."
+
+      - label: "Role / Title"
+        name: role
+        widget: string
+        required: false
+        hint: "e.g. Political Correspondent, Business Reporter"
+
+      - label: "Photo"
+        name: avatar
+        widget: image
+        required: false
+        hint: "Headshot for the author page. Saved inside the author's folder."
+        media_folder: ""
+        public_folder: ""
+
+      - label: "Email"
+        name: email
+        widget: string
+        required: false
+        hint: "Optional — shown as a contact icon on the author page."
+
+      - label: "X (Twitter) URL"
+        name: twitter
+        widget: string
+        required: false
+        hint: "Optional — full URL, e.g. https://x.com/handle"
+
+      - label: "LinkedIn URL"
+        name: linkedin
+        widget: string
+        required: false
+        hint: "Optional — full URL"
+
+      - label: "Biography"
+        name: body
+        widget: markdown
+        hint: "2–3 sentences about the author, their experience and credentials. Shown on their page and important for Google News."

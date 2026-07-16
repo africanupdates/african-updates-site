@@ -6,8 +6,8 @@
         {{- now.Format "January 2, 2006" }}
       </span>
       <ul class="au-topbar__links">
-        <li><a href="{{ "en/about/" | relURL }}">{{ i18n "about" | default "About Us" }}</a></li>
-        <li><a href="{{ "en/contact/" | relURL }}">{{ i18n "contact" | default "Contact" }}</a></li>
+        <li><a href="{{ "about/" | relLangURL }}">{{ i18n "about" | default "About Us" }}</a></li>
+        <li><a href="{{ "contact/" | relLangURL }}">{{ i18n "contact" | default "Contact" }}</a></li>
       </ul>
     </div>
     <div class="au-topbar__right">

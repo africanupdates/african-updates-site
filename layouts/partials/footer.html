@@ -72,9 +72,11 @@
         &copy; {{ now.Format "2006" }} {{ .Site.Title }}. {{ i18n "all_rights" | default "All rights reserved." }}
       </p>
       <nav class="au-footer__policy" aria-label="Policy links">
-        <a href="{{ "en/privacy/" | relURL }}">{{ i18n "privacy" | default "Privacy Policy" }}</a>
-        <a href="{{ "en/about/" | relURL }}">{{ i18n "about" | default "About" }}</a>
-        <a href="{{ "en/contact/" | relURL }}">{{ i18n "contact" | default "Contact" }}</a>
+        <a href="{{ "privacy/" | relLangURL }}">{{ i18n "privacy" | default "Privacy Policy" }}</a>
+        <a href="{{ "editorial-standards/" | relLangURL }}">{{ i18n "editorial_standards" | default "Editorial Standards" }}</a>
+        <a href="{{ "corrections/" | relLangURL }}">{{ i18n "corrections" | default "Corrections" }}</a>
+        <a href="{{ "about/" | relLangURL }}">{{ i18n "about" | default "About" }}</a>
+        <a href="{{ "contact/" | relLangURL }}">{{ i18n "contact" | default "Contact" }}</a>
       </nav>
     </div>
   </div>

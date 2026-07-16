@@ -7,11 +7,12 @@
   "headline": {{ .Title | jsonify }},
   "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
   "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
-  {{ with .Params.author }}"author": { "@type": "Person", "name": {{ . | jsonify }} },{{ end }}
+  "isAccessibleForFree": true,
+  {{ with .Params.authors }}"author": [{{ range $i, $a := . }}{{ if $i }}, {{ end }}{ "@type": "Person", "name": {{ $a | jsonify }}, "url": "{{ printf "/authors/%s/" ($a | urlize) | absURL }}" }{{ end }}],{{ else }}{{ with .Params.author }}"author": { "@type": "Person", "name": {{ . | jsonify }} },{{ end }}{{ end }}
   "publisher": {
     "@type": "Organization",
     "name": {{ .Site.Title | jsonify }},
-    "logo": { "@type": "ImageObject", "url": "{{ .Site.Params.logo | absURL }}" }
+    "logo": { "@type": "ImageObject", "url": "{{ with .Site.Params.logoPng }}{{ . | absURL }}{{ else }}{{ .Site.Params.logo | absURL }}{{ end }}" }
   }
   {{ with .Params.thumbnail }}{{ with ($.Resources.GetMatch .) }}, "image": "{{ .Permalink }}"{{ else }}, "image": "{{ . | absURL }}"{{ end }}{{ end }}
 }
@@ -52,12 +53,18 @@
 
         {{- /* Meta row */}}
         <div class="au-article__meta">
-          {{ with .Params.author }}
+          {{- /* Prefer the authors taxonomy (clickable author pages); fall back to plain author field */}}
+          {{ with .Params.authors }}
+          <span class="au-article__author">
+            <i class="fa fa-user"></i>
+            {{ range $i, $a := . }}{{ if $i }}, {{ end }}<a href="{{ printf "/authors/%s/" ($a | urlize) | relURL }}" class="au-article__author-link" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">{{ $a }}</span></a>{{ end }}
+          </span>
+          {{ else }}{{ with .Params.author }}
           <span class="au-article__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
             <i class="fa fa-user"></i>
             <span itemprop="name">{{ . }}</span>
           </span>
-          {{ end }}
+          {{ end }}{{ end }}
           <time class="au-article__date" datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">
             <i class="fa fa-clock"></i> {{ .Date.Format "January 2, 2006" }}
           </time>

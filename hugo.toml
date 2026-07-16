@@ -147,6 +147,7 @@ summaryLength = 40         # words used by .Summary
 [taxonomies]
   category = "categories"
   tag      = "tags"
+  author   = "authors"
 
 ## ── MENUS ───────────────────────────────────────────────────
 ## Main nav — displayed in layouts/partials/nav.html
@@ -232,6 +233,16 @@ summaryLength = 40         # words used by .Summary
   name   = "Privacy Policy"
   url    = "/en/privacy/"
   weight = 40
+
+[[menus.footer]]
+  name   = "Editorial Standards"
+  url    = "/en/editorial-standards/"
+  weight = 45
+
+[[menus.footer]]
+  name   = "Corrections"
+  url    = "/en/corrections/"
+  weight = 48
 
 [[menus.footer]]
   name   = "RSS Feed"

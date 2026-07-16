@@ -1,0 +1,32 @@
+{{- /* Reusable pagination — expects a page with .Paginator */}}
+{{ $p := .Paginator }}
+{{ if gt $p.TotalPages 1 }}
+<nav class="au-pagination" aria-label="Page navigation">
+  {{ if $p.HasPrev }}
+  <a href="{{ $p.Prev.URL }}" class="au-pagination__btn au-pagination__prev" rel="prev">
+    <i class="fa fa-arrow-left"></i> {{ i18n "previous" | default "Previous" }}
+  </a>
+  {{ end }}
+
+  <div class="au-pagination__pages">
+    {{ range $p.Pagers }}
+      {{ if eq . $p }}
+        <span class="au-pagination__page is-current" aria-current="page">{{ .PageNumber }}</span>
+      {{ else if le (math.Abs (sub .PageNumber $p.PageNumber)) 2 }}
+        <a href="{{ .URL }}" class="au-pagination__page">{{ .PageNumber }}</a>
+      {{ else if or (eq .PageNumber 1) (eq .PageNumber $p.TotalPages) }}
+        {{ if and (ne . $p) }}
+          <span class="au-pagination__ellipsis">…</span>
+          <a href="{{ .URL }}" class="au-pagination__page">{{ .PageNumber }}</a>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </div>
+
+  {{ if $p.HasNext }}
+  <a href="{{ $p.Next.URL }}" class="au-pagination__btn au-pagination__next" rel="next">
+    {{ i18n "next" | default "Next" }} <i class="fa fa-arrow-right"></i>
+  </a>
+  {{ end }}
+</nav>
+{{ end }}

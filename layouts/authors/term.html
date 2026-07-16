@@ -1,0 +1,74 @@
+{{ define "main" }}
+<div class="au-container au-author-wrap">
+
+  {{ partial "breadcrumb.html" . }}
+
+  <div class="au-author-layout">
+    <div class="au-author-main">
+
+      {{- /* ── AUTHOR PROFILE HEADER ──
+             Profile data comes from this taxonomy term's own front matter,
+             editable in Decap under the "Authors" collection. */}}
+      <header class="au-author-profile" itemscope itemtype="https://schema.org/Person">
+        <div class="au-author-profile__avatar">
+          {{ with .Params.avatar }}
+            <img src="{{ . | relURL }}" alt="{{ $.Title }}" itemprop="image">
+          {{ else }}
+            <i class="fa fa-user-circle"></i>
+          {{ end }}
+        </div>
+        <div class="au-author-profile__info">
+          <h1 class="au-author-profile__name" itemprop="name">{{ .Title }}</h1>
+          {{ with .Params.role }}
+          <p class="au-author-profile__role" itemprop="jobTitle">{{ . }}</p>
+          {{ end }}
+          {{ with .Content }}
+          <div class="au-author-profile__bio" itemprop="description">{{ . }}</div>
+          {{ end }}
+          {{ if or .Params.email .Params.twitter .Params.linkedin }}
+          <div class="au-author-profile__links">
+            {{ with .Params.email }}<a href="mailto:{{ . }}" aria-label="Email"><i class="fa fa-envelope"></i></a>{{ end }}
+            {{ with .Params.twitter }}<a href="{{ . }}" target="_blank" rel="noopener me" aria-label="X (Twitter)" itemprop="sameAs"><i class="fa-brands fa-x-twitter"></i></a>{{ end }}
+            {{ with .Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener me" aria-label="LinkedIn" itemprop="sameAs"><i class="fa-brands fa-linkedin-in"></i></a>{{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </header>
+
+      {{- /* ── AUTHOR JSON-LD (ProfilePage) for Google News ── */}}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@type": "Person",
+          "name": {{ .Title | jsonify }}
+          {{ with .Params.role }}, "jobTitle": {{ . | jsonify }}{{ end }}
+          {{ with .Params.twitter }}, "sameAs": [{{ . | jsonify }}]{{ end }}
+        }
+      }
+      </script>
+
+      {{- /* ── ARTICLES BY THIS AUTHOR ── */}}
+      <div class="au-section__head au-author-articles-head">
+        <h2 class="au-section__title">
+          <i class="fa fa-newspaper"></i> {{ i18n "articles_by" | default "Articles by" }} {{ .Title }}
+        </h2>
+      </div>
+
+      {{ $paginator := .Paginate .Pages }}
+      <div class="au-grid au-grid--3">
+        {{ range $paginator.Pages }}
+          {{ partial "post-card.html" (dict "page" . "size" "normal") }}
+        {{ end }}
+      </div>
+
+      {{ partial "pagination.html" . }}
+
+    </div>
+
+    {{ partial "sidebar.html" . }}
+  </div>
+
+</div>
+{{ end }}
