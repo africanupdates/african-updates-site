@@ -443,7 +443,7 @@ input, button, select, textarea { font-family: inherit; }
   width: 100%;
   overflow: hidden;
   background: var(--au-black);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-4);
 }
 .au-slider__track { position: relative; }
 .au-slider__slide {
@@ -763,12 +763,12 @@ input, button, select, textarea { font-family: inherit; }
 /* ── SIDEBAR ─────────────────────────────────────────────────── */
 .au-sidebar {
   position: sticky;
-  top: calc(var(--nav-h) + var(--space-4));
+  top: var(--nav-h);
   align-self: start;
   /* Fixed height = viewport minus sticky nav and breathing room.
      The sidebar itself never scrolls; only the Recent Posts card inside
      it scrolls. Fixed widgets (search, follow-us) always stay visible. */
-  height: calc(100vh - var(--nav-h) - var(--space-6));
+  height: calc(100vh - var(--nav-h) - var(--space-4));
   display: flex;
   flex-direction: column;
   gap: var(--space-6);

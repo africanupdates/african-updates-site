@@ -18,9 +18,10 @@
     <ul class="au-widget__list au-recent-list au-widget__scrollarea">
       {{ range $recent }}
       {{- /* Resolve thumbnail as a page-bundle resource (image sits beside index.md) */}}
+      {{ $post := . }}
       {{ $t := "" }}
       {{ with .Params.thumbnail }}
-        {{ with ($.Resources.GetMatch .) }}
+        {{ with ($post.Resources.GetMatch .) }}
           {{ $t = .RelPermalink }}
         {{ end }}
       {{ end }}
