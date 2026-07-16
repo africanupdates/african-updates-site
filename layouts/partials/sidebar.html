@@ -1,7 +1,7 @@
 <aside class="au-sidebar" aria-label="Sidebar">
 
-  {{- /* Search widget */}}
-  <div class="au-widget">
+  {{- /* Search widget — fixed at top */}}
+  <div class="au-widget au-sidebar__fixed">
     <form class="au-search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
       <input type="search" name="q" class="au-search-form__input" placeholder="{{ i18n "search_placeholder" | default "Search…" }}">
       <button type="submit" class="au-search-form__btn" aria-label="Search">
@@ -10,12 +10,12 @@
     </form>
   </div>
 
-  {{- /* Recent posts */}}
-  {{ $recent := first 6 .Site.RegularPages }}
+  {{- /* Recent posts — this card grows and scrolls internally */}}
+  {{ $recent := first 12 .Site.RegularPages }}
   {{ if $recent }}
-  <div class="au-widget">
-    <h3 class="au-widget__title">{{ i18n "recent_posts" | default "Recent Posts" }}</h3>
-    <ul class="au-widget__list au-recent-list">
+  <div class="au-widget au-widget--scroll au-sidebar__grow">
+    <h3 class="au-widget__title au-widget__title--sticky">{{ i18n "recent_posts" | default "Recent Posts" }}</h3>
+    <ul class="au-widget__list au-recent-list au-widget__scrollarea">
       {{ range $recent }}
       {{- /* Resolve thumbnail as a page-bundle resource (image sits beside index.md) */}}
       {{ $t := "" }}
@@ -42,8 +42,8 @@
   </div>
   {{ end }}
 
-  {{- /* Social follow */}}
-  <div class="au-widget au-widget--social">
+  {{- /* Social follow — fixed at bottom, always visible */}}
+  <div class="au-widget au-widget--social au-sidebar__fixed">
     <h3 class="au-widget__title">{{ i18n "follow_us" | default "Follow Us" }}</h3>
     <div class="au-social-follow">
       <a href="https://whatsapp.com/channel/0029VafqKm311ulSPJHML00o" class="au-social-btn au-social-btn--whatsapp" target="_blank" rel="noopener">

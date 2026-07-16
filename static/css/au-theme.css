@@ -765,32 +765,55 @@ input, button, select, textarea { font-family: inherit; }
   position: sticky;
   top: calc(var(--nav-h) + var(--space-4));
   align-self: start;
-  /* Cap height to the visible viewport so it never runs past the screen.
-     If the widgets are shorter than this, the sidebar is simply its
-     natural height. If they're taller, it scrolls internally. */
-  max-height: calc(100vh - var(--nav-h) - var(--space-6));
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* Fixed height = viewport minus the sticky nav and some breathing room.
+     The sidebar itself never scrolls; only the Recent Posts card inside
+     it scrolls. Fixed widgets (search, follow-us) always stay visible. */
+  height: calc(100vh - var(--nav-h) - var(--space-6));
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  /* Room so the scrollbar doesn't overlap widget borders */
-  padding-right: 6px;
+  overflow: hidden;
+}
+/* Fixed widgets keep their natural height and never shrink */
+.au-sidebar__fixed { flex: 0 0 auto; }
+/* The growing widget takes all remaining space */
+.au-sidebar__grow {
+  flex: 1 1 auto;
+  min-height: 0;           /* critical: lets a flex child scroll instead of overflow */
+  display: flex;
+  flex-direction: column;
+}
+/* Scrolling widget: header stays put, list scrolls under it */
+.au-widget--scroll {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.au-widget__title--sticky {
+  flex: 0 0 auto;
+}
+.au-widget__scrollarea {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--au-border) transparent;
 }
-.au-sidebar::-webkit-scrollbar { width: 6px; }
-.au-sidebar::-webkit-scrollbar-track { background: transparent; }
-.au-sidebar::-webkit-scrollbar-thumb { background: var(--au-border); border-radius: 3px; }
-.au-sidebar::-webkit-scrollbar-thumb:hover { background: var(--au-muted); }
-/* On mobile the sidebar is not sticky and should never be height-capped */
+.au-widget__scrollarea::-webkit-scrollbar { width: 6px; }
+.au-widget__scrollarea::-webkit-scrollbar-track { background: transparent; }
+.au-widget__scrollarea::-webkit-scrollbar-thumb { background: var(--au-border); border-radius: 3px; }
+.au-widget__scrollarea::-webkit-scrollbar-thumb:hover { background: var(--au-muted); }
+/* On mobile the sidebar flows naturally — no fixed height, no internal scroll */
 @media (max-width: 768px) {
   .au-sidebar {
     position: static;
-    max-height: none;
+    height: auto;
     overflow: visible;
-    padding-right: 0;
   }
+  .au-sidebar__grow { flex: 0 0 auto; }
+  .au-widget--scroll { overflow: visible; }
+  .au-widget__scrollarea { overflow: visible; min-height: 0; }
 }
 .au-widget {
   background: var(--au-white);

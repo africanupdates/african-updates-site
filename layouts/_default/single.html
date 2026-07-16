@@ -13,7 +13,7 @@
     "name": {{ .Site.Title | jsonify }},
     "logo": { "@type": "ImageObject", "url": "{{ .Site.Params.logo | absURL }}" }
   }
-  {{ with .Params.thumbnail }}, "image": "{{ . | absURL }}"{{ end }}
+  {{ with .Params.thumbnail }}{{ with ($.Resources.GetMatch .) }}, "image": "{{ .Permalink }}"{{ else }}, "image": "{{ . | absURL }}"{{ end }}{{ end }}
 }
 </script>
 {{ end }}
@@ -76,7 +76,13 @@
 
       {{- /* ── HERO IMAGE ── */}}
       {{ $thumb := "" }}
-      {{ with .Params.thumbnail }}{{ $thumb = . | relURL }}{{ end }}
+      {{ with .Params.thumbnail }}
+        {{ with ($.Resources.GetMatch .) }}
+          {{ $thumb = .RelPermalink }}
+        {{ else }}
+          {{ $thumb = . | relURL }}
+        {{ end }}
+      {{ end }}
       {{ if not $thumb }}
         {{ with .Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}{{ $thumb = .RelPermalink }}{{ end }}
       {{ end }}
