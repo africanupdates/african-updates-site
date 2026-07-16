@@ -58,9 +58,12 @@ summaryLength = 40         # words used by .Summary
 ## ── SITE PARAMS ─────────────────────────────────────────────
 [params]
   description = "African Updates — News in Your Hand"
-  logo        = "images/logo.png"          # put your logo at /static/images/logo.png
+  logo        = "images/logo.svg"          # header + footer display — crisp at any size
+  logoPng     = "images/logo.png"          # raster copy for Google structured data (needs PNG/JPG)
+  ogImage     = "images/og-default.png"    # social share fallback — 1200×630 PNG banner
   tagline     = "News in Your Hand"
   footerAbout = "African Updates delivers independent journalism across Kinyarwanda, English, and French — keeping the continent informed."
+  custom_css  = ["css/gallery.css"]
 
   ## Social links
   [params.social]
@@ -80,9 +83,6 @@ summaryLength = 40         # words used by .Summary
     slug  = "politics-news"
     icon  = "fa-landmark"
     limit = 5
-
-  [Params]
-  custom_css = ["css/gallery.css"]
 
   [[params.homeCategories]]
     name  = "Business"

@@ -11,7 +11,7 @@
   "publisher": {
     "@type": "Organization",
     "name": {{ .Site.Title | jsonify }},
-    "logo": { "@type": "ImageObject", "url": "{{ .Site.Params.logo | absURL }}" }
+    "logo": { "@type": "ImageObject", "url": "{{ with .Site.Params.logoPng }}{{ . | absURL }}{{ else }}{{ .Site.Params.logo | absURL }}{{ end }}" }
   }
   {{ with .Params.thumbnail }}{{ with ($.Resources.GetMatch .) }}, "image": "{{ .Permalink }}"{{ else }}, "image": "{{ . | absURL }}"{{ end }}{{ end }}
 }

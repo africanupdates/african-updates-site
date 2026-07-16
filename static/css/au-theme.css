@@ -765,55 +765,32 @@ input, button, select, textarea { font-family: inherit; }
   position: sticky;
   top: calc(var(--nav-h) + var(--space-4));
   align-self: start;
-  /* Fixed height = viewport minus the sticky nav and some breathing room.
-     The sidebar itself never scrolls; only the Recent Posts card inside
-     it scrolls. Fixed widgets (search, follow-us) always stay visible. */
-  height: calc(100vh - var(--nav-h) - var(--space-6));
+  /* Cap height to the visible viewport so it never runs past the screen.
+     If the widgets are shorter than this, the sidebar is simply its
+     natural height. If they're taller, it scrolls internally. */
+  max-height: calc(100vh - var(--nav-h) - var(--space-6));
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  overflow: hidden;
-}
-/* Fixed widgets keep their natural height and never shrink */
-.au-sidebar__fixed { flex: 0 0 auto; }
-/* The growing widget takes all remaining space */
-.au-sidebar__grow {
-  flex: 1 1 auto;
-  min-height: 0;           /* critical: lets a flex child scroll instead of overflow */
-  display: flex;
-  flex-direction: column;
-}
-/* Scrolling widget: header stays put, list scrolls under it */
-.au-widget--scroll {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.au-widget__title--sticky {
-  flex: 0 0 auto;
-}
-.au-widget__scrollarea {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* Room so the scrollbar doesn't overlap widget borders */
+  padding-right: 6px;
   scrollbar-width: thin;
   scrollbar-color: var(--au-border) transparent;
 }
-.au-widget__scrollarea::-webkit-scrollbar { width: 6px; }
-.au-widget__scrollarea::-webkit-scrollbar-track { background: transparent; }
-.au-widget__scrollarea::-webkit-scrollbar-thumb { background: var(--au-border); border-radius: 3px; }
-.au-widget__scrollarea::-webkit-scrollbar-thumb:hover { background: var(--au-muted); }
-/* On mobile the sidebar flows naturally — no fixed height, no internal scroll */
+.au-sidebar::-webkit-scrollbar { width: 6px; }
+.au-sidebar::-webkit-scrollbar-track { background: transparent; }
+.au-sidebar::-webkit-scrollbar-thumb { background: var(--au-border); border-radius: 3px; }
+.au-sidebar::-webkit-scrollbar-thumb:hover { background: var(--au-muted); }
+/* On mobile the sidebar is not sticky and should never be height-capped */
 @media (max-width: 768px) {
   .au-sidebar {
     position: static;
-    height: auto;
+    max-height: none;
     overflow: visible;
+    padding-right: 0;
   }
-  .au-sidebar__grow { flex: 0 0 auto; }
-  .au-widget--scroll { overflow: visible; }
-  .au-widget__scrollarea { overflow: visible; min-height: 0; }
 }
 .au-widget {
   background: var(--au-white);
@@ -1000,7 +977,7 @@ input, button, select, textarea { font-family: inherit; }
 .au-footer__top { padding-block: var(--space-12); }
 .au-footer__top-inner {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;
   gap: var(--space-8);
 }
 .au-footer__logo-text {
@@ -1030,6 +1007,40 @@ input, button, select, textarea { font-family: inherit; }
   transition: background var(--dur-fast), color var(--dur-fast);
 }
 .au-footer__social a:hover { background: var(--au-red); color: var(--au-white); }
+
+/* Footer "Follow Us" column buttons */
+.au-footer__follow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.au-footer__follow-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.85);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+}
+.au-footer__follow-btn i {
+  width: 18px;
+  text-align: center;
+  font-size: 1rem;
+}
+.au-footer__follow-btn:hover {
+  color: var(--au-white);
+  transform: translateX(3px);
+}
+.au-footer__follow-btn--x:hover        { background: #000000; }
+.au-footer__follow-btn--facebook:hover { background: #1877f2; }
+.au-footer__follow-btn--whatsapp:hover { background: #25d366; }
+
 .au-footer__col-title {
   font-family: var(--font-label);
   font-size: var(--text-base);

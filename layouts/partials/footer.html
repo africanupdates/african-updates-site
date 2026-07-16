@@ -11,20 +11,6 @@
           {{ end }}
         </div>
         <p class="au-footer__about">{{ .Site.Params.footerAbout | default "African Updates delivers independent journalism across Kinyarwanda, English, and French — keeping the continent informed." }}</p>
-        <div class="au-footer__social">
-          {{ with .Site.Params.social.twitter }}
-            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          {{ end }}
-          {{ with .Site.Params.social.facebook }}
-            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          {{ end }}
-          {{ with .Site.Params.social.youtube }}
-            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          {{ end }}
-          {{ with .Site.Params.social.instagram }}
-            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          {{ end }}
-        </div>
       </div>
 
       <div class="au-footer__col">
@@ -58,6 +44,23 @@
           </li>
           {{ end }}
         </ul>
+      </div>
+
+      <div class="au-footer__col">
+        <h4 class="au-footer__col-title">{{ i18n "follow_us" | default "Follow Us" }}</h4>
+        <div class="au-footer__follow">
+          <a href="https://x.com/africanupdates1" class="au-footer__follow-btn au-footer__follow-btn--x" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <i class="fa-brands fa-x-twitter"></i> <span>X (Twitter)</span>
+          </a>
+          {{ with .Site.Params.social.facebook }}
+          <a href="{{ . }}" class="au-footer__follow-btn au-footer__follow-btn--facebook" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i> <span>Facebook</span>
+          </a>
+          {{ end }}
+          <a href="https://whatsapp.com/channel/0029VafqKm311ulSPJHML00o" class="au-footer__follow-btn au-footer__follow-btn--whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp Channel">
+            <i class="fa-brands fa-whatsapp"></i> <span>WhatsApp Channel</span>
+          </a>
+        </div>
       </div>
 
     </div>
