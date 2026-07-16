@@ -11,19 +11,5 @@
       </a>
       <p class="au-logo__tagline">{{ .Site.Params.tagline | default "News in Your Hand" }}</p>
     </div>
-
-    {{- /* Search — always visible inline */}}
-    <div class="au-header__search">
-      <div class="au-search-panel">
-        <form class="au-search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
-          <input type="search" name="q" class="au-search-form__input"
-                 placeholder="{{ i18n "search_placeholder" | default "Search African Updates…" }}"
-                 aria-label="{{ i18n "search" | default "Search" }}">
-          <button type="submit" class="au-search-form__btn" aria-label="Submit search">
-            <i class="fa fa-magnifying-glass"></i>
-          </button>
-        </form>
-      </div>
-    </div>
   </div>
 </header>

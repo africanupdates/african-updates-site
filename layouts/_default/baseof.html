@@ -28,7 +28,7 @@
     {{ with .Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}{{ $ogImage = .Permalink }}{{ end }}
   {{ end }}
   {{ if not $ogImage }}{{ with .Site.Params.ogImage }}{{ $ogImage = . | absURL }}{{ end }}{{ end }}
-  {{ if not $ogImage }}{{ with .Site.Params.logoPng }}{{ $ogImage = . | absURL }}{{ end }}{{ end }}
+  {{ if not $ogImage }}{{ with .Site.Params.logo }}{{ $ogImage = . | absURL }}{{ end }}{{ end }}
   {{ with $ogImage }}
   <meta property="og:image" content="{{ . }}">
   <meta property="og:image:secure_url" content="{{ . }}">
