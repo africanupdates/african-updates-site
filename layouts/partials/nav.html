@@ -1,11 +1,6 @@
 <nav class="au-nav" id="au-nav" role="navigation" aria-label="Main navigation">
   <div class="au-container au-nav__inner">
 
-    {{- /* Logo */}}
-    <a href="{{ .Site.BaseURL }}" class="au-nav__logo" rel="home">
-      <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="au-nav__logo-img">
-    </a>
-
     {{- /* Mobile hamburger */}}
     <button class="au-nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="au-nav-menu">
       <span class="au-hamburger__bar"></span>
@@ -48,29 +43,6 @@
     </ul>
     {{ end }}
 
-    {{- /* Search — always visible on desktop */}}
-    <form class="au-nav__search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
-      <input type="search" name="q" class="au-nav__search-input"
-             placeholder="{{ i18n "search_placeholder" | default "Search…" }}"
-             aria-label="{{ i18n "search" | default "Search" }}">
-      <button type="submit" class="au-nav__search-btn" aria-label="Submit search">
-        <i class="fa fa-magnifying-glass"></i>
-      </button>
-    </form>
-
   </div>
 
-  {{- /* Mobile search panel */}}
-  <div class="au-nav__mobile-search" hidden>
-    <div class="au-container">
-      <form class="au-search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
-        <input type="search" name="q" class="au-search-form__input"
-               placeholder="{{ i18n "search_placeholder" | default "Search African Updates…" }}"
-               autofocus>
-        <button type="submit" class="au-search-form__btn" aria-label="Submit search">
-          <i class="fa fa-magnifying-glass"></i>
-        </button>
-      </form>
-    </div>
-  </div>
 </nav>
