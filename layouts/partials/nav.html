@@ -1,6 +1,13 @@
 <nav class="au-nav" id="au-nav" role="navigation" aria-label="Main navigation">
   <div class="au-container au-nav__inner">
 
+    {{- /* Logo — far left of nav bar */}}
+    <a href="{{ .Site.BaseURL }}" class="au-nav__logo" rel="home">
+      {{ with .Site.Params.logo }}
+        <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" class="au-nav__logo-img">
+      {{ end }}
+    </a>
+
     {{- /* Mobile hamburger */}}
     <button class="au-nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="au-nav-menu">
       <span class="au-hamburger__bar"></span>
