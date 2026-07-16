@@ -931,6 +931,7 @@ input, button, select, textarea { font-family: inherit; }
 .au-social-btn--facebook { background: #1877f2; }
 .au-social-btn--twitter  { background: #000000; }
 .au-social-btn--youtube  { background: #ff0000; }
+.au-social-btn--whatsapp { background: #25d366; }
 .au-social-btn + .au-social-btn { border-top: 1px solid rgba(255,255,255,0.15); }
 
 /* Inline search widget */

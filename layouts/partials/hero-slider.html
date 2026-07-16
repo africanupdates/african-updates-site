@@ -27,7 +27,11 @@
 
         {{ $thumb := "" }}
         {{ with $p.Params.thumbnail }}
-          {{ $thumb = . | relURL }}
+          {{ with ($p.Resources.GetMatch .) }}
+            {{ $thumb = .RelPermalink }}
+          {{ else }}
+            {{ $thumb = . | relURL }}
+          {{ end }}
         {{ else }}
           {{ with $p.Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
             {{ $thumb = .RelPermalink }}

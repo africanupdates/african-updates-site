@@ -4,6 +4,12 @@ backend:
   branch: main
   base_url: https://african-updates-site.pages.dev
 
+# Force the CMS interface language to English
+locale: "en"
+
+# Show the preview pane
+show_preview_links: true
+
 # Global media fallback (used if collection doesn't override)
 media_folder: static/images
 public_folder: /images
