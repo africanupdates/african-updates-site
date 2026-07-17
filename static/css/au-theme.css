@@ -2474,3 +2474,19 @@ input, button, select, textarea { font-family: inherit; }
 @media (max-width: 768px) {
   .au-search-panel { width: 100%; max-width: 100%; }
 }
+
+/* ── SMALL HERO IMAGES (don't stretch tiny sources to full width) ── */
+.au-article__hero--small {
+  text-align: center;
+  background: var(--au-surface, #f5f7fa);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+}
+.au-article__hero--small .au-article__hero-img {
+  width: auto;
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}

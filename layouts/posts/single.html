@@ -90,13 +90,19 @@
         {{ $heroRes = .Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
       {{ end }}
       {{ if $heroRes }}
-      <figure class="au-article__hero" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+      {{- /* If the source is too small to fill a hero cleanly, don't stretch it —
+             show it contained at a sensible size instead of blurry full-width. */}}
+      {{- $isSmall := false }}
+      {{- if reflect.IsImageResourceProcessable $heroRes }}
+        {{- if lt $heroRes.Width 600 }}{{ $isSmall = true }}{{ end }}
+      {{- end }}
+      <figure class="au-article__hero{{ if $isSmall }} au-article__hero--small{{ end }}" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
         {{ partial "responsive-image.html" (dict
           "resource" $heroRes
           "alt" .Title
           "class" "au-article__hero-img"
           "loading" "eager"
-          "sizes" "(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
+          "sizes" (cond $isSmall "(max-width: 600px) 100vw, 560px" "(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px")
           "maxwidth" 1600) }}
         {{ with .Params.thumbnailCaption }}
         <figcaption class="au-article__hero-caption">{{ . }}</figcaption>
