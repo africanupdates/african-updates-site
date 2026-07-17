@@ -12,8 +12,13 @@
   {{- /* First try to find it as a page bundle resource (image lives next to index.md) */}}
   {{ $res := $p.Resources.GetMatch . }}
   {{ if $res }}
-    {{ $thumbRes = $res }}
-    {{ $thumb = $res.RelPermalink }}
+    {{- /* Only use as resource if it's actually an image */ -}}
+    {{ if eq $res.MediaType.MainType "image" }}
+      {{ $thumbRes = $res }}
+      {{ $thumb = $res.RelPermalink }}
+    {{ else }}
+      {{ $thumb = . | relURL }}
+    {{ end }}
   {{ else }}
     {{- /* Fall back: treat as a path under /static/ */}}
     {{ $thumb = . | relURL }}
@@ -21,8 +26,10 @@
 {{ else }}
   {{- /* No thumbnail param — grab first image in the bundle */}}
   {{ with $p.Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
-    {{ $thumbRes = . }}
-    {{ $thumb = .RelPermalink }}
+    {{ if eq .MediaType.MainType "image" }}
+      {{ $thumbRes = . }}
+      {{ $thumb = .RelPermalink }}
+    {{ end }}
   {{ end }}
 {{ end }}
 

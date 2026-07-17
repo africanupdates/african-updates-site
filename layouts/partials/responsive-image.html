@@ -1,6 +1,3 @@
-{{- /*
-  responsive-image.html — optimized <img> with safe fallback for corrupt images.
-*/ -}}
 {{- $r := .resource }}
 {{- $alt := .alt | default "" }}
 {{- $class := .class | default "" }}
@@ -10,12 +7,9 @@
 
 {{- if $r }}
   {{- if eq $r.MediaType.MainType "image" }}
-    {{- /* Check subtype is one Hugo can process AND file is non-zero */ -}}
     {{- $sub := $r.MediaType.SubType }}
     {{- $safe := or (eq $sub "jpeg") (eq $sub "png") (eq $sub "gif") (eq $sub "webp") (eq $sub "tiff") }}
-    {{- $hasSize := gt $r.Size 0 }}
-    {{- if and $safe $hasSize }}
-      {{- /* Try to get dimensions — if Width is 0 the file is corrupt, skip processing */ -}}
+    {{- if $safe }}
       {{- $w := $r.Width }}
       {{- $h := $r.Height }}
       {{- if and (gt $w 0) (gt $h 0) }}
@@ -44,7 +38,6 @@
              width="{{ $w }}"
              height="{{ $h }}">
       {{- else }}
-        {{- /* Width/Height is 0 — corrupt file, render directly without processing */ -}}
         <img src="{{ $r.RelPermalink }}"
              {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
              {{ with $class }}class="{{ . }}"{{ end }}
@@ -52,7 +45,6 @@
              decoding="async">
       {{- end }}
     {{- else }}
-      {{- /* Unsupported subtype or empty file — render directly */ -}}
       <img src="{{ $r.RelPermalink }}"
            {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
            {{ with $class }}class="{{ . }}"{{ end }}
