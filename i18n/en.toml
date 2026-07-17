@@ -105,3 +105,89 @@ other = "By"
 [minutes_read]
 one   = "{{ . }} min read"
 other = "{{ . }} min read"
+
+# ── Added: UI strings that were previously English-only defaults ──
+[accept]
+other = "Accept"
+
+[articles_by]
+other = "Articles by"
+
+[back_to_top]
+other = "Back to top"
+
+[cookie_notice]
+other = "Cookie notice"
+
+[cookie_text]
+other = "We use cookies to understand how readers use African Updates and to improve your experience. You can accept or decline analytics cookies."
+
+[corrections]
+other = "Corrections"
+
+[decline]
+other = "Decline"
+
+[editorial_standards]
+other = "Editorial Standards"
+
+[last_updated]
+other = "Last updated"
+
+[learn_more]
+other = "Learn more"
+
+[rss_feed]
+other = "RSS Feed"
+
+[search_no_results]
+other = "No results for [SEARCH_TERM]"
+
+[search_prompt]
+other = "Search articles across African Updates"
+
+[skip_to_content]
+other = "Skip to content"
+
+# ── Navigation menu labels ──
+[menu_politics]
+other = "Politics"
+
+[menu_world]
+other = "World"
+
+[menu_security]
+other = "Security"
+
+[menu_african_union]
+other = "African Union"
+
+[menu_tourism]
+other = "Tourism"
+
+[menu_regional]
+other = "Regional"
+
+[menu_east_africa]
+other = "East Africa"
+
+[menu_northern_africa]
+other = "Northern Africa"
+
+[menu_central_africa]
+other = "Central Africa"
+
+[menu_business]
+other = "Business"
+
+[menu_culture]
+other = "Culture"
+
+[menu_science_tech]
+other = "Science & Tech"
+
+[menu_sport]
+other = "Sport"
+
+[menu_rss_feed]
+other = "RSS Feed"

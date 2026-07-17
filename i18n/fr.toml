@@ -105,3 +105,89 @@ other = "Par"
 [minutes_read]
 one   = "{{ . }} min de lecture"
 other = "{{ . }} min de lecture"
+
+# ── Ajouté : chaînes d'interface auparavant en anglais uniquement ──
+[accept]
+other = "Accepter"
+
+[articles_by]
+other = "Articles de"
+
+[back_to_top]
+other = "Haut de page"
+
+[cookie_notice]
+other = "Avis relatif aux cookies"
+
+[cookie_text]
+other = "Nous utilisons des cookies pour comprendre comment les lecteurs utilisent African Updates et pour améliorer votre expérience. Vous pouvez accepter ou refuser les cookies d'analyse."
+
+[corrections]
+other = "Corrections"
+
+[decline]
+other = "Refuser"
+
+[editorial_standards]
+other = "Normes éditoriales"
+
+[last_updated]
+other = "Dernière mise à jour"
+
+[learn_more]
+other = "En savoir plus"
+
+[rss_feed]
+other = "Flux RSS"
+
+[search_no_results]
+other = "Aucun résultat pour [SEARCH_TERM]"
+
+[search_prompt]
+other = "Rechercher des articles sur African Updates"
+
+[skip_to_content]
+other = "Aller au contenu"
+
+# ── Libellés du menu de navigation ──
+[menu_politics]
+other = "Politique"
+
+[menu_world]
+other = "Monde"
+
+[menu_security]
+other = "Sécurité"
+
+[menu_african_union]
+other = "Union africaine"
+
+[menu_tourism]
+other = "Tourisme"
+
+[menu_regional]
+other = "Régional"
+
+[menu_east_africa]
+other = "Afrique de l'Est"
+
+[menu_northern_africa]
+other = "Afrique du Nord"
+
+[menu_central_africa]
+other = "Afrique centrale"
+
+[menu_business]
+other = "Économie"
+
+[menu_culture]
+other = "Culture"
+
+[menu_science_tech]
+other = "Sciences & Tech"
+
+[menu_sport]
+other = "Sport"
+
+[menu_rss_feed]
+other = "Flux RSS"

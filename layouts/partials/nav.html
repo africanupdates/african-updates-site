@@ -24,14 +24,16 @@
         <li class="au-nav__item{{ if $hasChildren }} has-dropdown{{ end }}{{ if $currentPage.HasMenuCurrent "main" . }} is-active{{ end }}">
           <a href="{{ .URL }}" class="au-nav__link"
              {{ if $hasChildren }}aria-haspopup="true" aria-expanded="false"{{ end }}>
-            {{ .Name }}
+            {{- $key := printf "menu_%s" (.Name | urlize | replaceRE "-" "_") }}
+            {{ i18n $key | default .Name }}
             {{ if $hasChildren }}<i class="fa fa-chevron-down au-nav__arrow"></i>{{ end }}
           </a>
           {{ if $hasChildren }}
           <ul class="au-nav__dropdown" role="list">
             {{ range .Children }}
             <li class="au-nav__dropdown-item">
-              <a href="{{ .URL }}" class="au-nav__dropdown-link">{{ .Name }}</a>
+              {{- $ckey := printf "menu_%s" (.Name | urlize | replaceRE "-" "_") }}
+              <a href="{{ .URL }}" class="au-nav__dropdown-link">{{ i18n $ckey | default .Name }}</a>
             </li>
             {{ end }}
           </ul>

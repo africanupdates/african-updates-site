@@ -4,7 +4,7 @@
 other = "Ahabanza"
 
 [breaking]
-other = "Amakuru Mashya"
+other = "Amakuru Agezweho"
 
 [latest_news]
 other = "Amakuru Mashya"
@@ -16,7 +16,7 @@ other = "Reba Byose"
 other = "Ibindi"
 
 [load_more]
-other = "Shyira Imbere Inyandiko Nzimwe"
+other = "Reba indi"
 
 [search]
 other = "Shakisha"
@@ -25,25 +25,25 @@ other = "Shakisha"
 other = "Shakisha kuri African Updates…"
 
 [recent_posts]
-other = "Inyandiko Zashyizweho Vuba"
+other = "Inyandiko Za Vuba"
 
 [categories]
 other = "Ibyiciro"
 
 [tags]
-other = "Intera"
+other = "Tags"
 
 [follow_us]
 other = "Dukurikire"
 
 [quick_links]
-other = "Itumanaho Ryihuse"
+other = "Ishakiro Ryihuse"
 
 [languages]
 other = "Indimi"
 
 [all_rights]
-other = "Uburenganzira bwose bwabitswe."
+other = "All Rights."
 
 [privacy]
 other = "Politiki y'Ibanga"
@@ -55,16 +55,16 @@ other = "Abo Turi Bo"
 other = "Twandikire"
 
 [advertise]
-other = "Itangazo"
+other = "Amamaza"
 
 [share]
-other = "Sangira"
+other = "Sangiza Abandi"
 
 [updated]
-other = "Ivugururwa"
+other = "Yavuguruwe"
 
 [previous]
-other = "Ibanze"
+other = "Ibanza"
 
 [next]
 other = "Ikurikira"
@@ -73,10 +73,10 @@ other = "Ikurikira"
 other = "Inyandiko Zisa"
 
 [stories]
-other = "inyandiko"
+other = "inkuru"
 
 [no_posts]
-other = "Nta nyandiko yabonetse."
+other = "Nta nyandiko ibonetse."
 
 [go_home]
 other = "Subira Ahabanza"
@@ -88,13 +88,13 @@ other = "Amakuru Mashya"
 other = "Ibyiciro Byose"
 
 [all_tags]
-other = "Intera Zose"
+other = "All Tags"
 
 [404_title]
-other = "Urupapuro Rurabonetse"
+other = "Ntibibonetse"
 
 [404_desc]
-other = "Inyandiko ushaka yimurirwa ahandi, yabitswe, cyangwa ntiyigeze ibaho. Gerageza gushakisha cyangwa usubire ahabanza."
+other = "Inyandiko ushaka ntiboneka. Gerageza gushakira ahandi cyangwa usubire ahabanza."
 
 [read_more]
 other = "Soma Byose"
@@ -105,3 +105,89 @@ other = "Na"
 [minutes_read]
 one   = "{{ . }} min yo gusoma"
 other = "{{ . }} min yo gusoma"
+
+# ── Byongewemo: amagambo y'imurikagurisha yari mu Cyongereza gusa ──
+[accept]
+other = "Emera"
+
+[articles_by]
+other = "Inyandiko za"
+
+[back_to_top]
+other = "Subira hejuru"
+
+[cookie_notice]
+other = "Cookie Notice"
+
+[cookie_text]
+other = "Dukoresha cookies kugira ngo tumenye uko abasomyi bakoresha African Updates no kunoza uburyo biborohera. Ushobora kwemera cyangwa guhakana cookies z'isesengura."
+
+[corrections]
+other = "Gukosora"
+
+[decline]
+other = "Hakana"
+
+[editorial_standards]
+other = "Amahame y'Ubwanditsi"
+
+[last_updated]
+other = "Biheruka kuvugururwa"
+
+[learn_more]
+other = "Menya byinshi"
+
+[rss_feed]
+other = "RSS Feed"
+
+[search_no_results]
+other = "Nta kibonetse kuri [SEARCH_TERM]"
+
+[search_prompt]
+other = "Shakisha inyandiko muri African Updates"
+
+[skip_to_content]
+other = "Jya ku bikubiyemo"
+
+# ── Amazina yo kuri menu ──
+[menu_politics]
+other = "Politiki"
+
+[menu_world]
+other = "Isi Yose"
+
+[menu_security]
+other = "Umutekano"
+
+[menu_african_union]
+other = "Umuryango w'Afurika"
+
+[menu_tourism]
+other = "Ubukerarugendo"
+
+[menu_regional]
+other = "Akarere"
+
+[menu_east_africa]
+other = "Afurika y'Uburasirazuba"
+
+[menu_northern_africa]
+other = "Afurika y'Amajyaruguru"
+
+[menu_central_africa]
+other = "Afurika yo Hagati"
+
+[menu_business]
+other = "Ubucuruzi"
+
+[menu_culture]
+other = "Umuco"
+
+[menu_science_tech]
+other = "Siyansi & Ikoranabuhanga"
+
+[menu_sport]
+other = "Siporo"
+
+[menu_rss_feed]
+other = "RSS Feed"
