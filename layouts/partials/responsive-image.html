@@ -25,13 +25,13 @@
     {{- $fallback := $r.RelPermalink }}
     {{- range $widths }}
       {{- if and (le . $ow) (le . $maxwidth) }}
-        {{- $img := $r.Resize (printf "%dx webp q78" .) }}
+        {{- $img := $r.Resize (printf "%dx webp q82" .) }}
         {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink .) }}
         {{- $fallback = $img.RelPermalink }}
       {{- end }}
     {{- end }}
     {{- if not $srcset }}
-      {{- $img := $r.Resize (printf "%dx webp q78" $ow) }}
+      {{- $img := $r.Resize (printf "%dx webp q82" $ow) }}
       {{- $srcset = slice (printf "%s %dw" $img.RelPermalink $ow) }}
       {{- $fallback = $img.RelPermalink }}
     {{- end }}

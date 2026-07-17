@@ -33,13 +33,6 @@ summaryLength = 40         # words used by .Summary
   guessSyntax    = true
   noClasses      = true
 
-## Allow raw HTML in markdown (needed for embedded content)
-[markup.goldmark.renderer]
-  unsafe = true
-
-## Suppress known warnings
-ignoreLogs = ['warning-goldmark-raw-html']
-
 ## Table of contents
 [markup.tableOfContents]
   startLevel = 2
@@ -68,6 +61,14 @@ ignoreLogs = ['warning-goldmark-raw-html']
     contentDir   = "content/fr"
     [languages.fr.params]
       description = "L'actualité africaine en politique, économie, culture et sport"
+
+## ── IMAGE PROCESSING ────────────────────────────────────────
+# Lanczos = sharpest downscaling filter (default "Box" looks soft/blurry).
+# quality applies to JPEG and WebP output from image processing.
+[imaging]
+  quality        = 85
+  resampleFilter = "Lanczos"
+  hint           = "photo"
 
 ## ── SITE PARAMS ─────────────────────────────────────────────
 [params]
