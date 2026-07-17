@@ -43,8 +43,9 @@
         {{ with .Params.categories }}
         <div class="au-article__cats">
           {{ range . }}
+          {{- $catKey := printf "cat_%s" (. | urlize | replaceRE "-" "_") }}
           <a href="{{ printf "/categories/%s/" (. | urlize) | relURL }}"
-             class="au-badge au-badge--{{ . | urlize | lower }}">{{ . }}</a>
+             class="au-badge au-badge--{{ . | urlize | lower }}">{{ i18n $catKey | default (humanize .) }}</a>
           {{ end }}
         </div>
         {{ end }}

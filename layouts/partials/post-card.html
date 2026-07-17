@@ -12,13 +12,8 @@
   {{- /* First try to find it as a page bundle resource (image lives next to index.md) */}}
   {{ $res := $p.Resources.GetMatch . }}
   {{ if $res }}
-    {{- /* Only use as resource if it's actually an image */ -}}
-    {{ if eq $res.MediaType.MainType "image" }}
-      {{ $thumbRes = $res }}
-      {{ $thumb = $res.RelPermalink }}
-    {{ else }}
-      {{ $thumb = . | relURL }}
-    {{ end }}
+    {{ $thumbRes = $res }}
+    {{ $thumb = $res.RelPermalink }}
   {{ else }}
     {{- /* Fall back: treat as a path under /static/ */}}
     {{ $thumb = . | relURL }}
@@ -26,10 +21,8 @@
 {{ else }}
   {{- /* No thumbnail param — grab first image in the bundle */}}
   {{ with $p.Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
-    {{ if eq .MediaType.MainType "image" }}
-      {{ $thumbRes = . }}
-      {{ $thumb = .RelPermalink }}
-    {{ end }}
+    {{ $thumbRes = . }}
+    {{ $thumb = .RelPermalink }}
   {{ end }}
 {{ end }}
 
@@ -64,8 +57,9 @@
 
   <div class="au-card__body">
     {{ if $primaryCat }}
+    {{- $primaryCatKey := printf "cat_%s" ($primaryCatSlug | replaceRE "-" "_") }}
     <a href="{{ printf "/categories/%s/" $primaryCatSlug | relURL }}" class="au-badge au-badge--{{ $primaryCatSlug | lower }}">
-      {{ $primaryCat }}
+      {{ i18n $primaryCatKey | default (humanize $primaryCat) }}
     </a>
     {{ end }}
 

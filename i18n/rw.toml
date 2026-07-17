@@ -191,3 +191,35 @@ other = "Siporo"
 
 [menu_rss_feed]
 other = "RSS Feed"
+
+# ── Amazina y'ibyiciro ──
+[cat_africa]
+other = "Afurika"
+[cat_business]
+other = "Ubucuruzi"
+[cat_culture]
+other = "Umuco"
+[cat_east]
+other = "Afurika y'Uburasirazuba"
+[cat_entertainment]
+other = "Imyidagaduro"
+[cat_featured]
+other = "Ibyatoranyijwe"
+[cat_health]
+other = "Ubuzima"
+[cat_international]
+other = "Mpuzamahanga"
+[cat_news]
+other = "Amakuru"
+[cat_politics_news]
+other = "Politiki"
+[cat_rwanda]
+other = "U Rwanda"
+[cat_security]
+other = "Umutekano"
+[cat_sport]
+other = "Siporo"
+[cat_tech]
+other = "Siyansi & Ikoranabuhanga"
+[cat_world]
+other = "Isi Yose"

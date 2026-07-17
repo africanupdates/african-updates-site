@@ -191,3 +191,35 @@ other = "Sport"
 
 [menu_rss_feed]
 other = "RSS Feed"
+
+# ── Category labels ──
+[cat_africa]
+other = "Africa"
+[cat_business]
+other = "Business"
+[cat_culture]
+other = "Culture"
+[cat_east]
+other = "East Africa"
+[cat_entertainment]
+other = "Entertainment"
+[cat_featured]
+other = "Featured"
+[cat_health]
+other = "Health"
+[cat_international]
+other = "International"
+[cat_news]
+other = "News"
+[cat_politics_news]
+other = "Politics"
+[cat_rwanda]
+other = "Rwanda"
+[cat_security]
+other = "Security"
+[cat_sport]
+other = "Sport"
+[cat_tech]
+other = "Science & Tech"
+[cat_world]
+other = "World"

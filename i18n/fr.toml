@@ -191,3 +191,35 @@ other = "Sport"
 
 [menu_rss_feed]
 other = "Flux RSS"
+
+# ── Libellés des catégories ──
+[cat_africa]
+other = "Afrique"
+[cat_business]
+other = "Économie"
+[cat_culture]
+other = "Culture"
+[cat_east]
+other = "Afrique de l'Est"
+[cat_entertainment]
+other = "Divertissement"
+[cat_featured]
+other = "À la une"
+[cat_health]
+other = "Santé"
+[cat_international]
+other = "International"
+[cat_news]
+other = "Actualités"
+[cat_politics_news]
+other = "Politique"
+[cat_rwanda]
+other = "Rwanda"
+[cat_security]
+other = "Sécurité"
+[cat_sport]
+other = "Sport"
+[cat_tech]
+other = "Sciences & Tech"
+[cat_world]
+other = "Monde"
