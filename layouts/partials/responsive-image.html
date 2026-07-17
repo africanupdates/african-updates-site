@@ -21,6 +21,11 @@
 {{- $sizes := .sizes | default "100vw" }}
 {{- $maxwidth := .maxwidth | default 1200 }}
 {{- if and $r (eq $r.MediaType.MainType "image") }}
+  {{- if not ($r | images.IsOpaque | not | not) }}{{- end }}
+  {{- /* Only process if Hugo can actually resize this image */ -}}
+  {{- $processable := false }}
+  {{- with $r.Width }}{{- $processable = true }}{{- end }}
+  {{- if $processable }}
   {{- $ow := $r.Width }}
   {{- /* Candidate widths, only those not larger than the source (no upscaling) */ -}}
   {{- $widths := slice 400 800 1200 1600 }}
@@ -47,4 +52,12 @@
        decoding="async"
        {{ with $r.Width }}width="{{ . }}"{{ end }}
        {{ with $r.Height }}height="{{ . }}"{{ end }}>
+  {{- else }}
+  {{- /* Fallback: render image directly without processing */ -}}
+  <img src="{{ $r.RelPermalink }}"
+       {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
+       {{ with $class }}class="{{ . }}"{{ end }}
+       loading="{{ $loading }}"
+       decoding="async">
+  {{- end }}
 {{- end }}
