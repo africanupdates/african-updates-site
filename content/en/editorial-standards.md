@@ -3,6 +3,7 @@ title: "Editorial Standards & Ethics"
 subtitle: "The principles that guide our journalism"
 type: "page"
 layout: "page"
+date: 2023-01-15
 showDate: true
 description: "African Updates' editorial standards and ethics — how we report, source, verify, and maintain independence in our journalism."
 ---

@@ -3,6 +3,7 @@ title: "Politique de confidentialité"
 subtitle: "Comment African Updates traite vos informations"
 type: "page"
 layout: "page"
+date: 2023-01-15
 showDate: true
 description: "Politique de confidentialité d'African Updates — quelles données nous collectons, comment nous utilisons les cookies et Google Analytics, et vos choix."
 ---

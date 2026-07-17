@@ -3,6 +3,7 @@ title: "Corrections Policy"
 subtitle: "How we handle errors and keep our reporting accurate"
 type: "page"
 layout: "page"
+date: 2023-01-15
 showDate: true
 description: "African Updates' corrections policy — how we identify, correct, and disclose errors in our journalism."
 ---

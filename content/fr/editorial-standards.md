@@ -3,6 +3,7 @@ title: "Normes éditoriales et déontologie"
 subtitle: "Les principes qui guident notre journalisme"
 type: "page"
 layout: "page"
+date: 2023-01-15
 showDate: true
 description: "Normes éditoriales et déontologie d'African Updates — comment nous rapportons, sourçons, vérifions et préservons notre indépendance."
 ---

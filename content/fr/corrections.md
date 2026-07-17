@@ -3,6 +3,7 @@ title: "Politique de corrections"
 subtitle: "Comment nous traitons les erreurs et préservons l'exactitude de nos informations"
 type: "page"
 layout: "page"
+date: 2023-01-15
 showDate: true
 description: "Politique de corrections d'African Updates — comment nous identifions, corrigeons et signalons les erreurs dans notre journalisme."
 ---

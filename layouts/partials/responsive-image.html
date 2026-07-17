@@ -1,55 +1,44 @@
+{{- /*
+  responsive-image.html — optimized <img> with responsive WebP srcset.
+  Takes a Hugo image Resource. If the source is smaller than a candidate
+  width, that width is skipped (Hugo never upscales). Falls back to the
+  original image URL if no processed variant is produced.
+
+  Params (via dict):
+    resource (required) — a Hugo image Resource
+    alt, class, loading ("lazy"|"eager"), sizes, maxwidth (int, default 1200)
+*/ -}}
 {{- $r := .resource }}
 {{- $alt := .alt | default "" }}
 {{- $class := .class | default "" }}
 {{- $loading := .loading | default "lazy" }}
 {{- $sizes := .sizes | default "100vw" }}
 {{- $maxwidth := .maxwidth | default 1200 }}
-
 {{- if $r }}
-  {{- if eq $r.MediaType.MainType "image" }}
-    {{- $sub := $r.MediaType.SubType }}
-    {{- $safe := or (eq $sub "jpeg") (eq $sub "png") (eq $sub "gif") (eq $sub "webp") (eq $sub "tiff") }}
-    {{- if $safe }}
-      {{- $w := $r.Width }}
-      {{- $h := $r.Height }}
-      {{- if and (gt $w 0) (gt $h 0) }}
-        {{- $ow := $w }}
-        {{- $widths := slice 400 800 1200 1600 }}
-        {{- $srcset := slice }}
-        {{- $fallback := "" }}
-        {{- range $widths }}
-          {{- if and (le . $ow) (le . $maxwidth) }}
-            {{- $img := $r.Resize (printf "%dx webp q78" .) }}
-            {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink .) }}
-            {{- $fallback = $img.RelPermalink }}
-          {{- end }}
-        {{- end }}
-        {{- if not $fallback }}
-          {{- $img := $r.Resize (printf "%dx webp q78" $ow) }}
-          {{- $srcset = slice (printf "%s %dw" $img.RelPermalink $ow) }}
-          {{- $fallback = $img.RelPermalink }}
-        {{- end }}
-        <img src="{{ $fallback }}"
-             {{ with $srcset }}srcset="{{ delimit . ", " }}" sizes="{{ $sizes }}"{{ end }}
-             {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
-             {{ with $class }}class="{{ . }}"{{ end }}
-             loading="{{ $loading }}"
-             decoding="async"
-             width="{{ $w }}"
-             height="{{ $h }}">
-      {{- else }}
-        <img src="{{ $r.RelPermalink }}"
-             {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
-             {{ with $class }}class="{{ . }}"{{ end }}
-             loading="{{ $loading }}"
-             decoding="async">
-      {{- end }}
-    {{- else }}
-      <img src="{{ $r.RelPermalink }}"
-           {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
-           {{ with $class }}class="{{ . }}"{{ end }}
-           loading="{{ $loading }}"
-           decoding="async">
+  {{- $ow := $r.Width }}
+  {{- $widths := slice 400 800 1200 1600 }}
+  {{- $srcset := slice }}
+  {{- $fallback := $r.RelPermalink }}
+  {{- range $widths }}
+    {{- if and (le . $ow) (le . $maxwidth) }}
+      {{- $img := $r.Resize (printf "%dx webp q78" .) }}
+      {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink .) }}
+      {{- $fallback = $img.RelPermalink }}
     {{- end }}
   {{- end }}
+  {{- /* Source smaller than smallest candidate: one webp at native width */ -}}
+  {{- if not $srcset }}
+    {{- $img := $r.Resize (printf "%dx webp q78" $ow) }}
+    {{- $srcset = slice (printf "%s %dw" $img.RelPermalink $ow) }}
+    {{- $fallback = $img.RelPermalink }}
+  {{- end }}
+  {{- $srcsetStr := delimit $srcset ", " }}
+  <img src="{{ $fallback }}"
+       srcset="{{ $srcsetStr }}" sizes="{{ $sizes }}"
+       alt="{{ $alt }}"
+       {{ with $class }}class="{{ . }}"{{ end }}
+       loading="{{ $loading }}"
+       decoding="async"
+       {{ with $r.Width }}width="{{ . }}"{{ end }}
+       {{ with $r.Height }}height="{{ . }}"{{ end }}>
 {{- end }}

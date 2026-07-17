@@ -80,6 +80,15 @@
           var cats        = data.get("categories");
           var tags        = data.get("tags");
           var author      = data.get("author");
+          var authors     = data.get("authors");
+          // New posts use the "authors" relation (a list); old posts use "author" (string)
+          if (!author && authors) {
+            try {
+              if (authors.toJS) { author = authors.toJS().join(", "); }
+              else if (authors.join) { author = authors.join(", "); }
+              else { author = String(authors); }
+            } catch (e) { author = ""; }
+          }
           var date        = data.get("date");
           var description = data.get("description");
           var thumbUrl    = safeAsset(props.getAsset, data.get("thumbnail"));
@@ -126,8 +135,19 @@
             children.push(h("p", { key: "desc", style: { fontSize: "1.15rem", color: "#444", fontWeight: 500 } }, description));
           }
 
-          // Body
-          children.push(h("div", { className: "au-pv-body", key: "body" }, props.widgetFor("body")));
+          // Body — isolated: if the markdown widget preview fails, keep the
+          // rest of the preview (slug, title, etc.) instead of blanking out.
+          var bodyEl;
+          try {
+            bodyEl = props.widgetFor("body");
+          } catch (e) {
+            bodyEl = null;
+          }
+          if (bodyEl) {
+            children.push(h("div", { className: "au-pv-body", key: "body" }, bodyEl));
+          } else {
+            children.push(h("div", { className: "au-pv-body", key: "body", style: { color: "#999", fontStyle: "italic" } }, "Start writing to see the body preview…"));
+          }
 
           // Tags
           if (tags && tags.size) {
