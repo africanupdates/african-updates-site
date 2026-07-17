@@ -1,14 +1,15 @@
 {{- /*
   render-image.html — render hook for images inside article markdown.
-  Every ![alt](src) in a post's body passes through here. If the image is
-  a page-bundle resource, it gets the full responsive/WebP/lazy treatment.
-  External URLs or non-bundle paths fall back to a plain lazy <img>.
+  Every ![alt](src) in a post's body passes through here. If the destination
+  resolves to a processable page-bundle image, it gets the full responsive
+  treatment. Anything else (external URL, non-image, broken ref) falls back
+  to a plain lazy <img> so a bad reference can never break the build.
 */ -}}
 {{- $res := "" }}
 {{- if .Page.Resources }}
   {{- $res = .Page.Resources.GetMatch .Destination }}
 {{- end }}
-{{- if $res }}
+{{- if and $res (reflect.IsImageResourceProcessable $res) }}
 <figure class="au-prose__figure">
   {{ partial "responsive-image.html" (dict
     "resource" $res
@@ -20,7 +21,7 @@
   {{ with .Title }}<figcaption class="au-prose__caption">{{ . }}</figcaption>{{ end }}
 </figure>
 {{- else }}
-  {{- /* External image or not a bundle resource — plain lazy img */ -}}
+  {{- /* External image, non-image, or broken reference — plain lazy img */ -}}
   <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}"
        {{ with .Title }}title="{{ . }}"{{ end }}
        loading="lazy" decoding="async" class="au-prose__img">
