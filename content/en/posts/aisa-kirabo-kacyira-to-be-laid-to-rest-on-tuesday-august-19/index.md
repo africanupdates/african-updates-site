@@ -1,9 +1,11 @@
 ---
-title: "Aisa Kirabo Kacyira to be laid to rest on Tuesday August 19"
+title: Aisa Kirabo Kacyira to be laid to rest on Tuesday August 19
+slug: aisa-kirabo-kacyira-to-be-laid-to-rest-on-tuesday-august-19
 date: 2025-08-18
-categories: 
-  - "featured"
-  - "news"
+categories:
+  - featured
+  - news
+thumbnail: aisa-kirabo.jpg
 ---
 
 Aisa Kirabo Kacyira, a diplomat and former Mayor of Kigali who passed away on August 12, will be laid to rest on Tuesday, August 19, in the Rusororo Cemetery, The New Times has learnt.
