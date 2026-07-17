@@ -81,6 +81,16 @@
 
       </header>
 
+      {{- /* ═══ THUMBNAIL DIAGNOSTIC (temporary) ═══ */}}
+      <div style="background:#fffbe6;border:2px solid #f0c000;padding:12px;margin:12px 0;font-family:monospace;font-size:13px;line-height:1.6">
+        <strong>THUMBNAIL DIAGNOSTIC</strong><br>
+        thumbnail param: [<b>{{ .Params.thumbnail | default "(none)" }}</b>]<br>
+        total resources in bundle: [<b>{{ len .Resources }}</b>]<br>
+        resource names: [<b>{{ range .Resources }}{{ .Name }} ({{ .ResourceType }}) | {{ end }}</b>]<br>
+        GetMatch on thumbnail: [<b>{{ with .Resources.GetMatch (.Params.thumbnail | default "nomatch") }}FOUND: {{ .Name }} — processable: {{ reflect.IsImageResourceProcessable . }}{{ else }}NOT FOUND{{ end }}</b>]<br>
+        wildcard image match: [<b>{{ with .Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}FOUND: {{ .Name }}{{ else }}NONE{{ end }}</b>]
+      </div>
+
       {{- /* ── HERO IMAGE ── */}}
       {{ $heroRes := "" }}
       {{ with .Params.thumbnail }}
