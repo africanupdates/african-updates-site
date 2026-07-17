@@ -1,6 +1,5 @@
 {{- /*
-  responsive-image.html — optimized <img> rendering with safe fallback.
-  Skips processing for corrupted or unresizable images, renders them directly.
+  responsive-image.html — optimized <img> with safe fallback for corrupt images.
 */ -}}
 {{- $r := .resource }}
 {{- $alt := .alt | default "" }}
@@ -10,48 +9,55 @@
 {{- $maxwidth := .maxwidth | default 1200 }}
 
 {{- if $r }}
-  {{- $mediaMain := $r.MediaType.MainType }}
-  {{- $mediaSubtype := $r.MediaType.SubType }}
-
-  {{- /* Only attempt resize on known safe image subtypes */ -}}
-  {{- $resizable := false }}
-  {{- if eq $mediaMain "image" }}
-    {{- if or (eq $mediaSubtype "jpeg") (eq $mediaSubtype "png") (eq $mediaSubtype "gif") (eq $mediaSubtype "webp") (eq $mediaSubtype "tiff") }}
-      {{- $resizable = true }}
-    {{- end }}
-  {{- end }}
-
-  {{- if $resizable }}
-    {{- $ow := $r.Width }}
-    {{- $widths := slice 400 800 1200 1600 }}
-    {{- $srcset := slice }}
-    {{- $fallback := "" }}
-    {{- range $widths }}
-      {{- if and (le . $ow) (le . $maxwidth) }}
-        {{- $img := $r.Resize (printf "%dx webp q78" .) }}
-        {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink .) }}
-        {{- $fallback = $img.RelPermalink }}
+  {{- if eq $r.MediaType.MainType "image" }}
+    {{- /* Check subtype is one Hugo can process AND file is non-zero */ -}}
+    {{- $sub := $r.MediaType.SubType }}
+    {{- $safe := or (eq $sub "jpeg") (eq $sub "png") (eq $sub "gif") (eq $sub "webp") (eq $sub "tiff") }}
+    {{- $hasSize := gt $r.Size 0 }}
+    {{- if and $safe $hasSize }}
+      {{- /* Try to get dimensions — if Width is 0 the file is corrupt, skip processing */ -}}
+      {{- $w := $r.Width }}
+      {{- $h := $r.Height }}
+      {{- if and (gt $w 0) (gt $h 0) }}
+        {{- $ow := $w }}
+        {{- $widths := slice 400 800 1200 1600 }}
+        {{- $srcset := slice }}
+        {{- $fallback := "" }}
+        {{- range $widths }}
+          {{- if and (le . $ow) (le . $maxwidth) }}
+            {{- $img := $r.Resize (printf "%dx webp q78" .) }}
+            {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink .) }}
+            {{- $fallback = $img.RelPermalink }}
+          {{- end }}
+        {{- end }}
+        {{- if not $fallback }}
+          {{- $img := $r.Resize (printf "%dx webp q78" $ow) }}
+          {{- $srcset = slice (printf "%s %dw" $img.RelPermalink $ow) }}
+          {{- $fallback = $img.RelPermalink }}
+        {{- end }}
+        <img src="{{ $fallback }}"
+             {{ with $srcset }}srcset="{{ delimit . ", " }}" sizes="{{ $sizes }}"{{ end }}
+             {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
+             {{ with $class }}class="{{ . }}"{{ end }}
+             loading="{{ $loading }}"
+             decoding="async"
+             width="{{ $w }}"
+             height="{{ $h }}">
+      {{- else }}
+        {{- /* Width/Height is 0 — corrupt file, render directly without processing */ -}}
+        <img src="{{ $r.RelPermalink }}"
+             {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
+             {{ with $class }}class="{{ . }}"{{ end }}
+             loading="{{ $loading }}"
+             decoding="async">
       {{- end }}
+    {{- else }}
+      {{- /* Unsupported subtype or empty file — render directly */ -}}
+      <img src="{{ $r.RelPermalink }}"
+           {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
+           {{ with $class }}class="{{ . }}"{{ end }}
+           loading="{{ $loading }}"
+           decoding="async">
     {{- end }}
-    {{- if not $fallback }}
-      {{- $img := $r.Resize (printf "%dx webp q78" $ow) }}
-      {{- $srcset = slice (printf "%s %dw" $img.RelPermalink $ow) }}
-      {{- $fallback = $img.RelPermalink }}
-    {{- end }}
-    <img src="{{ $fallback }}"
-         {{ with $srcset }}srcset="{{ delimit . ", " }}" sizes="{{ $sizes }}"{{ end }}
-         {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
-         {{ with $class }}class="{{ . }}"{{ end }}
-         loading="{{ $loading }}"
-         decoding="async"
-         width="{{ $r.Width }}"
-         height="{{ $r.Height }}">
-  {{- else if eq $mediaMain "image" }}
-    {{- /* Image exists but can't be resized — render directly */ -}}
-    <img src="{{ $r.RelPermalink }}"
-         {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
-         {{ with $class }}class="{{ . }}"{{ end }}
-         loading="{{ $loading }}"
-         decoding="async">
   {{- end }}
 {{- end }}
