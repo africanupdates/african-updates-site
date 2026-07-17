@@ -20,7 +20,7 @@
 {{- $loading := .loading | default "lazy" }}
 {{- $sizes := .sizes | default "100vw" }}
 {{- $maxwidth := .maxwidth | default 1200 }}
-{{- if $r }}
+{{- if and $r (eq $r.MediaType.MainType "image") }}
   {{- $ow := $r.Width }}
   {{- /* Candidate widths, only those not larger than the source (no upscaling) */ -}}
   {{- $widths := slice 400 800 1200 1600 }}

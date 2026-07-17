@@ -33,6 +33,13 @@ summaryLength = 40         # words used by .Summary
   guessSyntax    = true
   noClasses      = true
 
+## Allow raw HTML in markdown (needed for embedded content)
+[markup.goldmark.renderer]
+  unsafe = true
+
+## Suppress known warnings
+ignoreLogs = ['warning-goldmark-raw-html']
+
 ## Table of contents
 [markup.tableOfContents]
   startLevel = 2
