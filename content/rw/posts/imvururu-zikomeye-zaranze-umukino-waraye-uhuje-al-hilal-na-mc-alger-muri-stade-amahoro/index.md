@@ -4,7 +4,7 @@ title: Imvururu zikomeye zaranze umukino waraye uhuje Al-hilal na MC Alger muri
   stade Amahoro.
 slug: imvururu-zaranze-umukino-waraye-uhuje-al-hilal-na-mc-alger-muri-stade-amahoro
 date: 2025-11-22
-thumbnail: imvururu.webp
+thumbnail: apr-fc.webp
 featured: true
 categories:
   - news
