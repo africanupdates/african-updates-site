@@ -27,6 +27,6 @@ We are committed to accessibility — building a website that loads quickly, wor
 
 ## Get in Touch
 
-We welcome your feedback, story tips, and questions. Visit our [Contact page](/contact/) to reach the team, or follow us on our social channels to stay connected with the latest updates.
+We welcome your feedback, story tips, and questions. Visit our [Contact page](/rw/contact/) to reach the team, or follow us on our social channels to stay connected with the latest updates.
 
 *African Updates — News in Your Hands.*

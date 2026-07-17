@@ -64,6 +64,9 @@
   <link rel="stylesheet" href="{{ "css/gallery.css" | relURL }}">
 
   {{- /* Analytics (consent-gated, production only) */}}
+  {{- /* Site-wide publisher identity (Google News) */}}
+  {{- partial "organization-schema.html" . }}
+
   {{- partial "analytics.html" . }}
 
   {{ block "head_extra" . }}{{ end }}

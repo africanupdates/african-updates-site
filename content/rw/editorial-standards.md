@@ -11,7 +11,7 @@ African Updates is committed to independent, accurate, and fair journalism. Thes
 
 ## Accuracy
 
-Accuracy is our first obligation. We work to ensure that every fact we publish is correct, verified against reliable sources, and presented in proper context. When we are unsure, we say so. When we make a mistake, we correct it openly, as described in our [Corrections Policy](/corrections/).
+Accuracy is our first obligation. We work to ensure that every fact we publish is correct, verified against reliable sources, and presented in proper context. When we are unsure, we say so. When we make a mistake, we correct it openly, as described in our [Corrections Policy](/rw/corrections/).
 
 ## Independence
 
@@ -49,6 +49,6 @@ We report on people and communities with fairness and dignity. We are mindful of
 
 ## Accountability
 
-We hold ourselves accountable to these standards and to our readers. If you believe we have fallen short — through an error, an omission, or a lapse in fairness — we want to hear from you. Contact us at **[info@africanupdates.com](mailto:info@africanupdates.com)** or through our [Contact page](/contact/).
+We hold ourselves accountable to these standards and to our readers. If you believe we have fallen short — through an error, an omission, or a lapse in fairness — we want to hear from you. Contact us at **[info@africanupdates.com](mailto:info@africanupdates.com)** or through our [Contact page](/rw/contact/).
 
-These standards work together with our [Corrections Policy](/corrections/) and [Privacy Policy](/privacy/) to reflect our commitment to responsible, trustworthy journalism.
+These standards work together with our [Corrections Policy](/rw/corrections/) and [Privacy Policy](/rw/privacy/) to reflect our commitment to responsible, trustworthy journalism.

@@ -1,0 +1,3 @@
+# Send the bare homepage to the default language (Kinyarwanda).
+# Only the exact root redirects — /en/, /fr/, /rw/ and all other paths are untouched.
+/    /rw/    302

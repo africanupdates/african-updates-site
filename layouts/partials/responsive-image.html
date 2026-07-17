@@ -1,0 +1,50 @@
+{{- /*
+  responsive-image.html — one place for all optimized <img> rendering.
+  Takes a Hugo image Resource and produces a responsive, WebP <img> with
+  srcset (multiple widths) so browsers download the smallest fitting size.
+
+  Params (via dict):
+    resource  (required) — a Hugo image Resource
+    alt       (string)   — alt text
+    class     (string)   — CSS class for the <img>
+    loading   (string)   — "lazy" (default) or "eager" for above-the-fold
+    sizes     (string)   — CSS sizes attr (default "100vw")
+    maxwidth  (int)      — cap the largest generated width (default 1200)
+
+  Safe on small images: Hugo never upscales, so an already-small image
+  just yields its own size and skips the larger srcset entries.
+*/ -}}
+{{- $r := .resource }}
+{{- $alt := .alt | default "" }}
+{{- $class := .class | default "" }}
+{{- $loading := .loading | default "lazy" }}
+{{- $sizes := .sizes | default "100vw" }}
+{{- $maxwidth := .maxwidth | default 1200 }}
+{{- if $r }}
+  {{- $ow := $r.Width }}
+  {{- /* Candidate widths, only those not larger than the source (no upscaling) */ -}}
+  {{- $widths := slice 400 800 1200 1600 }}
+  {{- $srcset := slice }}
+  {{- $fallback := "" }}
+  {{- range $widths }}
+    {{- if and (le . $ow) (le . $maxwidth) }}
+      {{- $img := $r.Resize (printf "%dx webp q78" .) }}
+      {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink .) }}
+      {{- $fallback = $img.RelPermalink }}
+    {{- end }}
+  {{- end }}
+  {{- /* If the source is smaller than 400px, just use it converted to webp */ -}}
+  {{- if not $fallback }}
+    {{- $img := $r.Resize (printf "%dx webp q78" $ow) }}
+    {{- $srcset = slice (printf "%s %dw" $img.RelPermalink $ow) }}
+    {{- $fallback = $img.RelPermalink }}
+  {{- end }}
+  <img src="{{ $fallback }}"
+       {{ with $srcset }}srcset="{{ delimit . ", " }}" sizes="{{ $sizes }}"{{ end }}
+       {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
+       {{ with $class }}class="{{ . }}"{{ end }}
+       loading="{{ $loading }}"
+       decoding="async"
+       {{ with $r.Width }}width="{{ . }}"{{ end }}
+       {{ with $r.Height }}height="{{ . }}"{{ end }}>
+{{- end }}

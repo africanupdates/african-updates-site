@@ -11,13 +11,19 @@
       </ul>
     </div>
     <div class="au-topbar__right">
-      {{- /* Language switcher */}}
+      {{- /* Language switcher — all languages now use subdirs (/rw/, /en/, /fr/),
+             so each translation's permalink is used directly. */}}
       <div class="au-lang-switcher">
+        {{ $cur := . }}
         {{ range .Site.Languages }}
-          {{ if ne . $.Site.Language }}
-            <a href="{{ $.RelPermalink | replaceRE (printf "^/%s" $.Site.Language.Lang) (printf "/%s" .Lang) }}" class="au-lang-switcher__item" lang="{{ .Lang }}">
-              {{ .LanguageName }}
-            </a>
+          {{ if ne .Lang $cur.Site.Language.Lang }}
+            {{ $lang := . }}
+            {{ $target := printf "/%s/" .Lang | relURL }}
+            {{- /* Prefer a real translation of this exact page if one exists */}}
+            {{ range $cur.AllTranslations }}
+              {{ if eq .Lang $lang.Lang }}{{ $target = .RelPermalink }}{{ end }}
+            {{ end }}
+            <a href="{{ $target }}" class="au-lang-switcher__item" lang="{{ $lang.Lang }}">{{ $lang.LanguageName }}</a>
           {{ end }}
         {{ end }}
         <span class="au-lang-switcher__current">{{ .Site.Language.LanguageName }}</span>

@@ -15,13 +15,14 @@
 
       <div class="au-footer__col">
         <h4 class="au-footer__col-title">{{ i18n "quick_links" | default "Quick Links" }}</h4>
-        {{ with .Site.Menus.footer }}
         <ul class="au-footer__links">
-          {{ range . }}
-          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-          {{ end }}
+          <li><a href="{{ "about/" | relLangURL }}">{{ i18n "about" | default "About Us" }}</a></li>
+          <li><a href="{{ "contact/" | relLangURL }}">{{ i18n "contact" | default "Contact" }}</a></li>
+          <li><a href="{{ "editorial-standards/" | relLangURL }}">{{ i18n "editorial_standards" | default "Editorial Standards" }}</a></li>
+          <li><a href="{{ "corrections/" | relLangURL }}">{{ i18n "corrections" | default "Corrections" }}</a></li>
+          <li><a href="{{ "privacy/" | relLangURL }}">{{ i18n "privacy" | default "Privacy Policy" }}</a></li>
+          <li><a href="{{ "index.xml" | relLangURL }}">{{ i18n "rss_feed" | default "RSS Feed" }}</a></li>
         </ul>
-        {{ end }}
       </div>
 
       <div class="au-footer__col">
@@ -38,7 +39,7 @@
         <ul class="au-footer__links">
           {{ range .Site.Languages }}
           <li>
-            <a href="{{ $.Site.BaseURL }}{{ if ne .Lang $.Site.Language.Lang }}{{ .Lang }}/{{ end }}">
+            <a href="{{ printf "/%s/" .Lang | relURL }}">
               {{ .LanguageName }}
             </a>
           </li>

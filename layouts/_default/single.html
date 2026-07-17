@@ -34,7 +34,7 @@
   <div class="au-single-layout">
 
     {{- /* ════════════════ ARTICLE ════════════════ */}}
-    <article class="au-article" itemscope itemtype="https://schema.org/NewsArticle">
+    <article class="au-article" data-pagefind-body itemscope itemtype="https://schema.org/NewsArticle">
 
       {{- /* ── ARTICLE HEADER ── */}}
       <header class="au-article__header">
@@ -82,25 +82,35 @@
       </header>
 
       {{- /* ── HERO IMAGE ── */}}
-      {{ $thumb := "" }}
+      {{ $heroRes := "" }}
       {{ with .Params.thumbnail }}
-        {{ with ($.Resources.GetMatch .) }}
-          {{ $thumb = .RelPermalink }}
-        {{ else }}
-          {{ $thumb = . | relURL }}
-        {{ end }}
+        {{ $heroRes = ($.Resources.GetMatch .) }}
       {{ end }}
-      {{ if not $thumb }}
-        {{ with .Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}{{ $thumb = .RelPermalink }}{{ end }}
+      {{ if not $heroRes }}
+        {{ $heroRes = .Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
       {{ end }}
-      {{ if $thumb }}
+      {{ if $heroRes }}
       <figure class="au-article__hero" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-        <img src="{{ $thumb }}" alt="{{ .Title }}" loading="eager" decoding="async"
-             class="au-article__hero-img" itemprop="url">
+        {{ partial "responsive-image.html" (dict
+          "resource" $heroRes
+          "alt" .Title
+          "class" "au-article__hero-img"
+          "loading" "eager"
+          "sizes" "(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
+          "maxwidth" 1600) }}
         {{ with .Params.thumbnailCaption }}
         <figcaption class="au-article__hero-caption">{{ . }}</figcaption>
         {{ end }}
       </figure>
+      {{ else if .Params.thumbnail }}
+        {{- /* External or non-bundle thumbnail: fall back to a plain img */}}
+        <figure class="au-article__hero" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+          <img src="{{ .Params.thumbnail | relURL }}" alt="{{ .Title }}" loading="eager" decoding="async"
+               class="au-article__hero-img" itemprop="url">
+          {{ with .Params.thumbnailCaption }}
+          <figcaption class="au-article__hero-caption">{{ . }}</figcaption>
+          {{ end }}
+        </figure>
       {{ end }}
 
       {{- /* ── PHOTO GALLERY ── */}}

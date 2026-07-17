@@ -7,10 +7,12 @@
 {{ $size := .size | default "normal" }}
 
 {{ $thumb := "" }}
+{{ $thumbRes := "" }}
 {{ with $p.Params.thumbnail }}
   {{- /* First try to find it as a page bundle resource (image lives next to index.md) */}}
   {{ $res := $p.Resources.GetMatch . }}
   {{ if $res }}
+    {{ $thumbRes = $res }}
     {{ $thumb = $res.RelPermalink }}
   {{ else }}
     {{- /* Fall back: treat as a path under /static/ */}}
@@ -19,6 +21,7 @@
 {{ else }}
   {{- /* No thumbnail param — grab first image in the bundle */}}
   {{ with $p.Resources.GetMatch "*.{jpg,jpeg,png,webp}" }}
+    {{ $thumbRes = . }}
     {{ $thumb = .RelPermalink }}
   {{ end }}
 {{ end }}
@@ -31,7 +34,20 @@
 {{ end }}
 
 <article class="au-card au-card--{{ $size }}">
-  {{ if $thumb }}
+  {{ if $thumbRes }}
+  <a href="{{ $p.RelPermalink }}" class="au-card__img-wrap" tabindex="-1" aria-hidden="true">
+    <div class="au-card__img au-card__img--responsive">
+      {{ partial "responsive-image.html" (dict
+        "resource" $thumbRes
+        "alt" $p.Title
+        "class" "au-card__img-el"
+        "loading" "lazy"
+        "sizes" "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+        "maxwidth" 800) }}
+      <span class="au-card__img-overlay"></span>
+    </div>
+  </a>
+  {{ else if $thumb }}
   <a href="{{ $p.RelPermalink }}" class="au-card__img-wrap" tabindex="-1" aria-hidden="true">
     <div class="au-card__img" style="background-image:url('{{ $thumb }}')">
       <span class="au-card__img-overlay"></span>

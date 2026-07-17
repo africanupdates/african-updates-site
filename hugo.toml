@@ -5,12 +5,13 @@
 
 baseURL = "https://africanupdates.com/"
 title   = "African Updates"
+enableRobotsTXT = true
 
 ## Remove Mainroad — using our custom layouts now
 ## theme = "mainroad"   ← delete or comment out this line
 
 defaultContentLanguage     = "rw"
-defaultContentLanguageInSubdir = false   # rw at /, en at /en/, fr at /fr/
+defaultContentLanguageInSubdir = true   # rw at /rw/, en at /en/, fr at /fr/ — all symmetric
 
 ## ── GOOGLE ANALYTICS (GA4) ──────────────────────────────────
 ## Paste your Measurement ID (looks like G-XXXXXXXXXX) below.
@@ -70,9 +71,14 @@ summaryLength = 40         # words used by .Summary
   footerAbout = "African Updates delivers independent journalism across Kinyarwanda, English, and French — keeping the continent informed."
   custom_css  = ["css/gallery.css"]
 
+  ## Publisher identity — used by the NewsMediaOrganization structured data
+  email        = "info@africanupdates.com"
+  foundingYear = "2024"                     # adjust to the real founding year if different
+
   ## Social links
   [params.social]
-    twitter   = "https://twitter.com/africanupdates1"
+    twitter   = "https://x.com/africanupdates1"
+    whatsapp  = "https://whatsapp.com/channel/0029VafqKm311ulSPJHML00o"
     youtube   = "https://www.youtube.com/@denysembabazi"
     facebook  = ""     # add when ready
     instagram = ""     # add when ready
@@ -138,10 +144,18 @@ summaryLength = 40         # words used by .Summary
     weight = 10
 
 ## ── OUTPUT FORMATS ──────────────────────────────────────────
+## ── OUTPUT FORMATS ──────────────────────────────────────────
 [outputs]
-  home    = ["HTML", "RSS"]
+  home    = ["HTML", "RSS", "NewsSitemap"]
   section = ["HTML", "RSS"]
   term    = ["HTML", "RSS"]
+
+## Custom output format: Google News sitemap (served at /news-sitemap.xml)
+[outputFormats.NewsSitemap]
+  mediaType   = "application/xml"
+  baseName    = "news-sitemap"
+  isPlainText = true
+  rel         = "sitemap"
 
 ## ── TAXONOMIES ──────────────────────────────────────────────
 [taxonomies]
@@ -219,31 +233,6 @@ summaryLength = 40         # words used by .Summary
   weight     = 100
 
 ## Footer utility links
-[[menus.footer]]
-  name   = "About Us"
-  url    = "/en/about/"
-  weight = 10
-
-[[menus.footer]]
-  name   = "Contact"
-  url    = "/en/contact/"
-  weight = 20
-
-[[menus.footer]]
-  name   = "Privacy Policy"
-  url    = "/en/privacy/"
-  weight = 40
-
-[[menus.footer]]
-  name   = "Editorial Standards"
-  url    = "/en/editorial-standards/"
-  weight = 45
-
-[[menus.footer]]
-  name   = "Corrections"
-  url    = "/en/corrections/"
-  weight = 48
-
 [[menus.footer]]
   name   = "RSS Feed"
   url    = "/index.xml"

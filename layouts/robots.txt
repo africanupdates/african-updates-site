@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+{{- /* Block the Decap CMS admin area from indexing */}}
+Disallow: /admin/
+
+{{- /* Standard sitemap (all pages) */}}
+Sitemap: {{ "sitemap.xml" | absURL }}
+
+{{- /* Google News sitemaps (recent articles, per language) */}}
+{{ range .Site.Home.AllTranslations -}}
+Sitemap: {{ .Permalink }}news-sitemap.xml
+{{ end -}}

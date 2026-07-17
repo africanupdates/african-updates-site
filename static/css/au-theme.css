@@ -1135,10 +1135,17 @@ input, button, select, textarea { font-family: inherit; }
 
 /* Large mobile: ≤ 768px */
 @media (max-width: 768px) {
-  /* Topbar simplified */
+  /* Topbar on mobile: keep the language switcher + social, hide date & text links */
   .au-topbar__links,
-  .au-lang-switcher,
   .au-topbar__date { display: none; }
+  .au-topbar__inner {
+    justify-content: space-between;
+  }
+  .au-lang-switcher {
+    display: flex;
+    gap: var(--space-3);
+    font-size: var(--text-xs);
+  }
 
   /* Header stack */
   .au-header__inner {
@@ -2390,4 +2397,80 @@ input, button, select, textarea { font-family: inherit; }
   .au-author-layout { grid-template-columns: 1fr; }
   .au-author-profile { flex-direction: column; align-items: center; text-align: center; }
   .au-author-profile__links { justify-content: center; }
+}
+
+/* ── SEARCH PAGE (Pagefind) ───────────────────────────────────── */
+.au-search-page { padding-block: var(--space-8) var(--space-16); min-height: 60vh; }
+.au-search-results { margin-top: var(--space-6); }
+/* Tune Pagefind UI to brand colors */
+:root {
+  --pagefind-ui-primary: var(--au-navy);
+  --pagefind-ui-text: var(--au-ink);
+  --pagefind-ui-background: var(--au-white);
+  --pagefind-ui-border: var(--au-border);
+  --pagefind-ui-tag: var(--au-surface, #f7f9fb);
+  --pagefind-ui-border-radius: var(--radius-sm);
+  --pagefind-ui-font: var(--font-body);
+}
+.pagefind-ui__search-input { font-size: var(--text-lg); }
+.pagefind-ui__result-title a { color: var(--au-navy); }
+
+/* ── RESPONSIVE CARD IMAGES (img instead of background-image) ──── */
+.au-card__img--responsive {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  padding-bottom: 0;
+}
+.au-card__img--responsive .au-card__img-el {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease);
+}
+.au-card:hover .au-card__img-el { transform: scale(1.05); }
+
+/* ── ARTICLE TABLES (responsive) ──────────────────────────────── */
+.au-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--space-6);
+  font-size: var(--text-base);
+}
+.au-prose th,
+.au-prose td {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--au-border);
+  text-align: left;
+  vertical-align: top;
+}
+.au-prose thead th {
+  background: var(--au-navy);
+  color: var(--au-white);
+  font-family: var(--font-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+}
+.au-prose tbody tr:nth-child(even) { background: var(--au-surface, #f7f9fb); }
+/* Wrapper lets wide tables scroll horizontally instead of breaking layout */
+.au-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-block: var(--space-6);
+}
+.au-table-wrap table { margin-block: 0; }
+@media (max-width: 480px) {
+  .au-prose th,
+  .au-prose td { padding: var(--space-2) var(--space-3); font-size: var(--text-sm); }
+}
+
+/* ── SEARCH PANEL — flexible on mobile (was fixed 280px) ──────── */
+@media (max-width: 768px) {
+  .au-search-panel { width: 100%; max-width: 100%; }
 }

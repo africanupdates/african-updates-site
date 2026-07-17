@@ -1,0 +1,45 @@
+{{ define "main" }}
+<div class="au-container au-search-page">
+  <header class="au-page__header">
+    <h1 class="au-page__title">{{ i18n "search" | default "Search" }}</h1>
+    <p class="au-page__subtitle">{{ i18n "search_prompt" | default "Search articles across African Updates" }}</p>
+  </header>
+
+  {{- /* Pagefind mounts its search box + results here */}}
+  <div id="au-search" class="au-search-results"></div>
+</div>
+{{ end }}
+
+{{ define "head_extra" }}
+<link href="{{ "pagefind/pagefind-ui.css" | relURL }}" rel="stylesheet">
+{{ end }}
+
+{{ define "scripts_extra" }}
+<script src="{{ "pagefind/pagefind-ui.js" | relURL }}"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var ui = new PagefindUI({
+      element: "#au-search",
+      showSubResults: true,
+      showImages: true,
+      pageSize: 10,
+      resetStyles: false,
+      translations: {
+        placeholder: {{ (i18n "search_placeholder" | default "Search African Updates…") | jsonify }},
+        zero_results: {{ (i18n "search_no_results" | default "No results for [SEARCH_TERM]") | jsonify }}
+      }
+    });
+
+    // If arriving with ?q=term (from the header/sidebar search box), run it automatically
+    var params = new URLSearchParams(window.location.search);
+    var q = params.get('q');
+    if (q) {
+      var input = document.querySelector('#au-search input[type="text"]');
+      if (input) {
+        input.value = q;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }
+  });
+</script>
+{{ end }}

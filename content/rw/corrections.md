@@ -37,8 +37,8 @@ We review every correction request. If we confirm an error, we correct it as qui
 
 ## Our Standards
 
-This corrections policy works alongside our [Editorial Standards](/editorial-standards/), which set out how we report, source, and verify our journalism. Together, they reflect our commitment to accountability and to earning the trust of our readers across Africa and beyond.
+This corrections policy works alongside our [Editorial Standards](/rw/editorial-standards/), which set out how we report, source, and verify our journalism. Together, they reflect our commitment to accountability and to earning the trust of our readers across Africa and beyond.
 
 ## Contact
 
-For corrections, clarifications, or questions about our accuracy practices, contact us at [info@africanupdates.com](mailto:info@africanupdates.com) or through our [Contact page](/contact/).
+For corrections, clarifications, or questions about our accuracy practices, contact us at [info@africanupdates.com](mailto:info@africanupdates.com) or through our [Contact page](/rw/contact/).

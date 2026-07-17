@@ -17,7 +17,7 @@
       <a href="{{ .Site.BaseURL }}" class="au-btn au-btn--red">
         <i class="fa fa-house"></i> {{ i18n "go_home" | default "Back to Homepage" }}
       </a>
-      <form class="au-search-form au-404__search" action="{{ .Site.BaseURL }}search/" method="get" role="search">
+      <form class="au-search-form au-404__search" action="{{ "en/search/" | relURL }}" method="get" role="search">
         <input type="search" name="q" class="au-search-form__input"
                placeholder="{{ i18n "search_placeholder" | default "Search stories…" }}"
                aria-label="Search">

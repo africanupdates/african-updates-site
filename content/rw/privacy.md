@@ -67,4 +67,4 @@ We may update this policy from time to time — for example, if we add new tools
 
 ## Contact Us
 
-If you have any questions about this privacy policy or how we handle your information, please email us at [info@africanupdates.com](mailto:info@africanupdates.com) or visit our [Contact page](/contact/).
+If you have any questions about this privacy policy or how we handle your information, please email us at [info@africanupdates.com](mailto:info@africanupdates.com) or visit our [Contact page](/rw/contact/).

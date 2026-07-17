@@ -1,0 +1,33 @@
+{{- /*
+  organization-schema.html — site-wide NewsMediaOrganization structured data.
+  Identifies African Updates as a news publisher: logo, social profiles,
+  contact, founding info, and ethics/corrections policy links. This is a
+  key Google News trust signal. Rendered once per page in <head>.
+*/}}
+{{- $logo := "" }}
+{{- with .Site.Params.logo }}{{ $logo = . | absURL }}{{ end }}
+{{- $sameAs := slice }}
+{{- with .Site.Params.social.twitter }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{- with .Site.Params.social.facebook }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{- with .Site.Params.social.youtube }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{- with .Site.Params.social.instagram }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{- with .Site.Params.social.whatsapp }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" "NewsMediaOrganization"
+  "name" .Site.Title
+  "url" .Site.BaseURL
+  "knowsLanguage" (slice "rw" "en" "fr")
+  "areaServed" "Africa"
+  "diversityPolicy" ("editorial-standards/" | absLangURL)
+  "ethicsPolicy" ("editorial-standards/" | absLangURL)
+  "correctionsPolicy" ("corrections/" | absLangURL)
+}}
+{{- with .Site.Params.description }}{{ $schema = merge $schema (dict "description" .) }}{{ end }}
+{{- with $logo }}{{ $schema = merge $schema (dict "logo" (dict "@type" "ImageObject" "url" .)) }}{{ end }}
+{{- with $sameAs }}{{ $schema = merge $schema (dict "sameAs" .) }}{{ end }}
+{{- with .Site.Params.foundingYear }}{{ $schema = merge $schema (dict "foundingDate" .) }}{{ end }}
+{{- with .Site.Params.email }}{{ $schema = merge $schema (dict "email" .) }}{{ end }}
+<script type="application/ld+json">
+{{ $schema | jsonify | safeJS }}
+</script>

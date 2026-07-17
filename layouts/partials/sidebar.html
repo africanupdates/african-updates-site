@@ -2,7 +2,7 @@
 
   {{- /* Search widget — fixed at top */}}
   <div class="au-widget au-sidebar__fixed">
-    <form class="au-search-form" action="{{ .Site.BaseURL }}search/" method="get" role="search">
+    <form class="au-search-form" action="{{ "search/" | relLangURL }}" method="get" role="search">
       <input type="search" name="q" class="au-search-form__input" placeholder="{{ i18n "search_placeholder" | default "Search…" }}">
       <button type="submit" class="au-search-form__btn" aria-label="Search">
         <i class="fa fa-magnifying-glass"></i>
