@@ -1,8 +1,11 @@
 ---
+author: "Mutoni Divine "
 title: Imvururu zikomeye zaranze umukino waraye uhuje Al-hilal na MC Alger muri
   stade Amahoro.
 slug: imvururu-zaranze-umukino-waraye-uhuje-al-hilal-na-mc-alger-muri-stade-amahoro
 date: 2025-11-22
+thumbnail: imvururu.webp
+featured: true
 categories:
   - news
   - featured
@@ -10,9 +13,6 @@ categories:
   - sports
 tags:
   - Sports
-author: "Mutoni Divine "
-thumbnail: imvururu.webp
-featured: true
 ---
 Al Hilal SC kuri ubu ibarizwa ku butaka bw’u Rwanda, aho izajya ikinira imikino yayo ya shampiyona nk’ikipe y’abashyitsi nyuma yo guhabwa uburenganzira na CAF. Kuri uyu wa gatanu tariki ya 21/11/2025 yakiriye mu Rwanda ikipe ya MC Alger mu mukino wabereye kuri Stade Amahoro, I Remera mu mujyi wa kigali.
 
@@ -25,5 +25,3 @@ Nubwo umukino wari uri gukurikirwa n’abafana benshi, wakomeje kugaragaramo ubu
 MC Alger nayo yari yerekanye imideli idasanzwe mu mujyi wa Kigali, aho abafana bayo bagaragaye mu mihanda bafite imyotsi y’amabara y’ikipe, ndetse banagaragaza kutishimira imisifurire mu gihe umukino wari uri kuba.
 
 Nyuma y’umukino, habayeho guterana amagambo n’imvururu hagati y’abakinnyi b’amakipe yombi. Byaturutse ku mukinnyi w’Umurundi Habumugisha Jean Luc ukinira Al Hilal, bivugwa ko yashotoraga abakinnyi ba MC Alger, bigatuma bashaka kurwana. Gusa Polisi y’u Rwanda yahise ihosha ayo makimbirane.
-
-**African Updates**
