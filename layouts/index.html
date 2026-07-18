@@ -37,14 +37,16 @@
         {{ $catSlug  := .slug | default ($cat | urlize) }}
         {{ $icon     := .icon | default "fa-folder" }}
         {{ $limit    := .limit | default 5 }}
-        {{ $catPages := where $.Site.RegularPages "Params.categories" "intersect" (slice $cat) }}
+        {{- /* Match posts tagged with either the slug ("politics-news") or the
+               display name ("Politics") — older posts may use either form. */}}
+        {{ $catPages := where $.Site.RegularPages "Params.categories" "intersect" (slice $cat $catSlug) }}
         {{ $catPages  = first $limit $catPages }}
 
         {{ if $catPages }}
         <section class="au-section">
           <div class="au-section__head">
             <h2 class="au-section__title">
-              <i class="fa {{ $icon }}"></i> {{ $cat }}
+              <i class="fa {{ $icon }}"></i> {{ i18n (printf "cat_%s" ($catSlug | replaceRE "-" "_")) | default $cat }}
             </h2>
             <a href="{{ printf "/categories/%s/" $catSlug | relURL }}" class="au-section__more">
               {{ i18n "more" | default "More" }} <i class="fa fa-arrow-right"></i>

@@ -51,8 +51,9 @@
           <div class="au-slider__overlay"></div>
           <div class="au-slider__caption">
             {{- with $p.Params.categories }}
-              <a href="{{ (index . 0) | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--featured">
-                {{ index . 0 }}
+              {{- $c := index . 0 }}
+              <a href="{{ $c | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--featured">
+                {{ i18n (printf "cat_%s" ($c | urlize | replaceRE "-" "_")) | default (humanize $c) }}
               </a>
             {{ end }}
             <h2 class="au-slider__title">
@@ -78,8 +79,9 @@
           </a>
           <div class="au-slider__tile-body">
             {{- with $p.Params.categories }}
-              <a href="{{ (index . 0) | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--sm">
-                {{ index . 0 }}
+              {{- $c := index . 0 }}
+              <a href="{{ $c | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--sm">
+                {{ i18n (printf "cat_%s" ($c | urlize | replaceRE "-" "_")) | default (humanize $c) }}
               </a>
             {{ end }}
             <h3 class="au-slider__tile-title">

@@ -27,7 +27,8 @@
       <li class="au-ticker__item">
         <a href="{{ .RelPermalink }}" class="au-ticker__link" tabindex="-1">
           {{- with .Params.categories -}}
-            <span class="au-ticker__cat">{{ index . 0 }}</span>
+            {{- $c := index . 0 -}}
+            <span class="au-ticker__cat">{{ i18n (printf "cat_%s" ($c | urlize | replaceRE "-" "_")) | default (humanize $c) }}</span>
           {{- end -}}
           {{ .Title }}
         </a>
@@ -38,7 +39,8 @@
       <li class="au-ticker__item" aria-hidden="true">
         <a href="{{ .RelPermalink }}" class="au-ticker__link" tabindex="-1">
           {{- with .Params.categories -}}
-            <span class="au-ticker__cat">{{ index . 0 }}</span>
+            {{- $c := index . 0 -}}
+            <span class="au-ticker__cat">{{ i18n (printf "cat_%s" ($c | urlize | replaceRE "-" "_")) | default (humanize $c) }}</span>
           {{- end -}}
           {{ .Title }}
         </a>

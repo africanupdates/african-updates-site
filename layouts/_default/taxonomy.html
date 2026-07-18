@@ -4,13 +4,10 @@
 
   {{ partial "breadcrumb.html" . }}
 
-  {{ $isCategory := eq .Type "categories" }}
-  {{ $termCount := len .Pages }}
-
   <header class="au-archive-header">
     <div class="au-archive-header__inner">
       <div class="au-archive-header__icon">
-        {{ if $isCategory }}
+        {{ if eq .Data.Singular "category" }}
           <i class="fa fa-folder-tree"></i>
         {{ else }}
           <i class="fa fa-tags"></i>
@@ -18,38 +15,35 @@
       </div>
       <div class="au-archive-header__text">
         <h1 class="au-archive-header__title">
-          {{ if $isCategory }}
+          {{ if eq .Data.Singular "category" }}
             {{ i18n "all_categories" | default "All Categories" }}
           {{ else }}
             {{ i18n "all_tags" | default "All Tags" }}
           {{ end }}
         </h1>
         <p class="au-archive-header__count">
-          {{ $termCount }}
-          {{ if $isCategory }}
-            categor{{ if eq $termCount 1 }}y{{ else }}ies{{ end }}
-          {{ else }}
-            tag{{ if ne $termCount 1 }}s{{ end }}
-          {{ end }}
+          {{- $termCount := 0 }}
+          {{- with .Data.Terms }}{{ $termCount = len . }}{{ end }}
+          {{ $termCount }} {{ .Data.Singular }}{{ if gt $termCount 1 }}s{{ end }}
         </p>
       </div>
     </div>
     <div class="au-archive-header__rule"></div>
   </header>
 
-  {{/* Build a sortable {page, count} list ourselves — .Data.Terms.ByCount no longer exists */}}
-  {{ $terms := slice }}
-  {{ range .Pages }}
-    {{ $terms = $terms | append (dict "page" . "count" (len .Pages)) }}
-  {{ end }}
-  {{ $terms = sort $terms "count" "desc" }}
-
   <div class="au-taxonomy-grid">
-    {{ range $terms }}
-    <a href="{{ .page.RelPermalink }}" class="au-taxonomy-card">
+    {{ $isCategories := eq .Data.Plural "categories" }}
+    {{ range .Data.Terms.ByCount }}
+    {{- $label := .Page.Title }}
+    {{- if $isCategories }}
+      {{- $label = i18n (printf "cat_%s" (.Page.Title | urlize | replaceRE "-" "_")) | default (humanize .Page.Title) }}
+    {{- else }}
+      {{- $label = humanize .Page.Title }}
+    {{- end }}
+    <a href="{{ .Page.RelPermalink }}" class="au-taxonomy-card">
       <div class="au-taxonomy-card__inner">
-        <span class="au-taxonomy-card__name">{{ .page.Title }}</span>
-        <span class="au-taxonomy-card__count">{{ .count }}</span>
+        <span class="au-taxonomy-card__name">{{ $label }}</span>
+        <span class="au-taxonomy-card__count">{{ .Count }}</span>
       </div>
     </a>
     {{ end }}

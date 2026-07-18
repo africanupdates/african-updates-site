@@ -18,7 +18,7 @@
       <li class="au-breadcrumb__sep" aria-hidden="true"><i class="fa fa-chevron-right"></i></li>
       <li class="au-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a href="{{ printf "/categories/%s/" ($cat | urlize) | relURL }}" itemprop="item" class="au-breadcrumb__link">
-          <span itemprop="name">{{ $cat }}</span>
+          <span itemprop="name">{{ i18n (printf "cat_%s" ($cat | urlize | replaceRE "-" "_")) | default (humanize $cat) }}</span>
         </a>
         <meta itemprop="position" content="{{ $pos }}">
       </li>
