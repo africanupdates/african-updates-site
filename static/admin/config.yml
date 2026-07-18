@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: africanupdates/african-updates-site
+  name: git-gateway
   branch: main
-  base_url: https://african-updates-site.pages.dev
 
 # Force the CMS interface language to English
 locale: "en"
