@@ -5,30 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Content Manager — African Updates</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    // Point the Identity widget to the correct Netlify site
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.init({
-        APIUrl: "https://africanupdates.netlify.app/.netlify/identity"
-      });
-    }
+    // Pre-configure Identity before Decap loads it
+    window.netlifyIdentityConfig = {
+      APIUrl: "https://africanupdates.netlify.app/.netlify/identity"
+    };
   </script>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    // Auto-open Identity widget if invite or recovery token is present
-    if (window.location.hash && (
-      window.location.hash.indexOf('invite_token') > -1 ||
-      window.location.hash.indexOf('recovery_token') > -1
-    )) {
-      window.addEventListener('load', function() {
-        if (window.netlifyIdentity) {
+    window.addEventListener('load', function() {
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.init({
+          APIUrl: "https://africanupdates.netlify.app/.netlify/identity"
+        });
+        // Auto-open widget if invite or recovery token is present
+        if (window.location.hash && (
+          window.location.hash.indexOf('invite_token') > -1 ||
+          window.location.hash.indexOf('recovery_token') > -1
+        )) {
           window.netlifyIdentity.open();
         }
-      });
-    }
+      }
+    });
   </script>
   <script>
   (function () {
