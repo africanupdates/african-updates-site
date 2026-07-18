@@ -1,6 +1,8 @@
 backend:
   name: git-gateway
   branch: main
+  identity_url: https://chimerical-seahorse-221109.netlify.app
+  gateway_url: https://chimerical-seahorse-221109.netlify.app/.netlify/git
 
 # Force the CMS interface language to English
 locale: "en"
