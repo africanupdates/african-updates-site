@@ -1,16 +1,19 @@
 ---
-title: "17 South Africans Trapped in Ukraine’s Donbas After Joining Mercenary Forces, Says Ramaphosa"
+title: 17 South Africans Trapped in Ukraine’s Donbas After Joining Mercenary
+  Forces, Says Ramaphosa
+slug: 17-south-africans-trapped-in-ukraines-donbas-after-joining-mercenary-forces-says-ramaphosa
 date: 2025-11-06
-categories: 
-  - "featured"
-  - "news"
-  - "politics-news"
-  - "security"
-  - "south"
-  - "world"
-thumbnail: "sa.jpg"
+categories:
+  - featured
+  - news
+  - politics-news
+  - security
+  - world
+  - africa
+authors:
+  - "Denyse "
+thumbnail: sa.jpg
 ---
-
 South African President Cyril Ramaphosa says 17 South Africans who joined mercenary groups fighting in the Russia-Ukraine war are now trapped in the Donbas region of Ukraine.
 
 According to government spokesperson Vincent Magwenya, the men, aged between 20 and 39, contacted South African authorities asking for help to return home.
@@ -32,7 +35,3 @@ A BBC investigation revealed that some women from Africa and South Asia had been
 In September, Kenyan police rescued over 20 people from a human trafficking network that had lured them with job offers in Russia but allegedly intended to send them to fight in Ukraine instead.
 
 Ukraine has previously confirmed that it is holding foreign fighters from countries including Somalia, Sierra Leone, Togo, Cuba, and Sri Lanka in prisoner-of-war camps.
-
- 
-
-**African Updates**
