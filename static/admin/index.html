@@ -191,6 +191,35 @@
         // No change → return nothing, Decap keeps existing data
       }
     });
+
+    // ================================================================
+    // AFTER PUBLISH → go back to the collection list
+    // Decap normally leaves you sitting in the editor with the fields
+    // still filled, so it isn't obvious the post actually published.
+    // Returning to the list makes it clear, and the new post is visible
+    // at the top. Wrapped in try/catch and delayed slightly so it can
+    // never interfere with the save itself.
+    // ================================================================
+    function auGoToCollectionList() {
+      try {
+        var hash = window.location.hash || "";
+        var m = hash.match(/#\/collections\/([^\/?]+)/);
+        window.location.hash = m ? "#/collections/" + m[1] : "#/";
+      } catch (e) {}
+    }
+
+    ["postSave", "postPublish"].forEach(function (evt) {
+      try {
+        CMS.registerEventListener({
+          name: evt,
+          handler: function () {
+            // Small delay: let Decap finish its own state update and show
+            // its "Entry saved" toast before we navigate away.
+            setTimeout(auGoToCollectionList, 800);
+          }
+        });
+      } catch (e) {}
+    });
   })();
   </script>
 </body>
