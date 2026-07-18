@@ -193,51 +193,56 @@
     });
 
     // ================================================================
-    // AFTER PUBLISH → go back to the collection list
-    // Decap normally leaves you sitting in the editor with the fields
-    // still filled, so it isn't obvious the post actually published.
-    // Returning to the list makes it clear, and the new post is visible
-    // at the top. Wrapped in try/catch and delayed slightly so it can
-    // never interfere with the save itself.
-    // ================================================================
-    // ================================================================
     // AFTER PUBLISH -> return to the collection list
-    // Decap normally leaves you in the editor with the fields still filled,
-    // so it is not obvious the post actually published. It also navigates to
-    // the saved entry *after* the save finishes, which overrides a plain
-    // in-app redirect. So we set the URL to the collection list and force a
-    // fresh load of the CMS there - Decap then boots straight to the list and
-    // cannot navigate back. Costs one short CMS reload.
+    // Decap leaves you in the editor with the fields still filled, so it is
+    // not obvious the post published. It also navigates to the saved entry
+    // *after* the save completes, which beats an early redirect.
+    //
+    // Strategy: wait for Decap to finish, then navigate in-app (no reload,
+    // so no login flash). Only if it navigates back do we fall back to a
+    // hard reload, which it cannot override.
     // ================================================================
-    function auIsEditorScreen() {
-      return /#\/collections\/[^\/]+\/(entries|new)/.test(window.location.hash || "");
+    function auEditorMatch() {
+      return (window.location.hash || "").match(/#\/collections\/([^\/?]+)\/(entries|new)/);
     }
 
-    function auCollectionListUrl() {
-      var m = (window.location.hash || "").match(/#\/collections\/([^\/?]+)/);
-      return window.location.pathname + (m ? "#/collections/" + m[1] : "#/");
+    function auListHash(collection) {
+      return "#/collections/" + collection;
     }
 
-    function auLeaveEditor() {
-      try {
-        if (!auIsEditorScreen()) return;   // already left - nothing to do
-        window.location.href = auCollectionListUrl();
-        window.location.reload();
-      } catch (e) {}
+    function auAfterPublish() {
+      // Remember which collection we published in. If the editor moves to a
+      // different collection, the user navigated there deliberately - leave
+      // them alone rather than yanking them out.
+      var m0 = auEditorMatch();
+      var collection = m0 ? m0[1] : null;
+      if (!collection) return;
+
+      function stillHere() {
+        var m = auEditorMatch();
+        return m && m[1] === collection;
+      }
+
+      function softLeave() {
+        try { if (stillHere()) window.location.hash = auListHash(collection); } catch (e) {}
+      }
+
+      function hardLeave() {
+        try {
+          if (!stillHere()) return;              // soft nav worked - done
+          window.location.href = window.location.pathname + auListHash(collection);
+          window.location.reload();
+        } catch (e) {}
+      }
+
+      setTimeout(softLeave, 1800);   // after Decap has settled
+      setTimeout(softLeave, 2600);   // in case it navigated back once
+      setTimeout(hardLeave, 3800);   // last resort only
     }
 
     ["postSave", "postPublish"].forEach(function (evt) {
       try {
-        CMS.registerEventListener({
-          name: evt,
-          handler: function () {
-            // 1.5s: let the commit finish and Decap do its own navigation
-            // first, so we are correcting its final state, not racing it.
-            setTimeout(auLeaveEditor, 1500);
-            // Backstop in case that navigation arrives late.
-            setTimeout(auLeaveEditor, 3000);
-          }
-        });
+        CMS.registerEventListener({ name: evt, handler: auAfterPublish });
       } catch (e) {}
     });
   })();
