@@ -460,7 +460,8 @@ input, button, select, textarea { font-family: inherit; }
   background: #1b3a5c !important;
   color: var(--au-white) !important;
 }
-.au-badge--politics, .au-badge--politics-news { background: var(--cat-politics); }
+.au-badge--politics, .au-badge--politics-news,
+.au-badge--politic { background: var(--cat-politics); }
 .au-badge--business  { background: var(--cat-business); }
 .au-badge--sport     { background: var(--cat-sport); }
 .au-badge--culture   { background: var(--cat-culture); }

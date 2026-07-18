@@ -4,7 +4,7 @@ date: 2024-05-30
 categories: 
   - "news"
   - "featured"
-  - "politic"
+  - "politics-news"
   - "rwanda"
 thumbnail: "DIANE.jpg"
 ---

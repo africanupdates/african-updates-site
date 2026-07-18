@@ -6,7 +6,7 @@ categories:
   - "featured"
   - "west"
   - "imibereho"
-  - "politic"
+  - "politics-news"
   - "security"
 thumbnail: "image.png"
 ---

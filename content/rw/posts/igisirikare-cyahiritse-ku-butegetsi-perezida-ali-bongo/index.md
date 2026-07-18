@@ -5,7 +5,7 @@ categories:
   - "central"
   - "news"
   - "featured"
-  - "politic"
+  - "politics-news"
 thumbnail: "gabon.jpg"
 ---
 

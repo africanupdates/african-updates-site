@@ -4,7 +4,7 @@ date: 2025-11-26
 categories: 
   - "news"
   - "featured"
-  - "politic"
+  - "politics-news"
   - "rwanda"
   - "sports"
 thumbnail: "mure.jpg"

@@ -5,7 +5,7 @@ categories:
   - "news"
   - "featured"
   - "east"
-  - "politic"
+  - "politics-news"
   - "rwanda"
   - "security"
 thumbnail: "rib.jpg"

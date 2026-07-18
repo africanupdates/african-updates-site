@@ -4,7 +4,7 @@ date: 2023-08-24
 categories: 
   - "news"
   - "east"
-  - "politic"
+  - "politics-news"
 thumbnail: "TOWA.jpg"
 ---
 

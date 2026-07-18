@@ -6,7 +6,7 @@ categories:
   - "international"
   - "featured"
   - "imibereho"
-  - "politic"
+  - "politics-news"
   - "security"
 thumbnail: "net.jpg"
 ---

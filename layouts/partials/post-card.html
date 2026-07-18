@@ -58,7 +58,7 @@
   <div class="au-card__body">
     {{ if $primaryCat }}
     {{- $primaryCatKey := printf "cat_%s" ($primaryCatSlug | replaceRE "-" "_") }}
-    <a href="{{ printf "/categories/%s/" $primaryCatSlug | relURL }}" class="au-badge au-badge--{{ $primaryCatSlug | lower }}">
+    <a href="{{ printf "/categories/%s/" $primaryCatSlug | relLangURL }}" class="au-badge au-badge--{{ $primaryCatSlug | lower }}">
       {{ i18n $primaryCatKey | default (humanize $primaryCat) }}
     </a>
     {{ end }}

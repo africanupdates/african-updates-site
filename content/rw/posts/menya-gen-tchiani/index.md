@@ -4,7 +4,7 @@ date: 2023-08-15
 categories: 
   - "news"
   - "west-africa"
-  - "politic"
+  - "politics-news"
 tags: 
   - "niger"
 thumbnail: "nijeli.jpg"

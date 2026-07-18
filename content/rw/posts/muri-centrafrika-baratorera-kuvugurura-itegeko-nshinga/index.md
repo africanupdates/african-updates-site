@@ -4,7 +4,7 @@ date: 2023-07-31
 categories: 
   - "central"
   - "news"
-  - "politic"
+  - "politics-news"
 thumbnail: "2929a865-e90a-4b7f-a285-4b2b363acba1_w1023_r1_s.webp"
 ---
 

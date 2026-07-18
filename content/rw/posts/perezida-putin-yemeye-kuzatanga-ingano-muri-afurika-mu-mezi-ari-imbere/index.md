@@ -3,7 +3,7 @@ title: "Perezida Putin Yemeye Kuzatanga INGANO Muri Afurika mu Mezi ari Imbere"
 date: 2023-07-31
 categories: 
   - "international"
-  - "politic"
+  - "politics-news"
   - "finance"
 thumbnail: "licensed-image.jpg"
 ---

@@ -5,7 +5,7 @@ categories:
   - "news"
   - "featured"
   - "east"
-  - "politic"
+  - "politics-news"
   - "rwanda"
   - "finance"
 thumbnail: "FP_105.jpg"

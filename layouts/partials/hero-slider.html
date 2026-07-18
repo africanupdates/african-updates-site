@@ -52,7 +52,7 @@
           <div class="au-slider__caption">
             {{- with $p.Params.categories }}
               {{- $c := index . 0 }}
-              <a href="{{ $c | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--featured">
+              <a href="{{ $c | urlize | printf "/categories/%s/" | relLangURL }}" class="au-badge au-badge--featured">
                 {{ i18n (printf "cat_%s" ($c | urlize | replaceRE "-" "_")) | default (humanize $c) }}
               </a>
             {{ end }}
@@ -80,7 +80,7 @@
           <div class="au-slider__tile-body">
             {{- with $p.Params.categories }}
               {{- $c := index . 0 }}
-              <a href="{{ $c | urlize | printf "/categories/%s/" | relURL }}" class="au-badge au-badge--sm">
+              <a href="{{ $c | urlize | printf "/categories/%s/" | relLangURL }}" class="au-badge au-badge--sm">
                 {{ i18n (printf "cat_%s" ($c | urlize | replaceRE "-" "_")) | default (humanize $c) }}
               </a>
             {{ end }}

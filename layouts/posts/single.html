@@ -44,7 +44,7 @@
         <div class="au-article__cats">
           {{ range . }}
           {{- $catKey := printf "cat_%s" (. | urlize | replaceRE "-" "_") }}
-          <a href="{{ printf "/categories/%s/" (. | urlize) | relURL }}"
+          <a href="{{ printf "/categories/%s/" (. | urlize) | relLangURL }}"
              class="au-badge au-badge--{{ . | urlize | lower }}">{{ i18n $catKey | default (humanize .) }}</a>
           {{ end }}
         </div>
@@ -135,7 +135,7 @@
           <i class="fa fa-tags"></i> {{ i18n "tags" | default "Tags" }}:
         </span>
         {{ range . }}
-        <a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}" class="au-tag">{{ . }}</a>
+        <a href="{{ printf "/tags/%s/" (. | urlize) | relLangURL }}" class="au-tag">{{ . }}</a>
         {{ end }}
       </div>
       {{ end }}

@@ -5,7 +5,7 @@ categories:
   - "international"
   - "west"
   - "west-africa"
-  - "politic"
+  - "politics-news"
 thumbnail: "841ef38d-c1bd-4272-b1f9-d9a14f7497b5_w1023_r1_s.webp"
 ---
 

@@ -4,7 +4,7 @@ date: 2023-08-16
 categories: 
   - "news"
   - "west-africa"
-  - "politic"
+  - "politics-news"
 thumbnail: "130710793_niger-top-ortn.jpg"
 ---
 

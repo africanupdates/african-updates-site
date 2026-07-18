@@ -208,15 +208,41 @@
       } catch (e) {}
     }
 
+    // Decap navigates to the saved entry *after* the save completes, which
+    // overrides a single redirect. So we hold our ground for a short window:
+    // keep sending the user back to the list while they are still on an
+    // editor screen, then stop as soon as the list is stable.
+    var auDeadline = 0;
+    var auTimer = null;
+
+    function auStopRedirect() {
+      if (auTimer) { clearInterval(auTimer); auTimer = null; }
+    }
+
+    function auStartRedirect() {
+      auDeadline = Date.now() + 3000;   // give up after 3s no matter what
+      if (auTimer) return;
+      var stable = 0;
+      auTimer = setInterval(function () {
+        try {
+          if (Date.now() > auDeadline) { auStopRedirect(); return; }
+          var h = window.location.hash || "";
+          if (/#\/collections\/[^\/]+\/(entries|new)/.test(h)) {
+            auGoToCollectionList();     // still in the editor - push back out
+            stable = 0;
+          } else {
+            stable++;                   // on the list - stop once it holds
+            if (stable >= 3) auStopRedirect();
+          }
+        } catch (e) { auStopRedirect(); }
+      }, 200);
+    }
+
     ["postSave", "postPublish"].forEach(function (evt) {
       try {
         CMS.registerEventListener({
           name: evt,
-          handler: function () {
-            // Small delay: let Decap finish its own state update and show
-            // its "Entry saved" toast before we navigate away.
-            setTimeout(auGoToCollectionList, 800);
-          }
+          handler: function () { setTimeout(auStartRedirect, 400); }
         });
       } catch (e) {}
     });

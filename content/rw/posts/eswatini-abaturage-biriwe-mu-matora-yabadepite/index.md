@@ -5,7 +5,7 @@ categories:
   - "south"
   - "news"
   - "featured"
-  - "politic"
+  - "politics-news"
 thumbnail: "eswatini.jpg"
 ---
 

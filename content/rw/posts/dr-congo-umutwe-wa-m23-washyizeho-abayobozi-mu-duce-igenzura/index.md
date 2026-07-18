@@ -6,7 +6,7 @@ categories:
   - "news"
   - "featured"
   - "east"
-  - "politic"
+  - "politics-news"
   - "security"
 thumbnail: "congo.jpg"
 ---

@@ -5,7 +5,7 @@ categories:
   - "news"
   - "ibiganiro"
   - "east"
-  - "politic"
+  - "politics-news"
 thumbnail: "20260112_095054-scaled.jpg"
 ---
 

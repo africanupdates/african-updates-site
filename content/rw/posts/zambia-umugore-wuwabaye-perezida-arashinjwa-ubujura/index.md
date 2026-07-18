@@ -4,7 +4,7 @@ date: 2023-09-07
 categories: 
   - "south"
   - "featured"
-  - "politic"
+  - "politics-news"
 thumbnail: "LUNGUUUU.jpg"
 ---
 

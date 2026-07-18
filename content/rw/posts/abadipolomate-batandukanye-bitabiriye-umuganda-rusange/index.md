@@ -4,7 +4,7 @@ date: 2023-07-31
 categories: 
   - "news"
   - "ibidukikije"
-  - "politic"
+  - "politics-news"
   - "rwanda"
 thumbnail: "UMUGANDA.jpg"
 ---

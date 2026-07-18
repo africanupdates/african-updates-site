@@ -5,7 +5,7 @@ categories:
   - "news"
   - "international"
   - "featured"
-  - "politic"
+  - "politics-news"
   - "security"
 thumbnail: "NOBB.jpg"
 ---

@@ -6,7 +6,7 @@ categories:
   - "featured"
   - "east"
   - "imibereho"
-  - "politic"
+  - "politics-news"
   - "finance"
 thumbnail: "keee.jpg"
 ---

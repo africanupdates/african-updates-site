@@ -3,7 +3,7 @@ title: "SUDAN AMEZI ANE ARASHIZE INTAMBARA ITANGIYE"
 date: 2023-08-16
 categories: 
   - "central"
-  - "politic"
+  - "politics-news"
   - "security"
 tags: 
   - "soudan"

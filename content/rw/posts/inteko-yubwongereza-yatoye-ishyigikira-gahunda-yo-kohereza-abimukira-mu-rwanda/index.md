@@ -7,7 +7,7 @@ categories:
   - "ibidukikije"
   - "featured"
   - "imibereho"
-  - "politic"
+  - "politics-news"
   - "rwanda"
   - "finance"
   - "health"

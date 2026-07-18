@@ -4,7 +4,7 @@ date: 2023-10-05
 categories: 
   - "news"
   - "featured"
-  - "politic"
+  - "politics-news"
 thumbnail: "Denis-Mukwege.jpg"
 ---
 

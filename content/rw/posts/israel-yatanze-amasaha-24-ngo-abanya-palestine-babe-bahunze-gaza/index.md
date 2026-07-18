@@ -7,7 +7,7 @@ categories:
   - "featured"
   - "imibereho"
   - "podcast"
-  - "politic"
+  - "politics-news"
   - "security"
 thumbnail: "gaza.jpg"
 ---

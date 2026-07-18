@@ -6,7 +6,7 @@ categories:
   - "international"
   - "ibidukikije"
   - "featured"
-  - "politic"
+  - "politics-news"
   - "health"
 thumbnail: "JAPAN.jpg"
 ---

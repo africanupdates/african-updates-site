@@ -4,7 +4,7 @@ date: 2023-07-31
 categories: 
   - "news"
   - "international"
-  - "politic"
+  - "politics-news"
 thumbnail: "230723054509-zelensky-072023-ebe28.jpg"
 ---
 

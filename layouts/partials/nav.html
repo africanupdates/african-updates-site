@@ -22,7 +22,12 @@
       {{ range . }}
         {{ $hasChildren := .HasChildren }}
         <li class="au-nav__item{{ if $hasChildren }} has-dropdown{{ end }}{{ if $currentPage.HasMenuCurrent "main" . }} is-active{{ end }}">
-          <a href="{{ .URL }}" class="au-nav__link"
+          {{- /* Menu URLs are defined once in hugo.toml without a language
+                 prefix, so make them language-aware here. External links
+                 (http/https/mailto) are passed through untouched. */}}
+          {{- $u := .URL }}
+          {{- if not (or (hasPrefix $u "http") (hasPrefix $u "mailto:")) }}{{ $u = $u | relLangURL }}{{ end }}
+          <a href="{{ $u }}" class="au-nav__link"
              {{ if $hasChildren }}aria-haspopup="true" aria-expanded="false"{{ end }}>
             {{- $key := printf "menu_%s" (.Name | urlize | replaceRE "-" "_") }}
             {{ i18n $key | default .Name }}
@@ -33,7 +38,9 @@
             {{ range .Children }}
             <li class="au-nav__dropdown-item">
               {{- $ckey := printf "menu_%s" (.Name | urlize | replaceRE "-" "_") }}
-              <a href="{{ .URL }}" class="au-nav__dropdown-link">{{ i18n $ckey | default .Name }}</a>
+              {{- $cu := .URL }}
+              {{- if not (or (hasPrefix $cu "http") (hasPrefix $cu "mailto:")) }}{{ $cu = $cu | relLangURL }}{{ end }}
+              <a href="{{ $cu }}" class="au-nav__dropdown-link">{{ i18n $ckey | default .Name }}</a>
             </li>
             {{ end }}
           </ul>

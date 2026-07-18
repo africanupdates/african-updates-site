@@ -48,7 +48,7 @@
             <h2 class="au-section__title">
               <i class="fa {{ $icon }}"></i> {{ i18n (printf "cat_%s" ($catSlug | replaceRE "-" "_")) | default $cat }}
             </h2>
-            <a href="{{ printf "/categories/%s/" $catSlug | relURL }}" class="au-section__more">
+            <a href="{{ printf "/categories/%s/" $catSlug | relLangURL }}" class="au-section__more">
               {{ i18n "more" | default "More" }} <i class="fa fa-arrow-right"></i>
             </a>
           </div>
