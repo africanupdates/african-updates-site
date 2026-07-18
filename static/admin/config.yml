@@ -2,7 +2,7 @@ backend:
   name: github
   repo: africanupdates/african-updates-site
   branch: main
-  base_url: https://african-updates-site.pages.dev
+  base_url: https://africanupdates.com
 
 # Force the CMS interface language to English
 locale: "en"
@@ -247,7 +247,7 @@ collections:
     path: "{{slug}}/index"
     media_folder: ""
     public_folder: ""
-    preview_path: "posts/{{slug}}"
+    preview_path: "rw/posts/{{slug}}"
     fields:
       - label: "Title"
         name: title
