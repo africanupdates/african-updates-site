@@ -1,13 +1,11 @@
 ---
-title: "Kenya: Impanuka y'indege yishe abantu Umunani"
+title: "Kenya: Impanuka y'indege yishe abantu Umunani."
+slug: kenya-impanuka-yindege-yishe-abantu-umunani
 date: 2023-09-20
 categories:
   - news
   - featured
   - east
-  - politics-news
-  - health
-  - security
 author: Denyse Mbabazi
 thumbnail: KENYA.webp
 ---
