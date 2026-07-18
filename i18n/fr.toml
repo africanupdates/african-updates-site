@@ -223,3 +223,29 @@ other = "Sport"
 other = "Sciences & Tech"
 [cat_world]
 other = "Monde"
+
+# ── Catégories manquantes (menu + choix de la rédaction) ──
+[cat_african_union]
+other = "Union africaine"
+[cat_tourism]
+other = "Tourisme"
+[cat_regional]
+other = "Régional"
+[cat_north]
+other = "Afrique du Nord"
+[cat_central]
+other = "Afrique centrale"
+[cat_editors_picks]
+other = "Choix de la rédaction"
+[cat_editors_pick]
+other = "Choix de la rédaction"
+[cat_editorspicks]
+other = "Choix de la rédaction"
+
+# ── Noms des langues ──
+[lang_rw]
+other = "Kinyarwanda"
+[lang_en]
+other = "Anglais"
+[lang_fr]
+other = "Français"

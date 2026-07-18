@@ -223,3 +223,29 @@ other = "Sport"
 other = "Science & Tech"
 [cat_world]
 other = "World"
+
+# ── Categories missed in the first pass (from the nav menu + editors picks) ──
+[cat_african_union]
+other = "African Union"
+[cat_tourism]
+other = "Tourism"
+[cat_regional]
+other = "Regional"
+[cat_north]
+other = "Northern Africa"
+[cat_central]
+other = "Central Africa"
+[cat_editors_picks]
+other = "Editors Picks"
+[cat_editors_pick]
+other = "Editors Picks"
+[cat_editorspicks]
+other = "Editors Picks"
+
+# ── Language names ──
+[lang_rw]
+other = "Kinyarwanda"
+[lang_en]
+other = "English"
+[lang_fr]
+other = "French"

@@ -223,3 +223,29 @@ other = "Siporo"
 other = "Siyansi & Tech"
 [cat_world]
 other = "Isi Yose"
+
+# ── Ibyiciro byari byasigaye (menu + ibyatoranyijwe) ──
+[cat_african_union]
+other = "African Union"
+[cat_tourism]
+other = "Ubukerarugendo"
+[cat_regional]
+other = "Akarere"
+[cat_north]
+other = "Afurika y'Amajyaruguru"
+[cat_central]
+other = "Afurika yo Hagati"
+[cat_editors_picks]
+other = "Ibyatoranyijwe n'Abanditsi"
+[cat_editors_pick]
+other = "Ibyatoranyijwe n'Abanditsi"
+[cat_editorspicks]
+other = "Ibyatoranyijwe n'Abanditsi"
+
+# ── Amazina y'indimi ──
+[lang_rw]
+other = "Ikinyarwanda"
+[lang_en]
+other = "Icyongereza"
+[lang_fr]
+other = "Igifaransa"

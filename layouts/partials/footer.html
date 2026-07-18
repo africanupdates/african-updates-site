@@ -29,7 +29,8 @@
         <h4 class="au-footer__col-title">{{ i18n "categories" | default "Categories" }}</h4>
         <ul class="au-footer__links">
           {{ range first 8 (.Site.Taxonomies.categories.ByCount) }}
-          <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+          {{- $cl := i18n (printf "cat_%s" (.Page.Title | urlize | replaceRE "-" "_")) | default (humanize .Page.Title) }}
+          <li><a href="{{ .Page.RelPermalink }}">{{ $cl }}</a></li>
           {{ end }}
         </ul>
       </div>
@@ -40,7 +41,7 @@
           {{ range .Site.Languages }}
           <li>
             <a href="{{ printf "/%s/" .Lang | relURL }}">
-              {{ .LanguageName }}
+              {{ i18n (printf "lang_%s" .Lang) | default .LanguageName }}
             </a>
           </li>
           {{ end }}

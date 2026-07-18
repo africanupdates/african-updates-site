@@ -38,6 +38,12 @@
   --cat-health:        #0d9488;
   --cat-international: #6b21a8;
   --cat-tech:          #4338ca;
+  --cat-african-union: #0f766e;
+  --cat-tourism:       #c2410c;
+  --cat-regional:      #52525b;
+  --cat-north:         #a16207;
+  --cat-central:       #7c2d12;
+  --cat-editors:       #9d174d;
 
   /* Typography */
   --font-display:   'Playfair Display', Georgia, serif;
@@ -468,6 +474,14 @@ input, button, select, textarea { font-family: inherit; }
 .au-badge--health        { background: var(--cat-health); }
 .au-badge--international { background: var(--cat-international); }
 .au-badge--tech          { background: var(--cat-tech); }
+.au-badge--african-union { background: var(--cat-african-union); }
+.au-badge--tourism       { background: var(--cat-tourism); }
+.au-badge--regional      { background: var(--cat-regional); }
+.au-badge--north         { background: var(--cat-north); }
+.au-badge--central       { background: var(--cat-central); }
+.au-badge--editors-picks,
+.au-badge--editors-pick,
+.au-badge--editorspicks  { background: var(--cat-editors); }
 
 /* ── HERO SLIDER ─────────────────────────────────────────────── */
 .au-slider {
