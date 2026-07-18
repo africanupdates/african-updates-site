@@ -7,9 +7,6 @@ baseURL = "https://africanupdates.com/"
 title   = "African Updates"
 enableRobotsTXT = true
 
-## Remove Mainroad — using our custom layouts now
-## theme = "mainroad"   ← delete or comment out this line
-
 defaultContentLanguage     = "rw"
 defaultContentLanguageInSubdir = true   # rw at /rw/, en at /en/, fr at /fr/ — all symmetric
 
@@ -46,7 +43,9 @@ summaryLength = 40         # words used by .Summary
     weight       = 1
     contentDir   = "content/rw"
     [languages.rw.params]
-      description = "Amakuru y'Afurika mu Ntoki Zawe"
+      description = "Amakuru y'Afurika mu Biganza Byawe"
+      footerAbout = "African Updates itangaza amakuru mu buryo bwigenga mu Kinyarwanda, Icyongereza n'Igifaransa, kigamije kumenyesha abatuye ku mugabane."
+      tagline     = "Amakuru mu Biganza Byawe"
 
   [languages.en]
     languageName = "English"
@@ -54,6 +53,8 @@ summaryLength = 40         # words used by .Summary
     contentDir   = "content/en"
     [languages.en.params]
       description = "African news across politics, business, culture, and sport"
+      footerAbout = "African Updates delivers independent journalism across Kinyarwanda, English, and French , keeping the continent informed."
+      tagline     = "News in Your Hand"
 
   [languages.fr]
     languageName = "French"
@@ -61,6 +62,8 @@ summaryLength = 40         # words used by .Summary
     contentDir   = "content/fr"
     [languages.fr.params]
       description = "L'actualité africaine en politique, économie, culture et sport"
+      footerAbout = "African Updates propose un journalisme indépendant en kinyarwanda, en anglais et en français , pour tenir le continent informé."
+      tagline     = "L'actualité entre vos mains"
 
 ## ── IMAGE PROCESSING ────────────────────────────────────────
 # Lanczos = sharpest downscaling filter (default "Box" looks soft/blurry).

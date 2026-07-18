@@ -29,6 +29,15 @@
   --cat-world:      #0891b2;
   --cat-featured:   #1b3a5c;
   --cat-default:    #374151;
+  /* Added: colours for the remaining categories (were falling back to navy) */
+  --cat-news:          #475569;
+  --cat-africa:        #b45309;
+  --cat-east:          #0369a1;
+  --cat-rwanda:        #4d7c0f;
+  --cat-entertainment: #db2777;
+  --cat-health:        #0d9488;
+  --cat-international: #6b21a8;
+  --cat-tech:          #4338ca;
 
   /* Typography */
   --font-display:   'Playfair Display', Georgia, serif;
@@ -451,6 +460,14 @@ input, button, select, textarea { font-family: inherit; }
 .au-badge--culture   { background: var(--cat-culture); }
 .au-badge--security  { background: var(--cat-security); }
 .au-badge--world     { background: var(--cat-world); }
+.au-badge--news          { background: var(--cat-news); }
+.au-badge--africa        { background: var(--cat-africa); }
+.au-badge--east          { background: var(--cat-east); }
+.au-badge--rwanda        { background: var(--cat-rwanda); }
+.au-badge--entertainment { background: var(--cat-entertainment); }
+.au-badge--health        { background: var(--cat-health); }
+.au-badge--international { background: var(--cat-international); }
+.au-badge--tech          { background: var(--cat-tech); }
 
 /* ── HERO SLIDER ─────────────────────────────────────────────── */
 .au-slider {

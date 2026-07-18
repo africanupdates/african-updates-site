@@ -160,7 +160,7 @@ other = "Isi Yose"
 other = "Umutekano"
 
 [menu_african_union]
-other = "Umuryango w'Afurika"
+other = "African Union"
 
 [menu_tourism]
 other = "Ubukerarugendo"
@@ -184,7 +184,7 @@ other = "Ubucuruzi"
 other = "Umuco"
 
 [menu_science_tech]
-other = "Siyansi & Ikoranabuhanga"
+other = "Siyansi & Tech"
 
 [menu_sport]
 other = "Siporo"
@@ -220,6 +220,6 @@ other = "Umutekano"
 [cat_sport]
 other = "Siporo"
 [cat_tech]
-other = "Siyansi & Ikoranabuhanga"
+other = "Siyansi & Tech"
 [cat_world]
 other = "Isi Yose"
