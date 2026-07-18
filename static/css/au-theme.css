@@ -1370,12 +1370,18 @@ input, button, select, textarea { font-family: inherit; }
   margin-bottom: var(--space-8);
   border-radius: var(--radius);
   overflow: hidden;
+  text-align: center;
 }
 .au-article__hero-img {
-  width: 100%;
+  /* Show every hero at its own size and shape: never stretched wider than
+     the source, never cropped. Images bigger than the column shrink to fit;
+     smaller ones sit centred at their true size. */
+  width: auto;
+  max-width: 100%;     /* never wider than the article column */
   height: auto;
-  max-height: 520px;
-  object-fit: cover;
+  max-height: 520px;   /* never taller than the hero area */
+  margin: 0 auto;
+  object-fit: contain;
   display: block;
 }
 .au-article__hero-caption {
@@ -2507,17 +2513,20 @@ input, button, select, textarea { font-family: inherit; }
   .au-search-panel { width: 100%; max-width: 100%; }
 }
 
-/* ── SMALL HERO IMAGES (don't stretch tiny sources to full width) ── */
+/* ── SMALL HERO IMAGES ──
+   A thumbnail smaller than the hero area is shown at its own size and
+   centred, rather than stretched full width and blurry. No panel or
+   background - the leftover space is just page, so it reads as normal
+   whitespace instead of an empty box. */
 .au-article__hero--small {
   text-align: center;
-  background: var(--au-surface, #f5f7fa);
-  border-radius: var(--radius);
-  padding: var(--space-6);
+  background: none;
+  padding: 0;
 }
 .au-article__hero--small .au-article__hero-img {
   width: auto;
   max-width: 100%;
-  max-height: 400px;
+  max-height: 560px;
   margin: 0 auto;
   object-fit: contain;
   border-radius: var(--radius-sm);
