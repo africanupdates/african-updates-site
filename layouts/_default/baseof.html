@@ -108,6 +108,13 @@
         }
       });
     }
+    // Handle invite/recovery tokens — redirect to admin with token preserved
+    if (window.location.hash && window.location.hash.indexOf("invite_token") > -1) {
+      window.location.href = "/admin/" + window.location.hash;
+    }
+    if (window.location.hash && window.location.hash.indexOf("recovery_token") > -1) {
+      window.location.href = "/admin/" + window.location.hash;
+    }
   </script>
   {{ block "scripts_extra" . }}{{ end }}
 </body>
