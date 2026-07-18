@@ -1,13 +1,14 @@
 ---
-title: "Uko Waganiriza Umwana w’Umukobwa Igihe Ageze mu Mihango"
+title: Uko Waganiriza Umwana w’Umukobwa Igihe Ageze mu Mihango
+slug: uko-waganiriza-umwana-wumukobwa-igihe-ageze-mu-mihango
 date: 2025-07-02
-categories: 
-  - "news"
-  - "ibiganiro"
-  - "featured"
-  - "imibereho"
-  - "uburezi"
-thumbnail: "image-1.jpg"
+categories:
+  - news
+  - ibiganiro
+  - featured
+  - imibereho
+  - uburezi
+thumbnail: parent-daughter.webp
 ---
 
 Imihango (periods) ni kimwe mu bigaragaza ko umukobwa atangiye urugendo rwo gukura. Igihe umukobwa abonye imihango bwa mbere, biba bikwiye ko umubyeyi cyangwa undi muntu mukuru amuganiriza akamufasha kubyumva neza no kumenyera uko abayeho.
