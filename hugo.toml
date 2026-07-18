@@ -44,7 +44,7 @@ summaryLength = 40         # words used by .Summary
     contentDir   = "content/rw"
     [languages.rw.params]
       description = "Amakuru y'Afurika mu Biganza Byawe"
-      footerAbout = "African Updates itangaza amakuru mu buryo bwigenga mu Kinyarwanda, Icyongereza n'Igifaransa, kigamije kumenyesha abatuye ku mugabane."
+      footerAbout = "African Updates itangaza amakuru mu buryo bwigenga mu Kinyarwanda, Icyongereza n'Igifaransa, Igamije kumenyesha abatuye ku mugabane."
       tagline     = "Amakuru mu Biganza Byawe"
 
   [languages.en]
