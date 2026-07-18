@@ -200,49 +200,43 @@
     // at the top. Wrapped in try/catch and delayed slightly so it can
     // never interfere with the save itself.
     // ================================================================
-    function auGoToCollectionList() {
+    // ================================================================
+    // AFTER PUBLISH -> return to the collection list
+    // Decap normally leaves you in the editor with the fields still filled,
+    // so it is not obvious the post actually published. It also navigates to
+    // the saved entry *after* the save finishes, which overrides a plain
+    // in-app redirect. So we set the URL to the collection list and force a
+    // fresh load of the CMS there - Decap then boots straight to the list and
+    // cannot navigate back. Costs one short CMS reload.
+    // ================================================================
+    function auIsEditorScreen() {
+      return /#\/collections\/[^\/]+\/(entries|new)/.test(window.location.hash || "");
+    }
+
+    function auCollectionListUrl() {
+      var m = (window.location.hash || "").match(/#\/collections\/([^\/?]+)/);
+      return window.location.pathname + (m ? "#/collections/" + m[1] : "#/");
+    }
+
+    function auLeaveEditor() {
       try {
-        var hash = window.location.hash || "";
-        var m = hash.match(/#\/collections\/([^\/?]+)/);
-        window.location.hash = m ? "#/collections/" + m[1] : "#/";
+        if (!auIsEditorScreen()) return;   // already left - nothing to do
+        window.location.href = auCollectionListUrl();
+        window.location.reload();
       } catch (e) {}
-    }
-
-    // Decap navigates to the saved entry *after* the save completes, which
-    // overrides a single redirect. So we hold our ground for a short window:
-    // keep sending the user back to the list while they are still on an
-    // editor screen, then stop as soon as the list is stable.
-    var auDeadline = 0;
-    var auTimer = null;
-
-    function auStopRedirect() {
-      if (auTimer) { clearInterval(auTimer); auTimer = null; }
-    }
-
-    function auStartRedirect() {
-      auDeadline = Date.now() + 3000;   // give up after 3s no matter what
-      if (auTimer) return;
-      var stable = 0;
-      auTimer = setInterval(function () {
-        try {
-          if (Date.now() > auDeadline) { auStopRedirect(); return; }
-          var h = window.location.hash || "";
-          if (/#\/collections\/[^\/]+\/(entries|new)/.test(h)) {
-            auGoToCollectionList();     // still in the editor - push back out
-            stable = 0;
-          } else {
-            stable++;                   // on the list - stop once it holds
-            if (stable >= 3) auStopRedirect();
-          }
-        } catch (e) { auStopRedirect(); }
-      }, 200);
     }
 
     ["postSave", "postPublish"].forEach(function (evt) {
       try {
         CMS.registerEventListener({
           name: evt,
-          handler: function () { setTimeout(auStartRedirect, 400); }
+          handler: function () {
+            // 1.5s: let the commit finish and Decap do its own navigation
+            // first, so we are correcting its final state, not racing it.
+            setTimeout(auLeaveEditor, 1500);
+            // Backstop in case that navigation arrives late.
+            setTimeout(auLeaveEditor, 3000);
+          }
         });
       } catch (e) {}
     });
