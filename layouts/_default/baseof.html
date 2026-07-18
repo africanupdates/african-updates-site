@@ -57,7 +57,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   {{- /* Netlify Identity — required for CMS author login */}}
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  {{- /* Loaded at bottom of body to avoid appendChild null error */}}
 
   {{- /* Favicon */}}
   {{ partial "favicon.html" . }}
@@ -98,6 +98,7 @@
   {{- /* Cookie consent banner */}}
   {{- partial "cookie-consent.html" . }}
 
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", function(user) {
@@ -109,12 +110,12 @@
       });
     }
     // Handle invite/recovery tokens — redirect to admin with token preserved
-    if (window.location.hash && window.location.hash.indexOf("invite_token") > -1) {
-      window.location.href = "/admin/" + window.location.hash;
-    }
-    if (window.location.hash && window.location.hash.indexOf("recovery_token") > -1) {
-      window.location.href = "/admin/" + window.location.hash;
-    }
+    (function() {
+      var hash = window.location.hash;
+      if (hash && (hash.indexOf('invite_token=') > -1 || hash.indexOf('recovery_token=') > -1)) {
+        window.location.replace('/admin/' + hash);
+      }
+    })();
   </script>
   {{ block "scripts_extra" . }}{{ end }}
 </body>
