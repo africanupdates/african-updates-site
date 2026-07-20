@@ -7,6 +7,21 @@
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <link rel="canonical" href="{{ .Permalink }}">
 
+  {{- /* hreflang: tell search engines these are translations of each other,
+         not competing duplicate pages. .AllTranslations includes this page. */}}
+  {{- with .AllTranslations }}
+    {{- range . }}
+  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+    {{- end }}
+    {{- /* x-default must point at ONE fallback from every version,
+           so compare against the default content language, not this page's. */}}
+    {{- range . }}
+      {{- if eq .Lang "rw" }}
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+      {{- end }}
+    {{- end }}
+  {{- end }}
+
   {{- /* Open Graph */}}
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:title" content="{{ .Title }}">
