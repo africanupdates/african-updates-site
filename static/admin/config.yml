@@ -421,6 +421,10 @@ collections:
             required: false
             label_singular: "Advert"
             summary: "{{fields.title}}"
+            collapsed: false
+            allow_add: true
+            allow_remove: true
+            allow_reorder: true
             fields:
               - { label: "Image", name: image, widget: image, hint: "Wide banner works best. Two adverts show side by side." }
               - { label: "Link", name: link, widget: string, required: false, hint: "Optional. Full URL, e.g. https://example.com — the advert becomes clickable." }
