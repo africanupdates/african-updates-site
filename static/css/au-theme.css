@@ -453,41 +453,18 @@ input, button, select, textarea { font-family: inherit; }
   line-height: 1.6;
   transition: background var(--dur-fast);
 }
+/* Category badges are deliberately uniform: they all use the brand sky
+   blue from .au-badge above. The --cat-* variables are kept in :root so
+   per-category colours can be restored later if wanted. */
 .au-badge:hover { background: var(--au-navy-dark); color: var(--au-white); }
 .au-badge--sm { font-size: 10px; padding: 1px 6px; }
-.au-badge--featured  { background: var(--cat-featured); }
 
-/* Slider-specific badge override — always navy */
+/* Slider badges use the brand colour like every other badge */
 .au-slider__caption .au-badge,
 .au-slider__tile-body .au-badge {
-  background: #1b3a5c !important;
+  background: var(--au-navy) !important;
   color: var(--au-white) !important;
 }
-.au-badge--politics, .au-badge--politics-news,
-.au-badge--politic { background: var(--cat-politics); }
-.au-badge--business  { background: var(--cat-business); }
-.au-badge--sport     { background: var(--cat-sport); }
-.au-badge--culture   { background: var(--cat-culture); }
-.au-badge--security  { background: var(--cat-security); }
-.au-badge--world     { background: var(--cat-world); }
-.au-badge--news          { background: var(--cat-news); }
-.au-badge--africa        { background: var(--cat-africa); }
-.au-badge--east          { background: var(--cat-east); }
-.au-badge--rwanda        { background: var(--cat-rwanda); }
-.au-badge--entertainment { background: var(--cat-entertainment); }
-.au-badge--health        { background: var(--cat-health); }
-.au-badge--international { background: var(--cat-international); }
-.au-badge--tech          { background: var(--cat-tech); }
-.au-badge--african-union { background: var(--cat-african-union); }
-.au-badge--tourism       { background: var(--cat-tourism); }
-.au-badge--regional      { background: var(--cat-regional); }
-.au-badge--north         { background: var(--cat-north); }
-.au-badge--central       { background: var(--cat-central); }
-.au-badge--south         { background: var(--cat-south); }
-.au-badge--editors-picks,
-.au-badge--editors-pick,
-.au-badge--editorspicks  { background: var(--cat-editors); }
-
 /* ── HERO SLIDER ─────────────────────────────────────────────── */
 .au-slider {
   position: relative;
