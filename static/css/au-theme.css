@@ -1027,8 +1027,14 @@ input, button, select, textarea { font-family: inherit; }
 .au-footer__top { padding-block: var(--space-12); }
 .au-footer__top-inner {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;
-  gap: var(--space-8);
+  /* brand | quick links | categories | advertising | languages | follow us */
+  grid-template-columns: 1.7fr 1.15fr 1fr 0.85fr 0.85fr 1.05fr;
+  gap: var(--space-6);
+}
+/* Between tablet and desktop: brand on its own row, five columns below,
+   rather than squeezing six across a narrow viewport. */
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .au-footer__top-inner { grid-template-columns: repeat(3, 1fr); }
 }
 .au-footer__logo-text {
   font-family: var(--font-display);
@@ -1148,7 +1154,7 @@ input, button, select, textarea { font-family: inherit; }
   .au-slider__slide { height: 420px; }
   .au-slider__title { font-size: var(--text-2xl); }
   .au-grid--4 { grid-template-columns: repeat(2, 1fr); }
-  .au-footer__top-inner { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .au-footer__top-inner { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
 }
 
 /* Large mobile: ≤ 768px */
