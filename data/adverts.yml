@@ -1,0 +1,6 @@
+# Adverts shown on the site — managed in the CMS under "Adverts".
+# top    = the pane between the top bar and the navigation
+# footer = the advert column in the footer
+# Each advert: image (required), link (optional), title (alt text), active
+top: []
+footer: []

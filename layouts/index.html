@@ -11,7 +11,7 @@
     <main class="au-main" id="main-content">
 
       {{- /* Block: Latest News (all recent posts, 8 in a 4-col grid) */}}
-      {{ $latest := first 8 .Site.RegularPages }}
+      {{ $latest := first 4 .Site.RegularPages }}   {{/* homepage shows at most 4 */}}
       {{ if $latest }}
       <section class="au-section">
         <div class="au-section__head">
@@ -36,7 +36,7 @@
         {{ $cat      := .name }}
         {{ $catSlug  := .slug | default ($cat | urlize) }}
         {{ $icon     := .icon | default "fa-folder" }}
-        {{ $limit    := .limit | default 5 }}
+        {{ $limit    := .limit | default 4 }}
         {{- /* Match posts tagged with either the slug ("politics-news") or the
                display name ("Politics") — older posts may use either form. */}}
         {{ $catPages := where $.Site.RegularPages "Params.categories" "intersect" (slice $cat $catSlug) }}

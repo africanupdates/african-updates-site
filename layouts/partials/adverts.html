@@ -1,0 +1,106 @@
+{{- /*
+  Advert pane — two adverts side by side, sliding if there are more.
+
+  Usage:  {{ partial "adverts.html" (dict "ctx" . "place" "top") }}
+
+  Adverts live in data/adverts.yml and are managed in the CMS under
+  "Adverts". An advert needs an image; link and title are optional.
+  Setting active: false hides one without deleting it.
+*/ -}}
+{{- $ctx   := .ctx }}
+{{- $place := .place | default "top" }}
+
+{{- $items := slice }}
+{{- with hugo.Data.adverts }}
+  {{- with index . $place }}
+    {{- range . }}
+      {{- if and .image (ne .active false) }}
+        {{- $items = $items | append . }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- if $items }}
+<section class="au-ads" aria-label="{{ i18n "advertisement" | default "Advertisement" }}">
+  <div class="au-container">
+    <p class="au-ads__label">{{ i18n "advertisement" | default "Advertisement" }}</p>
+
+    <div class="au-ads__viewport" data-au-ads>
+      <div class="au-ads__track" data-au-ads-track>
+        {{- range $items }}
+        <div class="au-ads__cell">
+          {{- $img := .image | relURL }}
+          {{- $alt := .title | default "Advertisement" }}
+          {{- if .link }}
+          <a class="au-ads__item" href="{{ .link }}" target="_blank" rel="noopener sponsored">
+            <img src="{{ $img }}" alt="{{ $alt }}" loading="lazy">
+          </a>
+          {{- else }}
+          <div class="au-ads__item">
+            <img src="{{ $img }}" alt="{{ $alt }}" loading="lazy">
+          </div>
+          {{- end }}
+        </div>
+        {{- end }}
+      </div>
+    </div>
+
+    {{- if gt (len $items) 2 }}
+    <div class="au-ads__dots" data-au-ads-dots></div>
+    {{- end }}
+  </div>
+</section>
+
+{{- if gt (len $items) 2 }}
+<script>
+(function () {
+  var root = document.querySelector('[data-au-ads]');
+  if (!root) return;
+  var track = root.querySelector('[data-au-ads-track]');
+  var dotsEl = document.querySelector('[data-au-ads-dots]');
+  var cells = track ? track.children.length : 0;
+  if (!track || cells < 2) return;
+
+  var page = 0, timer = null;
+
+  function perPage() { return window.innerWidth <= 640 ? 1 : 2; }
+  function pages()   { return Math.ceil(cells / perPage()); }
+
+  function render() {
+    var total = pages();
+    if (page >= total) page = 0;
+    track.style.transform = 'translateX(-' + (page * 100) + '%)';
+    if (dotsEl) {
+      if (dotsEl.children.length !== total) {
+        dotsEl.innerHTML = '';
+        for (var i = 0; i < total; i++) {
+          var b = document.createElement('button');
+          b.className = 'au-ads__dot';
+          b.type = 'button';
+          b.setAttribute('aria-label', 'Advert ' + (i + 1));
+          (function (n) { b.addEventListener('click', function () { page = n; render(); restart(); }); })(i);
+          dotsEl.appendChild(b);
+        }
+      }
+      for (var j = 0; j < dotsEl.children.length; j++) {
+        dotsEl.children[j].setAttribute('aria-current', j === page ? 'true' : 'false');
+      }
+    }
+  }
+
+  function next()    { page = (page + 1) % pages(); render(); }
+  function start()   { if (pages() > 1) timer = setInterval(next, 6000); }
+  function stop()    { if (timer) { clearInterval(timer); timer = null; } }
+  function restart() { stop(); start(); }
+
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  window.addEventListener('resize', render);
+
+  render();
+  start();
+})();
+</script>
+{{- end }}
+{{- end }}

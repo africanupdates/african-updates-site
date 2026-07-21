@@ -4,7 +4,7 @@
 other = "Accueil"
 
 [breaking]
-other = "Flash"
+other = "Flash Info"
 
 [latest_news]
 other = "Dernières Nouvelles"
@@ -249,3 +249,11 @@ other = "Kinyarwanda"
 other = "Anglais"
 [lang_fr]
 other = "Français"
+
+# ── Afrique australe + publicité ──
+[menu_southern_africa]
+other = "Afrique australe"
+[cat_south]
+other = "Afrique australe"
+[advertisement]
+other = "Publicité"

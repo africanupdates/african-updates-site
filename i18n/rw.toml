@@ -251,3 +251,11 @@ other = "Ikinyarwanda"
 other = "Icyongereza"
 [lang_fr]
 other = "Igifaransa"
+
+# ── Afurika y'Amajyepfo + kwamamaza ──
+[menu_southern_africa]
+other = "Afurika y'Amajyepfo"
+[cat_south]
+other = "Afurika y'Amajyepfo"
+[advertisement]
+other = "Kwamamaza"

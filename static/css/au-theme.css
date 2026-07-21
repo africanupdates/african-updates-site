@@ -15,10 +15,12 @@
   --au-surface:     #f5f5f5;
   --au-white:       #ffffff;
 
-  /* Brand accent — navy */
-  --au-navy:         #1b3a5c;
-  --au-navy-dark:    #10263f;
-  --au-navy-light:   #2f5f8f;
+  /* Brand accent — sky blue */
+  --au-navy:         #0284c7;   /* sky blue - main brand (backgrounds) */
+  --au-navy-dark:    #0369a1;   /* deeper sky - hovers, gradients */
+  --au-navy-text:    #0369a1;   /* sky for TEXT on white - keeps contrast readable */
+  --au-navy-light:   #38bdf8;   /* pale sky - accents */
+  --au-red:          #ff5757;   /* brand red - breaking pulse */
 
   /* Category colours */
   --cat-politics:   #1a4fa0;
@@ -27,7 +29,7 @@
   --cat-culture:    #7c3aed;
   --cat-security:   #b91c1c;
   --cat-world:      #0891b2;
-  --cat-featured:   #1b3a5c;
+  --cat-featured:   #0369a1;
   --cat-default:    #374151;
   /* Added: colours for the remaining categories (were falling back to navy) */
   --cat-news:          #475569;
@@ -43,6 +45,7 @@
   --cat-regional:      #52525b;
   --cat-north:         #a16207;
   --cat-central:       #7c2d12;
+  --cat-south:         #15803d;
   --cat-editors:       #9d174d;
 
   /* Typography */
@@ -225,7 +228,7 @@ input, button, select, textarea { font-family: inherit; }
   font-family: var(--font-display);
   font-size: var(--text-3xl);
   font-weight: 900;
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   letter-spacing: -0.02em;
   line-height: 1;
 }
@@ -480,6 +483,7 @@ input, button, select, textarea { font-family: inherit; }
 .au-badge--regional      { background: var(--cat-regional); }
 .au-badge--north         { background: var(--cat-north); }
 .au-badge--central       { background: var(--cat-central); }
+.au-badge--south         { background: var(--cat-south); }
 .au-badge--editors-picks,
 .au-badge--editors-pick,
 .au-badge--editorspicks  { background: var(--cat-editors); }
@@ -706,7 +710,7 @@ input, button, select, textarea { font-family: inherit; }
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   display: flex;
   align-items: center;
   gap: var(--space-1);
@@ -1029,7 +1033,7 @@ input, button, select, textarea { font-family: inherit; }
 }
 .au-btn--outline {
   border: 2px solid var(--au-navy);
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   background: transparent;
 }
 .au-btn--outline:hover {
@@ -1431,7 +1435,7 @@ input, button, select, textarea { font-family: inherit; }
   margin-top: 1.5em;
 }
 .au-prose a {
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: rgba(192,39,45,0.3);
@@ -1468,7 +1472,7 @@ input, button, select, textarea { font-family: inherit; }
 .au-prose blockquote::before {
   content: '\201C';
   font-size: 4rem;
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   opacity: 0.2;
   position: absolute;
   top: -0.25em;
@@ -1655,7 +1659,7 @@ input, button, select, textarea { font-family: inherit; }
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -1790,7 +1794,7 @@ input, button, select, textarea { font-family: inherit; }
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   transition: all var(--dur-fast);
 }
 .au-pagination__btn:hover {
@@ -1968,10 +1972,11 @@ input, button, select, textarea { font-family: inherit; }
 /* Pulsing red dot */
 .au-ticker__pulse {
   display: inline-block;
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: var(--au-white);
+  background: var(--au-red);
+  box-shadow: 0 0 0 0 rgba(255, 87, 87, 0.7);
   animation: ticker-pulse 1.4s ease-in-out infinite;
 }
 @keyframes ticker-pulse {
@@ -2147,7 +2152,7 @@ input, button, select, textarea { font-family: inherit; }
   font-family: var(--font-display);
   font-size: clamp(5rem, 16vw, 9rem);
   font-weight: 900;
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   line-height: 1;
   letter-spacing: -0.04em;
 }
@@ -2403,7 +2408,7 @@ input, button, select, textarea { font-family: inherit; }
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--au-navy);
+  color: var(--au-navy-text);
   margin-top: var(--space-1);
 }
 .au-author-profile__bio {
@@ -2530,4 +2535,102 @@ input, button, select, textarea { font-family: inherit; }
   margin: 0 auto;
   object-fit: contain;
   border-radius: var(--radius-sm);
+}
+
+/* ══ ADVERT PANE (between topbar and nav) ═══════════════════════
+   Two equal halves side by side. If there is more than one pair,
+   the track slides between pairs. Stacks on small screens so the
+   creatives stay legible. */
+.au-ads {
+  background: var(--au-surface);
+  border-bottom: 1px solid var(--au-border);
+  padding: var(--space-3) 0;
+}
+.au-ads__label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--au-muted);
+  text-align: center;
+  margin-bottom: var(--space-2);
+}
+.au-ads__viewport { overflow: hidden; }
+.au-ads__track {
+  display: flex;
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+.au-ads__cell {
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  padding: 0 var(--space-2);
+}
+.au-ads__item {
+  display: block;
+  background: var(--au-white);
+  border: 1px solid var(--au-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 60px;
+}
+a.au-ads__item:hover { border-color: var(--au-navy); }
+.au-ads__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.au-ads__dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: var(--space-2);
+}
+.au-ads__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--au-border);
+  border: 0; padding: 0; cursor: pointer;
+}
+.au-ads__dot[aria-current="true"] { background: var(--au-navy); }
+@media (max-width: 640px) {
+  .au-ads__cell { flex: 0 0 100%; }
+}
+
+/* ══ FOOTER: CONTACT DETAILS ════════════════════════════════════ */
+.au-footer__contact {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.au-footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+.au-footer__contact-item i {
+  width: 16px;
+  flex: 0 0 16px;
+  margin-top: 3px;
+  opacity: 0.75;
+}
+.au-footer__contact-item a { text-decoration: none; }
+.au-footer__contact-item a:hover { text-decoration: underline; }
+
+/* ══ FOOTER: ADVERTS ════════════════════════════════════════════ */
+.au-footer__ads {
+  display: grid;
+  gap: var(--space-3);
+}
+.au-footer__ad {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+.au-footer__ad img {
+  width: 100%;
+  height: auto;
+  display: block;
 }

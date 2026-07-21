@@ -4,7 +4,7 @@
 other = "Home"
 
 [breaking]
-other = "Breaking"
+other = "Breaking News"
 
 [latest_news]
 other = "Latest News"
@@ -249,3 +249,11 @@ other = "Kinyarwanda"
 other = "English"
 [lang_fr]
 other = "French"
+
+# ── Southern Africa + adverts ──
+[menu_southern_africa]
+other = "Southern Africa"
+[cat_south]
+other = "Southern Africa"
+[advertisement]
+other = "Advertisement"

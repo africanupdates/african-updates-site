@@ -11,6 +11,31 @@
           {{ end }}
         </div>
         <p class="au-footer__about">{{ .Site.Params.footerAbout | default "African Updates delivers independent journalism across Kinyarwanda, English, and French — keeping the continent informed." }}</p>
+
+        {{- /* Contact details. Each line only appears if the value is set
+               in hugo.toml under [params]: email, phone, address. */}}
+        {{- if or .Site.Params.email .Site.Params.phone .Site.Params.address }}
+        <address class="au-footer__contact">
+          {{- with .Site.Params.address }}
+          <span class="au-footer__contact-item">
+            <i class="fa fa-location-dot" aria-hidden="true"></i>
+            <span>{{ . }}</span>
+          </span>
+          {{- end }}
+          {{- with .Site.Params.phone }}
+          <span class="au-footer__contact-item">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <a href="tel:{{ . | replaceRE "[^+0-9]" "" }}">{{ . }}</a>
+          </span>
+          {{- end }}
+          {{- with .Site.Params.email }}
+          <span class="au-footer__contact-item">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:{{ . }}">{{ . }}</a>
+          </span>
+          {{- end }}
+        </address>
+        {{- end }}
       </div>
 
       <div class="au-footer__col">
@@ -34,6 +59,30 @@
           {{ end }}
         </ul>
       </div>
+
+      {{- /* Footer adverts — from data/adverts.yml (footer list) */}}
+      {{- $ads := slice }}
+      {{- with hugo.Data.adverts }}{{ with .footer }}{{ range . }}
+        {{- if and .image (ne .active false) }}{{ $ads = $ads | append . }}{{ end }}
+      {{- end }}{{ end }}{{ end }}
+      {{- if $ads }}
+      <div class="au-footer__col">
+        <h4 class="au-footer__col-title">{{ i18n "advertisement" | default "Advertisement" }}</h4>
+        <div class="au-footer__ads">
+          {{- range $ads }}
+          {{- $img := .image | relURL }}
+          {{- $alt := .title | default "Advertisement" }}
+          {{- if .link }}
+          <a class="au-footer__ad" href="{{ .link }}" target="_blank" rel="noopener sponsored">
+            <img src="{{ $img }}" alt="{{ $alt }}" loading="lazy">
+          </a>
+          {{- else }}
+          <div class="au-footer__ad"><img src="{{ $img }}" alt="{{ $alt }}" loading="lazy"></div>
+          {{- end }}
+          {{- end }}
+        </div>
+      </div>
+      {{- end }}
 
       <div class="au-footer__col">
         <h4 class="au-footer__col-title">{{ i18n "languages" | default "Languages" }}</h4>

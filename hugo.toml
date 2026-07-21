@@ -84,6 +84,9 @@ summaryLength = 40         # words used by .Summary
 
   ## Publisher identity — used by the NewsMediaOrganization structured data
   email        = "info@africanupdates.com"
+  ## Footer contact details — leave a value empty ("") to hide that line
+  phone        = ""
+  address      = ""
   foundingYear = "2024"                     # adjust to the real founding year if different
 
   ## Social links
@@ -104,37 +107,37 @@ summaryLength = 40         # words used by .Summary
     name  = "Politics"
     slug  = "politics-news"
     icon  = "fa-landmark"
-    limit = 5
+    limit = 4
 
   [[params.homeCategories]]
     name  = "Business"
     slug  = "business"
     icon  = "fa-chart-line"
-    limit = 5
+    limit = 4
 
   [[params.homeCategories]]
     name  = "Security"
     slug  = "security"
     icon  = "fa-shield-halved"
-    limit = 5
+    limit = 4
 
   [[params.homeCategories]]
     name  = "Culture"
     slug  = "culture"
     icon  = "fa-masks-theater"
-    limit = 5
+    limit = 4
 
   [[params.homeCategories]]
     name  = "Sport"
     slug  = "sport"
     icon  = "fa-futbol"
-    limit = 5
+    limit = 4
 
   [[params.homeCategories]]
     name  = "Science & Tech"
     slug  = "tech"
     icon  = "fa-microchip"
-    limit = 5
+    limit = 4
 
 ## ── RELATED CONTENT ─────────────────────────────────────────
 [related]
@@ -194,11 +197,6 @@ summaryLength = 40         # words used by .Summary
   weight     = 30
 
 [[menus.main]]
-  name       = "African Union"
-  url        = "/categories/african-union/"
-  weight     = 40
-
-[[menus.main]]
   name       = "Tourism"
   url        = "/categories/tourism/"
   weight     = 50
@@ -222,16 +220,16 @@ summaryLength = 40         # words used by .Summary
     name     = "Central Africa"
     url      = "/categories/central/"
     weight   = 3
+  [[menus.main]]
+    parent   = "Regional"
+    name     = "Southern Africa"
+    url      = "/categories/south/"
+    weight   = 4
 
 [[menus.main]]
   name       = "Business"
   url        = "/categories/business/"
   weight     = 70
-
-[[menus.main]]
-  name       = "Culture"
-  url        = "/categories/culture/"
-  weight     = 80
 
 [[menus.main]]
   name       = "Science & Tech"
