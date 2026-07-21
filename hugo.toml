@@ -76,7 +76,8 @@ summaryLength = 40         # words used by .Summary
 ## ── SITE PARAMS ─────────────────────────────────────────────
 [params]
   description = "African Updates — News in Your Hand"
-  logo        = "images/logo.png"          # header + footer display
+  logo        = "images/logo.png"          # nav bar (header)
+  logoFooter  = "images/logo-footer.png"    # footer. Leave "" to reuse the nav logo
   ogImage     = "images/og-default.png"    # social share fallback — 1200×630 PNG banner
   tagline     = "News in Your Hand"
   footerAbout = "African Updates delivers independent journalism across Kinyarwanda, English, and French — keeping the continent informed."

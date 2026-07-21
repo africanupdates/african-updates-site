@@ -4,8 +4,9 @@
 
       <div class="au-footer__col">
         <div class="au-footer__logo">
-          {{ with .Site.Params.logo }}
-            <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" width="200" height="59" loading="lazy">
+          {{- /* Footer logo: params.logoFooter if set, otherwise the nav logo */}}
+          {{ with .Site.Params.logoFooter | default .Site.Params.logo }}
+            <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" width="200" height="51" loading="lazy">
           {{ else }}
             <span class="au-footer__logo-text">{{ .Site.Title }}</span>
           {{ end }}

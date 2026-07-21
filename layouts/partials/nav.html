@@ -8,11 +8,21 @@
       <span class="au-hamburger__bar"></span>
     </button>
 
-    {{- /* Logo — far left of nav bar */}}
-    <a href="{{ .Site.BaseURL }}" class="au-nav__logo" rel="home">
+    {{- /* Logo — far left of nav bar.
+           Site.Home.RelPermalink keeps it inside the current language:
+           /rw/ on the Kinyarwanda site, /en/ on English, /fr/ on French. */}}
+    <a href="{{ .Site.Home.RelPermalink }}" class="au-nav__logo" rel="home">
       {{ with .Site.Params.logo }}
         <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" class="au-nav__logo-img">
       {{ end }}
+    </a>
+
+    {{- /* Home button — also language-aware */}}
+    <a href="{{ .Site.Home.RelPermalink }}"
+       class="au-nav__home{{ if .IsHome }} is-active{{ end }}"
+       {{ if .IsHome }}aria-current="page"{{ end }}>
+      <i class="fa fa-house" aria-hidden="true"></i>
+      <span class="au-nav__home-text">{{ i18n "home" | default "Home" }}</span>
     </a>
 
     {{- /* Primary menu */}}
