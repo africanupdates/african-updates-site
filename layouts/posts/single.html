@@ -58,7 +58,7 @@
           {{ with .Params.authors }}
           <span class="au-article__author">
             <i class="fa fa-user"></i>
-            {{ range $i, $a := . }}{{ if $i }}, {{ end }}<a href="{{ printf "/authors/%s/" ($a | urlize) | relURL }}" class="au-article__author-link" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">{{ $a }}</span></a>{{ end }}
+            {{ range $i, $a := . }}{{ if $i }}, {{ end }}<a href="{{ printf "/authors/%s/" ($a | urlize) | relLangURL }}" class="au-article__author-link" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">{{ $a }}</span></a>{{ end }}
           </span>
           {{ else }}{{ with .Params.author }}
           <span class="au-article__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
