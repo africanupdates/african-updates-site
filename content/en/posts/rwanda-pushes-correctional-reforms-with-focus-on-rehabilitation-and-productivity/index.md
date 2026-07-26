@@ -11,6 +11,7 @@ description: Minister of Interior in Rwanda, Dr. Vincent Biruta, has called on
 categories:
   - security
   - east
+  - featured
 breaking: true
 thumbnail: close-3.jpg
 ---
