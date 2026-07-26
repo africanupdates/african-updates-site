@@ -13,6 +13,8 @@ categories:
   - east
   - featured
 breaking: true
+authors:
+  - Denyse Mbabazi Mpambara
 thumbnail: close-3.jpg
 ---
 Minister of Interior in Rwanda, Dr. Vincent Biruta, has called on the Rwanda Correctional Service (RCS) to strengthen rehabilitation efforts while making better use of correctional infrastructure and land to improve the institution's productivity.
