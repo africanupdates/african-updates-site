@@ -2,7 +2,7 @@
 title: Rwanda trade fair strengthens AfCFTA drive as African countries urged to
   hold more regional trade fair
 slug: rwanda-trade-fair-strengthens-afcfta-drive-as-african-countries-urged-to-hold-more-regional-trade-fair
-draft: true
+draft: false
 date: 2026-07-30
 description: The ongoing Rwanda International Trade Fair has been described as
   an important platform for accelerating trade among African countries, with
