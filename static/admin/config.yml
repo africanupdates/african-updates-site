@@ -124,6 +124,12 @@ collections:
         media_folder: ""
         public_folder: ""
 
+      - label: "Gallery (slideshow)"
+        name: gallery
+        widget: list
+        required: false
+        field: { label: "Image", name: image, widget: image }
+        hint: "Add several photos to show as a slideshow in the article."
       - label: "Body"
         name: body
         widget: markdown
@@ -232,6 +238,12 @@ collections:
         media_folder: ""
         public_folder: ""
 
+      - label: "Gallery (slideshow)"
+        name: gallery
+        widget: list
+        required: false
+        field: { label: "Image", name: image, widget: image }
+        hint: "Add several photos to show as a slideshow in the article."
       - label: "Body"
         name: body
         widget: markdown
@@ -340,6 +352,12 @@ collections:
         media_folder: ""
         public_folder: ""
 
+      - label: "Gallery (slideshow)"
+        name: gallery
+        widget: list
+        required: false
+        field: { label: "Image", name: image, widget: image }
+        hint: "Add several photos to show as a slideshow in the article."
       - label: "Body"
         name: body
         widget: markdown
