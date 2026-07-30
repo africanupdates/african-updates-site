@@ -2,8 +2,12 @@
 <div class="gallery-slideshow" id="gallery-{{ .File.UniqueID }}">
   <div class="gallery-track">
     {{ range $i, $img := .Params.gallery }}
+      {{- /* Accept either a flat path ("/images/a.jpg") or an object
+             ({ image: "/images/a.jpg" }) written by the CMS list widget. */}}
+      {{- $src := $img }}
+      {{- if reflect.IsMap $img }}{{ $src = $img.image }}{{ end }}
     <div class="gallery-slide {{ if eq $i 0 }}active{{ end }}">
-      <img src="{{ $img }}" alt="Gallery image {{ add $i 1 }}" loading="lazy" />
+      <img src="{{ $src }}" alt="Gallery image {{ add $i 1 }}" loading="lazy" />
     </div>
     {{ end }}
   </div>
