@@ -35,7 +35,6 @@
   --cat-news:          #475569;
   --cat-africa:        #b45309;
   --cat-east:          #0369a1;
-  --cat-rwanda:        #4d7c0f;
   --cat-entertainment: #db2777;
   --cat-health:        #0d9488;
   --cat-international: #6b21a8;
@@ -46,6 +45,8 @@
   --cat-north:         #a16207;
   --cat-central:       #7c2d12;
   --cat-south:         #15803d;
+  --cat-west:          #b45309;
+  --cat-agriculture:   #4d7c0f;
   --cat-editors:       #9d174d;
 
   /* Typography */
