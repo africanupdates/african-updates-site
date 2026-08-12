@@ -262,3 +262,13 @@ other = "Kwamamaza"
 
 [advertise_with_us]
 other = "Kwamamaza"
+
+[cat_west]
+other = "Afurika y'Uburengerazuba"
+[cat_agriculture]
+other = "Ubuhinzi"
+
+[menu_western_africa]
+other = "Afurika y'Uburengerazuba"
+[menu_agriculture]
+other = "Ubuhinzi"

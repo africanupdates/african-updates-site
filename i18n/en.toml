@@ -260,3 +260,13 @@ other = "Advertisement"
 
 [advertise_with_us]
 other = "Advertise with us"
+
+[cat_west]
+other = "Western Africa"
+[cat_agriculture]
+other = "Agriculture"
+
+[menu_western_africa]
+other = "Western Africa"
+[menu_agriculture]
+other = "Agriculture"

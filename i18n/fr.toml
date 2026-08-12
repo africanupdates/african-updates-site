@@ -260,3 +260,13 @@ other = "Publicité"
 
 [advertise_with_us]
 other = "Annoncez avec nous"
+
+[cat_west]
+other = "Afrique de l'Ouest"
+[cat_agriculture]
+other = "Agriculture"
+
+[menu_western_africa]
+other = "Afrique de l'Ouest"
+[menu_agriculture]
+other = "Agriculture"
