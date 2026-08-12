@@ -3,7 +3,7 @@ title: "Zimbabwe: At Least 15 Dead, 27 Missing After Ferry Capsizes on
   Zimbabwe’s Lake Kariba"
 slug: zimbabwe-at-least-15-dead-27-missing-after-ferry-capsizes-on-zimbabwes-lake-kariba
 draft: false
-date: 2026-08-11
+date: 2026-08-12
 description: 15 dead, 27 missing after a ferry capsizes on Zimbabwe’s Lake Kariba.
 categories:
   - featured
