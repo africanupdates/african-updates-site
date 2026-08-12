@@ -82,10 +82,12 @@ collections:
           - { label: "East Africa", value: "east" }
           - { label: "Northern Africa", value: "north" }
           - { label: "Central Africa", value: "central" }
+          - { label: "Southern Africa", value: "south" }
+          - { label: "Western Africa", value: "west" }
           - { label: "Africa", value: "africa" }
-          - { label: "Rwanda", value: "rwanda" }
           - { label: "International", value: "international" }
           - { label: "Business", value: "business" }
+          - { label: "Agriculture", value: "agriculture" }
           - { label: "Culture", value: "culture" }
           - { label: "Science & Tech", value: "tech" }
           - { label: "Sport", value: "sport" }
@@ -196,10 +198,12 @@ collections:
           - { label: "East Africa", value: "east" }
           - { label: "Northern Africa", value: "north" }
           - { label: "Central Africa", value: "central" }
+          - { label: "Southern Africa", value: "south" }
+          - { label: "Western Africa", value: "west" }
           - { label: "Africa", value: "africa" }
-          - { label: "Rwanda", value: "rwanda" }
           - { label: "International", value: "international" }
           - { label: "Business", value: "business" }
+          - { label: "Agriculture", value: "agriculture" }
           - { label: "Culture", value: "culture" }
           - { label: "Science & Tech", value: "tech" }
           - { label: "Sport", value: "sport" }
@@ -310,10 +314,12 @@ collections:
           - { label: "East Africa", value: "east" }
           - { label: "Northern Africa", value: "north" }
           - { label: "Central Africa", value: "central" }
+          - { label: "Southern Africa", value: "south" }
+          - { label: "Western Africa", value: "west" }
           - { label: "Africa", value: "africa" }
-          - { label: "Rwanda", value: "rwanda" }
           - { label: "International", value: "international" }
           - { label: "Business", value: "business" }
+          - { label: "Agriculture", value: "agriculture" }
           - { label: "Culture", value: "culture" }
           - { label: "Science & Tech", value: "tech" }
           - { label: "Sport", value: "sport" }
