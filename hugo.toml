@@ -227,7 +227,18 @@ summaryLength = 40         # words used by .Summary
     url      = "/categories/south/"
     weight   = 4
 
+  [[menus.main]]
+    parent   = "Regional"
+    name     = "Western Africa"
+    url      = "/categories/west/"
+    weight   = 5
+
 [[menus.main]]
+  name       = "Agriculture"
+  url        = "/categories/agriculture/"
+  weight     = 65
+
+  [[menus.main]]
   name       = "Business"
   url        = "/categories/business/"
   weight     = 70
