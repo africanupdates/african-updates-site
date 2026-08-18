@@ -6,6 +6,12 @@ date: 2026-08-18
 description: Rwanda’s 29th International Trade Fair ended with COPED leading
   efforts to improve waste collection, sorting and recycling under a three-year
   Green Expo project with PSF.
+categories:
+  - featured
+  - east
+  - business
+  - african-union
+  - tech
 breaking: true
 thumbnail: 0e8a9540.jpg
 ---
