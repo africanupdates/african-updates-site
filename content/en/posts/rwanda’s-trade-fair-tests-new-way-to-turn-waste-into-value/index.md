@@ -22,9 +22,9 @@ At the centre of the effort was COPED, a Rwandan environmental and waste-managem
 
 The project seeks to ensure that waste produced at exhibitions is properly collected, separated and measured, with recyclable materials sent to industries instead of ending up in landfills.
 
-“We start at the waste-generator level, where waste is produced. We support our clients to properly sort their waste, educate them and train them,” Paulin Buregeya, CEO of COPED, told African Updates during the final day of the expo.
+“We start at the waste-generator level, where waste is produced. We support our clients to properly sort their waste, educate them and train them,” Paulin Buregeya, CEO of COPED, told African Updates during the final day of the expo 2026.
 
-![Paulin Buregeya, CEO of COPED](0k1a9417.jpg "Paulin Buregeya, CEO of COPED")
+![Paulin Buregeya, Environmental expert and CEO of COPED](0k1a9417.jpg "Paulin Buregeya, Environmental expert and CEO of COPED")
 
 COPED separated waste at the expo into four categories of general, recyclable, hazardous and electronic waste. The company also established a collection point for e-waste and plans to continue collecting electronic equipment and plastics beyond the exhibition.
 
