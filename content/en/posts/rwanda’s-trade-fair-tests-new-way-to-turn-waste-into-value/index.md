@@ -1,7 +1,7 @@
 ---
 title: COPED Tests Innovative Way to Turn Waste Into Value at Rwanda
   International Trade Fair
-slug: rwandas-trade-fair-tests-new-way-to-turn-waste-into-value
+slug: coped-tests-innovative-way-to-turn-waste-into-value-at-rwanda-international-trade-fair
 draft: false
 date: 2026-08-18
 description: Rwanda’s 29th International Trade Fair ended with COPED leading
