@@ -18,9 +18,9 @@ Parton died on August 25 in Nashville, Tennessee, following a brief battle with 
 
 Born on January 19, 1946, in Tennessee, Parton grew up in a poor family of 12 children. She began performing as a child before moving to Nashville and building a remarkable career as a singer, songwriter and actress.
 
-She wrote more than 3,000 songs, including “Jolene,” “Coat of Many Colors” and “I Will Always Love You.” The latter became a global hit after Whitney Houston recorded it for the 1992 film *The Bodyguard*.
+She wrote more than 3,000 songs, including Jolene, Coat of Many Colors and I Will Always Love You. The latter became a global hit after Whitney Houston recorded it for the 1992 film The Bodyguard.
 
-Parton also found success on screen, starring in films including *9 to 5*, *The Best Little Whorehouse in Texas* and *Steel Magnolias*. Her career earned her 10 Grammy Awards, as well as inductions into the Country Music Hall of Fame, Songwriters Hall of Fame and Rock & Roll Hall of Fame.
+Parton also found success on screen, starring in films including *9 to 5*, The Best Little Whorehouse in Texas and Steel Magnolias. Her career earned her 10 Grammy Awards, as well as inductions into the Country Music Hall of Fame, Songwriters Hall of Fame and Rock & Roll Hall of Fame.
 
 Beyond entertainment, Parton was known for her philanthropy. Her Imagination Library, launched in 1995, has distributed more than 300 million free books to children around the world.
 
