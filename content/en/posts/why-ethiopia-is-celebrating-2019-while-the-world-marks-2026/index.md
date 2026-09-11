@@ -11,7 +11,7 @@ categories:
   - east
   - culture
 breaking: true
-thumbnail: zigzag-imagee-29-.jpg
+thumbnail: zigzag-imagee-29.jpg
 ---
 Ethiopia on Friday, September 11, welcomed 2019, marking the beginning of a new year under its own calendar, while Rwanda and most of the world remained in 2026.
 
