@@ -1,7 +1,7 @@
 ---
 title: AUDA-NEPAD Urges Action to Help Women Farmers Adapt to Climate Change
 slug: auda-nepad-urges-action-to-help-women-farmers-adapt-to-climate-change
-draft: true
+draft: false
 date: 2026-08-27
 description: AUDA-NEPAD is calling for climate-smart agriculture solutions that
   empower women farmers and build resilience to climate change.
