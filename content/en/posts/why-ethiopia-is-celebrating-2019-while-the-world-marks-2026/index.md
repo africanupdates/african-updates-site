@@ -33,9 +33,9 @@ He also paid tribute to previous generations for preserving the country’s unit
 
 Meanwhile, Professor Abraham, a representative of the Ethiopian community in Rwanda, said a significant number of Ethiopians are living in Rwanda and working in different professional sectors and education.
 
-He said their presence also contributes to strengthening the relationship between the people of Ethiopia and Rwanda.
+He said their presence also contributes to strengthening the relationship between the people of Ethiopia and Rwanda. 
 
-![Professor Abraham, a representative of the Ethiopian community in Rwanda, speaks during the New Year celebration in Kigali](zigzag-imagee-40-.jpg "Professor Abraham, a representative of the Ethiopian community in Rwanda, speaks during the New Year celebration in Kigali")
+![Professor Abraham, a representative of the Ethiopian community in Rwanda, speaks during the New Year celebration in Kigali](zigzagimage-48-.jpg "Professor Abraham, a representative of the Ethiopian community in Rwanda, speaks during the New Year celebration in Kigali")
 
 Enkutatash has roots in Ethiopia’s long history and is traditionally associated with the return of the Queen of Sheba from her visit to Jerusalem. The name is commonly translated as “gift of jewels.”
 
@@ -57,6 +57,10 @@ For Ethiopians, the arrival of 2019 is therefore not simply about following a di
 
 ![](zigzagimage-48-.jpg)
 
+![](zigzag-imagee-40-.jpg)
+
 ![](zigzagimage-122-.jpg)
+
+
 
 **African Updates**
