@@ -2,7 +2,13 @@
 title: Rwanda, Senegal Sign 11 Agreements to Deepen Cooperation
 slug: rwanda-senegal-sign-11-agreements-to-deepen-cooperation
 draft: false
-date: 2026-10-08
+date: 2026-10-07
+categories:
+  - featured
+  - news
+  - politics-news
+  - west
+  - east
 breaking: true
 thumbnail: pm.png
 ---
